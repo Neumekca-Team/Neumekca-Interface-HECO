@@ -22,7 +22,7 @@ const GridCard = styled(Box)`
 `
 
 const GridCardContent = styled(AutoColumn)`
-  background-color: ${({ theme }) => theme.bg1};
+ // background-color: ${({ theme }) => theme.bg1};
   box-shadow: 4px 4px 8px ${({ theme }) => theme.shadowColor1}, -4px -4px 8px ${({ theme }) => theme.shadowColor2};
   padding: 16px;
 `
@@ -52,8 +52,8 @@ export default function NFTCard({ nftInfo }: { nftInfo?: NftInfo }) {
       <GridCardContent>
         <NFTImage src={nftInfo ? nftInfo.token_image : PlaceHolder} />
         <DetailsCard>
-          <TYPE.black>{nftInfo ? nftInfo.name : '-'} NFT</TYPE.black>
-          <TYPE.subHeader>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.subHeader>
+          <TYPE.white>{nftInfo ? nftInfo.name : '-'} NFT</TYPE.white>
+          <TYPE.white>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.white>
         </DetailsCard>
       </GridCardContent>
 
@@ -62,13 +62,13 @@ export default function NFTCard({ nftInfo }: { nftInfo?: NftInfo }) {
           <NFTImage src={nftInfo ? nftInfo.token_image : PlaceHolder} />
           <DetailsCard>
             {nftInfo && (
-              <TYPE.main fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
+              <TYPE.black fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
                 {nftInfo.description}
-              </TYPE.main>
+              </TYPE.black>
             )}
-            <TYPE.subHeader>Name: {nftInfo ? nftInfo.name : '-'}</TYPE.subHeader>
-            <TYPE.subHeader>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.subHeader>
-            <TYPE.subHeader>Effect: {nftInfo ? nftInfo.effect : '-'}</TYPE.subHeader>
+            <TYPE.black>Name: {nftInfo ? nftInfo.name : '-'}</TYPE.black>
+            <TYPE.black>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.black>
+            <TYPE.black>Effect: {nftInfo ? nftInfo.effect : '-'}</TYPE.black>
           </DetailsCard>
         </ModalContent>
       </Modal>
