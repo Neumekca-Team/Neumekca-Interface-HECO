@@ -23,6 +23,9 @@ const CardWrapper = styled(Box)`
 
 const PreloadWrapper = styled(Box)`
   margin-top: 42px;
+  font-size: 24px;
+  font-weight: bold;
+  color:white;
 `
 
 const TokenImage = styled.img`
@@ -48,10 +51,10 @@ export default function GemPools() {
             <AutoRow marginBottom={16}>
               <TokenImage src={GEMToken} />
               <TYPE.body fontSize={36} fontWeight={500}>
-                GEM Pools
+                SNOW Pools
               </TYPE.body>
             </AutoRow>
-            <TYPE.black>Stake GEM here to earn new tokens.</TYPE.black>
+            <TYPE.black>Stake SNOW here to earn new tokens.</TYPE.black>
             <TYPE.black>Rewards are calculated per blocks</TYPE.black>
           </AutoColumn>
         </SubPressedCard>
@@ -62,7 +65,7 @@ export default function GemPools() {
           <Loader style={{ margin: 'auto' }} />
         </PreloadWrapper>
       ) : !stakingGemsExist ? (
-        <PreloadWrapper>No active GOLD pools</PreloadWrapper>
+        <PreloadWrapper>No active SNOW pools</PreloadWrapper>
       ) : (
         <CardWrapper>
           {stakingGemsExist &&

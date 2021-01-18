@@ -229,7 +229,7 @@ export default function CappedManage({
               {stakingInfo?.totalRewardRate
                 ?.multiply((60 * 60 * 24 * 7).toString())
                 ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
-              {' NAR / week'}
+              {' ZERO / week'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -283,10 +283,10 @@ export default function CappedManage({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Your NARPOWER</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your ZEROPOWER</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
-              {' NARPOWER'}
+              {' ZEROPOWER'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -387,7 +387,7 @@ export default function CappedManage({
             <AutoColumn gap="sm">
               <RowBetween>
                 <div>
-                  <TYPE.black>Your pending NAR</TYPE.black>
+                  <TYPE.black>Your pending ZERO</TYPE.black>
                 </div>
                 {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                   <ButtonEmpty
@@ -418,7 +418,7 @@ export default function CappedManage({
                   {stakingInfo?.rewardRate
                     ?.multiply((60 * 60 * 24 * 7).toString())
                     ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'}
-                  {' NAR / week'}
+                  {' ZERO / week'}
                 </TYPE.black>
               </RowBetween>
             </AutoColumn>
@@ -429,14 +429,14 @@ export default function CappedManage({
             ⭐️
           </span>
           BUFF RATE depends on the staked days. It starts at 1 when staking and increases by 50% per day until the
-          MAXIMUM BUFF RATE. And reset to 1 when harvesting NAR tokens or unstacking NLP tokens.
+          MAXIMUM BUFF RATE. And reset to 1 when harvesting ZERO tokens or unstacking NLP tokens.
         </TYPE.main>
         <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ✨
           </span>
-          Estimated Harvest is a close benchmark of how much NAR you should receive per week prior to any burns. True
-          harvest relies on your NARPOWER and BUFF RATE, learn more{' '}
+          Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
+          harvest relies on your ZEROPOWER and BUFF RATE, learn more{' '}
           <a href="https://docs.narwhalswap.org/liquidity-mining" target="_blank">
             here
           </a>

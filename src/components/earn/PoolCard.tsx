@@ -160,7 +160,7 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
           <TYPE.darkGray>Pool rate </TYPE.darkGray>
           <TYPE.darkGray>{`${stakingInfo.totalRewardRate
             ?.multiply(`${60 * 60 * 24 * 7}`)
-            ?.toFixed(0, { groupSeparator: ',' })} NAR / week`}</TYPE.darkGray>
+            ?.toFixed(0, { groupSeparator: ',' })} ZERO / week`}</TYPE.darkGray>
         </RowBetween>
         <RowBetween>
           <TYPE.darkGray> Halving time </TYPE.darkGray>
@@ -174,7 +174,7 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
         style={{ width: '100%' }}
         to={
           poolType === 'normal'
-            ? `/page/nar/${stakingInfo.poolId}/${currencyId(currency0)}/${currencyId(currency1)}`
+            ? `/page/ZERO/${stakingInfo.poolId}/${currencyId(currency0)}/${currencyId(currency1)}`
             : `/page/capped/${stakingInfo.poolId}/${currencyId(currency0)}/${currencyId(currency1)}`
         }
       >

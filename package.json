@@ -1,6 +1,6 @@
 {
-  "name": "@bscswap/interface",
-  "description": "Juncture Interface",
+  "name": "neumekca.city",
+  "description": "Neumékca City Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {

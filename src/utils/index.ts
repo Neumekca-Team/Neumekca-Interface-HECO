@@ -52,8 +52,11 @@ export function getAnalysisLink(chainId: ChainId): string {
   switch(chainId){
     case 56 : case 97 :
       return `https://${ANALYSIS_PREFIXES[chainId]}bscswap.info`;
-      case 256: case 128:
-        return `https://${ANALYSIS_PREFIXES[chainId]}huobichain.com`
+      case 256: 
+        return `http://${ANALYSIS_PREFIXES[chainId]}huobichain.com`;
+        case 128: 
+        return `https://${ANALYSIS_PREFIXES[chainId]}huobichain.com`;
+      
   }
   return `https://${ANALYSIS_PREFIXES[chainId]}bscswap.info`
 }

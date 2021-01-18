@@ -56,7 +56,7 @@ export default function NarInfoSection() {
       <DataRow style={{ gap: '24px' }}>
         <NarData>
           <AutoColumn gap="sm">
-            <TYPE.white style={{ margin: 0 }}>⚡NAR Price</TYPE.white>
+            <TYPE.white style={{ margin: 0 }}>⚡ZERO Price</TYPE.white>
             <TYPE.white fontSize={24} fontWeight={500}>
               ${narPrice?.toFixed(4) ?? '-'}
             </TYPE.white>
@@ -94,7 +94,7 @@ export default function NarInfoSection() {
                 separator={','}
                 duration={1}
               />
-              {' NAR'}
+              {' ZERO'}
             </TYPE.white>
           </AutoColumn>
         </NarData>
@@ -110,7 +110,7 @@ export default function NarInfoSection() {
                 separator={','}
                 duration={1}
               />
-              {' NAR'}
+              {' ZERO'}
             </TYPE.white>
           </AutoColumn>
         </NarData>
@@ -129,7 +129,7 @@ export default function NarInfoSection() {
                 separator={','}
                 duration={1}
               />
-              {' NAR'}
+              {' ZERO'}
             </TYPE.white>
           </AutoColumn>
         </NarData>
@@ -145,7 +145,7 @@ export default function NarInfoSection() {
                 separator={','}
                 duration={1}
               />
-              {' NAR'}
+              {' ZERO'}
             </TYPE.white>
           </AutoColumn>
         </NarData>

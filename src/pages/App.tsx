@@ -79,13 +79,13 @@ export default function App() {
                   <Route exact strict path="/capped" component={Capped} />
                   <Route exact strict path="/capped/:poolId/:currencyIdA/:currencyIdB" component={CappedManage} />
                   <Route exact strict path="/my-nft" component={Nft} />
-                  <Route exact strict path="/gachapon" component={Gachapon} />
+                  <Route exact strict path="/cryotank" component={Gachapon} />
                   <Route exact strict path="/collection" component={Collection} />
                   <Route exact strict path="/mining" component={Mining} />
-                  <Route exact strict path="/dividend" component={Dividend} />
-                  <Route exact strict path="/gempools" component={GemPools} />
-                  <Route exact strict path="/gold" component={Gold} />
-                  <Route exact strict path="/bazaar" component={Bazaar} />
+                  <Route exact strict path="/snow" component={Dividend} />
+                  <Route exact strict path="/snowpools" component={GemPools} />
+                  <Route exact strict path="/leon" component={Gold} />
+                  <Route exact strict path="/souk" component={Bazaar} />
                   <Route exact strict path="/account" component={Account} />
                 </Switch>
           

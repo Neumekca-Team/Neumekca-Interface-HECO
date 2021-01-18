@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import NarInfoSection from '../../components/earn/NarInfoSection'
 import { TYPE } from '../../theme'
 
-import NARToken from '../../assets/images/logo.png'
+import ZEROToken from '../../assets/images/logo.png'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
@@ -23,7 +23,7 @@ export default function Nar() {
   return (
 
 <PageWrapper gap="lg" justify="center">
-      <TokenImage src={NARToken} />
+      <TokenImage src={ZEROToken} />
       <AutoColumn justify="center" gap="sm">
         <h3 className='title-dashboard'>Neumékca City</h3>
       </AutoColumn>

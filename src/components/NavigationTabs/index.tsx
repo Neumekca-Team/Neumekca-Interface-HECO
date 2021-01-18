@@ -38,38 +38,38 @@ const tabOrder = [
     className: '',
   },
   {
-    path: '/gem',
-    textKey: 'Gem',
+    path: '/snow',
+    textKey: 'SNOW',
     icon: 'las la-retweet',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-    regex: /\/gem/,
+    regex: /\/snow/,
     className: '',
     hasChild: true,
     Childs: [
       {
-        path: '/dividend',
-        textKey: 'Gem',
+        path: '/snow',
+        textKey: 'SNOW',
         icon: 'las la-retweet',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-        regex: /\/dividend/,
+        regex: /\/snow/,
         className: '',
       },
       {
-        path: '/gempools',
-        textKey: 'Gem pools',
+        path: '/snowpools',
+        textKey: 'SNOW pools',
         icon: 'las la-retweet',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-        regex: /\/gempools/,
+        regex: /\/snowpools/,
         className: '',
       }
     ]
   },
   {
-    path: '/gold',
-    textKey: 'Gold',
+    path: '/leon',
+    textKey: 'LEON',
     icon: 'las la-retweet',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-    regex: /\/gold/,
+    regex: /\/leon/,
     className: '',
   },
   {
@@ -77,16 +77,16 @@ const tabOrder = [
     textKey: 'NFT',
     icon: 'las la-retweet',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-    regex: /\/swap/,
+    regex: /\/myNft/,
     className: '',
     hasChild: true,
     Childs: [
       {
-        path: '/gachapon',
-        textKey: 'Gachapon',
+        path: '/cryotank',
+        textKey: 'Cryotank',
         icon: 'las la-retweet',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-        regex: /\/gachapon/,
+        regex: /\/cryotank/,
         className: '',
       },
       {
@@ -116,20 +116,20 @@ const tabOrder = [
     ]
   },
   {
-    path: '/bazaar',
-    textKey: 'Bazaar',
+    path: '/souk',
+    textKey: 'Souk',
     icon: 'las la-retweet',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-    regex: /\/bazaar/,
+    regex: /\/souk/,
     className: '',
     hasChild: true,
     Childs: [
       {
-        path: '/bazaar',
-        textKey: 'bazaar',
+        path: '/souk',
+        textKey: 'Souk',
         icon: 'las la-retweet',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
-        regex: /\/get-gem/,
+        regex: /\/souk/,
         className: '',
       },
       {
@@ -217,7 +217,7 @@ function NavigationTabs({ location: { pathname }, history }) {
                     )
                 );
               })}
-
+              <hr />
               <li className="">
                 <a href="#icon" className="collapsed" data-toggle="collapse" aria-expanded="false">
                   <i className="ri-notification-line iq-arrow-left"></i><span>Soccial</span>
@@ -226,22 +226,22 @@ function NavigationTabs({ location: { pathname }, history }) {
                 </a>
                 <ul id="icon" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                   <li className=" ">
-                    <a href="https://t.me/neumekca">
+                    <a href="https://t.me/neumekca"  target='_blank'>
                       <i className="ri-telegram-fill"></i><span>Telegram</span>
                     </a>
                   </li>
                   <li className=" ">
-                    <a href="https://twitter.com/Neumekca">
+                    <a href="https://twitter.com/Neumekca"  target='_blank'>
                       <i className="ri-twitter-line"></i><span>twitter</span>
                     </a>
                   </li>
                   <li className=" ">
-                    <a href="http://linkedin.com/">
+                    <a href="https://www.linkedin.com/company/naples-blockchain-service" target='_blank'>
                       <i className="ri-linkedin-box-fill"></i><span>linkedin</span>
                     </a>
                   </li>
                   <li className=" ">
-                    <a href="https://github.com/">
+                    <a href="https://github.com/Neumekca-City"  target='_blank'>
                       <i className="ri-github-fill"></i><span>Github</span>
                     </a>
                   </li>
@@ -342,7 +342,7 @@ const StyledArrowLeft = styled(ArrowLeft)`
 export function SelectPoolTabs({ active }: { active: string }) {
   return (
     <Tabs style={{}}>
-      <StyledNavLink to={'/nar'} isActive={() => active === 'normal'}>
+      <StyledNavLink to={'/farms'} isActive={() => active === 'normal'}>
         {'NORMAL'}
       </StyledNavLink>
       <StyledNavLink to={'/capped'} isActive={() => active === 'capped'}>
@@ -355,11 +355,11 @@ export function SelectPoolTabs({ active }: { active: string }) {
 export function SelectGEMTabs({ active }: { active: string }) {
   return (
     <Tabs style={{}}>
-      <StyledNavLink to={'/dividend'} isActive={() => active === 'dividend'}>
-        {'GET GEM'}
+      <StyledNavLink to={'/snow'} isActive={() => active === 'snow'}>
+        {'SNOW NOW'}
       </StyledNavLink>
-      <StyledNavLink to={'/gempools'} isActive={() => active === 'gempools'}>
-        {'GEM POOLS'}
+      <StyledNavLink to={'/snowools'} isActive={() => active === 'snowpools'}>
+        {'SNOW POOLS'}
       </StyledNavLink>
     </Tabs>
   )

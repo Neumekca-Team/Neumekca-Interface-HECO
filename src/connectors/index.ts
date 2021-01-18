@@ -20,11 +20,13 @@ export const network = new NetworkConnector({
 })
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42, 56, 97,128, 256]
+ // supportedChainIds: [1, 3, 4, 5, 42, 56, 97,128, 256]
+  supportedChainIds: [256]
 })
 
 export const binanceinjected = new BinanceConnector({
-  supportedChainIds: [56, 97, 128, 256]
+  //supportedChainIds: [56, 97, 128, 256]
+  supportedChainIds: [256]
 })
 
 // mainnet only

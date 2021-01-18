@@ -233,13 +233,13 @@ export default function Dividend() {
             <AutoRow marginBottom={16}>
               <TokenImage src={NARToken} />
               <TYPE.body fontSize={36} fontWeight={500}>
-                Staking NAR tokens
+                Staking ZERO tokens
               </TYPE.body>
             </AutoRow>
-            <TYPE.main>
-              For NAR holders, You can stake NAR to earn more NAR from NAR Dividend pool on this page. And then you also
-              can get GEM to stake more.
-            </TYPE.main>
+            <TYPE.black>
+              For ZERO holders, You can stake ZERO to earn more ZERO from ZERO Dividend pool on this page. And then you also
+              can get SNOW to stake more.
+            </TYPE.black>
           </AutoColumn>
         </SubPressedCard>
       </FlatCard>
@@ -277,7 +277,7 @@ export default function Dividend() {
                 separator={','}
                 duration={1}
               />
-              {' NAR'}
+              {' ZERO'}
             </TYPE.white>
           </AutoColumn>
         </PoolData>
@@ -288,7 +288,7 @@ export default function Dividend() {
               {stakingInfo?.totalRewardRate
                 ?.multiply((60 * 60 * 24 * 7).toString())
                 ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
-              {' NAR / week'}
+              {' ZERO / week'}
             </TYPE.white>
           </AutoColumn>
         </PoolData>
@@ -325,10 +325,10 @@ export default function Dividend() {
         </PoolData>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.white style={{ margin: 0, color: 'white' }}>Your NARPOWER</TYPE.white>
+            <TYPE.white style={{ margin: 0, color: 'white' }}>Your ZEROPOWER</TYPE.white>
             <TYPE.white fontSize={24} fontWeight={500} color='white'>
               {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
-              {' NARPOWER'}
+              {' ZEROPOWER'}
             </TYPE.white>
           </AutoColumn>
         </PoolData>
@@ -380,13 +380,13 @@ export default function Dividend() {
               <CardNoise /> */}
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Your NAR deposits</TYPE.white>
+                <TYPE.white fontWeight={600}>Your ZERO deposits</TYPE.white>
               </RowBetween>
               <RowBetween style={{ alignItems: 'baseline' }}>
                 <TYPE.white fontSize={36} fontWeight={600}>
                   {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
                 </TYPE.white>
-                <TYPE.white>NAR</TYPE.white>
+                <TYPE.white>ZERO</TYPE.white>
               </RowBetween>
             </AutoColumn>
           </CardSection>
@@ -399,7 +399,7 @@ export default function Dividend() {
           <AutoColumn gap="sm">
             <RowBetween>
               <div>
-                <TYPE.white>Your pending NAR</TYPE.white>
+                <TYPE.white>Your pending ZERO</TYPE.white>
               </div>
               {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                 <ButtonEmpty
@@ -431,7 +431,7 @@ export default function Dividend() {
                 {stakingInfo?.rewardRate
                   ?.multiply((60 * 60 * 24 * 7).toString())
                   ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'}
-                {' NAR / week'}
+                {' ZERO / week'}
               </TYPE.white>
             </RowBetween>
           </AutoColumn>
@@ -525,15 +525,15 @@ export default function Dividend() {
             ⭐️
           </span>
           BUFF RATE depends on the staked days. It starts at 1 when staking and increases by 50% per day until the
-          MAXIMUM BUFF RATE. And reset to 1 when harvesting NAR tokens or unstacking NAR tokens.
+          MAXIMUM BUFF RATE. And reset to 1 when harvesting ZERO tokens or unstacking ZERO tokens.
         </TYPE.white>
         <TYPE.white style={{ textAlign: 'center' }} fontSize={14}>
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ✨
           </span>
-          Estimated Harvest is a close benchmark of how much NAR you should receive per week prior to any burns. True
-          harvest relies on your NARPOWER and BUFF RATE, learn more{' '}
-          <a href="https://docs.narwhalswap.org" target="_blank">
+          Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
+          harvest relies on your ZEROPOWER and BUFF RATE, learn more{' '}
+          <a href="https://neumekca.city/docs/" target="_blank">
             here
           </a>
         </TYPE.white>
@@ -548,7 +548,7 @@ export default function Dividend() {
               color = 'white'
               onClick={handleDepositClick}
             >
-              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake NAR Tokens'}
+              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake ZERO Tokens'}
             </ButtonPrimary>
 
             {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
@@ -568,7 +568,7 @@ export default function Dividend() {
           </DataRow>
         )}
         {!userLiquidityUnstaked ? null : userLiquidityUnstaked.equalTo('0') ? null : (
-          <TYPE.white>{userLiquidityUnstaked.toSignificant(6)} NAR tokens available</TYPE.white>
+          <TYPE.white>{userLiquidityUnstaked.toSignificant(6)} ZERO tokens available</TYPE.white>
         )}
       </PositionInfo>
     </PageWrapper>

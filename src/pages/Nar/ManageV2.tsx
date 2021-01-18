@@ -171,7 +171,7 @@ export default function ManageV2({
               {stakingInfo?.totalRewardRate
                 ?.multiply((60 * 60 * 24 * 7).toString())
                 ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
-              {' NAR / week'}
+              {' ZERO / week'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -367,7 +367,7 @@ export default function ManageV2({
                   {stakingInfo?.rewardRate
                     ?.multiply((60 * 60 * 24 * 7).toString())
                     ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'}
-                  {' NAR / week'}
+                  {' ZERO / week'}
                 </TYPE.black>
               </RowBetween>
             </AutoColumn>

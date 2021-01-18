@@ -102,31 +102,19 @@ const iNftCollectionToNftInfo = (nft: INftCollection): NftInfo => {
 export default function Nft() {
   const { chainId } = useActiveWeb3React()
   const userNfts = useUserNfts()
-  const theme = useContext(ThemeContext)
-
-  const [tabActive, setTabActive] = useState<Menus>(Menus.Gachapon)
-  const [nftCollection, setNftCollection] = useState<NftInfo[]>()
   const [nftInfos, setNftInfos] = useState<NftInfo[]>()
 
   useEffect(() => {
-    if (!userNfts || !chainId) return
 
-    const fetchCollection = async () => {
-      const res = await axios.get<INftCollection[]>(NFT_BASE_URL[chainId])
-      const runeAvailable: NftInfo[] = res.data
-        .filter(e => e.types === 2 || e.types === 1 || e.types === 6 || e.types === 5 || e.types === 7)
-        .map(e => iNftCollectionToNftInfo(e))
-      setNftCollection(runeAvailable)
-    }
-
+    console.log(userNfts);
+    if (!userNfts || userNfts == undefined || !chainId) return
+    console.log('vào');
     const fetchAvailable = async () => {
       const res = await axios.get<NftInfo[]>(
         `${NFT_BASE_URL[chainId]}/list?${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
       )
       setNftInfos(res.data.map(e => e))
     }
-
-    fetchCollection()
 
     if (userNfts.myNfts.length !== 0) {
       fetchAvailable()
@@ -139,7 +127,7 @@ export default function Nft() {
     <PageWrapper gap="lg" justify="center">
       {
         (nftInfos ? (
-          nftInfos.length !== 0 ? (
+          nftInfos !== undefined && nftInfos.length !== 0  ? (
             <CardWrapper>
               {nftInfos.map(nftInfo => {
                 return <NFTCard key={nftInfo.token_id} nftInfo={nftInfo} />

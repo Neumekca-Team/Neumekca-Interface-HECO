@@ -144,17 +144,6 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
             id="stake-liquidity-token"
           />
 
-          {/* <HypotheticalRewardRate dim={!hypotheticalRewardRate.greaterThan('0')}>
-            <div>
-              <TYPE.black fontWeight={600}>Weekly Rewards</TYPE.black>
-            </div>
-
-            <TYPE.black>
-              {hypotheticalRewardRate.multiply((60 * 60 * 24 * 7).toString()).toSignificant(4, { groupSeparator: ',' })}{' '}
-              NAR / week
-            </TYPE.black>
-          </HypotheticalRewardRate> */}
-
           <RowBetween>
             <ButtonConfirmed
               mr="0.5rem"

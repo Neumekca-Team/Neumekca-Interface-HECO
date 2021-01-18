@@ -13,7 +13,7 @@ export default function Gachapon() {
 
   return (
   <PageWrapper gap="lg" justify="center">
-            <ComingSoon customText="New gacha coming soon..." />
+            <ComingSoon customText="New cryotank coming soon..." />
     </PageWrapper>
   )
 }

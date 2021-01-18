@@ -74,7 +74,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
           .emergencyWithdraw({ gasLimit: 850000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
-              summary: `Unstack all NAR`
+              summary: `Unstack all ZERO`
             })
             setHash(response.hash)
           })
@@ -87,7 +87,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
           .exit(`0x${parsedAmount.raw.toString(16)}`, { gasLimit: 450000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
-              summary: `Unstake NAR`
+              summary: `Unstake ZERO`
             })
             setHash(response.hash)
           })
@@ -135,11 +135,11 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
             currency={stakingInfo.representativeAmount.token}
             label={''}
             disableCurrencySelect={true}
-            customBalanceText={'GEM available to unstake: '}
+            customBalanceText={'SNOW available to unstake: '}
             id="stake-liquidity-token"
           />
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            When you unstake, your NAR is harvested and your NAR staked is removed from the mining pool.
+            When you unstake, your ZERO is harvested and your ZERO staked is removed from the mining pool.
           </TYPE.subHeader>
           <RowBetween>
             <ButtonConfirmed
@@ -164,8 +164,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOndismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Unstaking {stakingInfo?.stakedAmount?.toSignificant(4)} NAR</TYPE.body>
-            <TYPE.body fontSize={20}>Harvesting {stakingInfo?.earnedAmount?.toSignificant(4)} NAR</TYPE.body>
+            <TYPE.body fontSize={20}>Unstaking {stakingInfo?.stakedAmount?.toSignificant(4)} ZERO</TYPE.body>
+            <TYPE.body fontSize={20}>Harvesting {stakingInfo?.earnedAmount?.toSignificant(4)} ZERO</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -173,8 +173,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
         <SubmittedView onDismiss={wrappedOndismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Unstaked NAR!</TYPE.body>
-            <TYPE.body fontSize={20}>Harvested NAR!</TYPE.body>
+            <TYPE.body fontSize={20}>Unstaked ZERO!</TYPE.body>
+            <TYPE.body fontSize={20}>Harvested ZERO!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

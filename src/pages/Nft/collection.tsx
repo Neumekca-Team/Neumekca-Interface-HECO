@@ -6,10 +6,7 @@ import { Box } from 'rebass/styled-components'
 import styled, { ThemeContext } from 'styled-components'
 import { TYPE } from '../../theme'
 import NFTCard from '../../components/nft/NFTCard'
-import ComingSoon from '../../components/ComingSoon'
-// import { FlatCard, SubPressedCard } from '../../components/Card'
 import Loader from '../../components/Loader'
-import { ClickableText } from '../Pool/styleds'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useUserNfts, NftInfo } from '../../state/nft/hooks'
@@ -99,11 +96,10 @@ export default function Collection() {
   const theme = useContext(ThemeContext)
 
   const [nftCollection, setNftCollection] = useState<NftInfo[]>()
-  const [nftInfos, setNftInfos] = useState<NftInfo[]>()
 
   useEffect(() => {
-    if (!userNfts || !chainId) return
-
+ 
+   
     const fetchCollection = async () => {
       const res = await axios.get<INftCollection[]>(NFT_BASE_URL[chainId])
       const runeAvailable: NftInfo[] = res.data
@@ -112,21 +108,11 @@ export default function Collection() {
       setNftCollection(runeAvailable)
     }
 
-    const fetchAvailable = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
-      )
-      setNftInfos(res.data.map(e => e))
-    }
+   
 
     fetchCollection()
 
-    if (userNfts.myNfts.length !== 0) {
-      fetchAvailable()
-    } else {
-      setNftInfos([])
-    }
-  }, [userNfts])
+  }, [nftCollection])
 
   return (
     <PageWrapper gap="lg" justify="center">

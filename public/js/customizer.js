@@ -4,7 +4,7 @@
     // data-dark="false" for property
     // icon class // la-sun // la-moon
     const storageDark = localStorage.getItem('dark')
-    console.log(storageDark)
+
     if($('body').hasClass('dark')){
         changeMode('true');
     } else {

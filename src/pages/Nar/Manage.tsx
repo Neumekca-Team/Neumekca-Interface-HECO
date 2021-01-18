@@ -167,7 +167,7 @@ export default function Manage({
               {stakingInfo?.totalRewardRate
                 ?.multiply((60 * 60 * 24 * 7).toString())
                 ?.toFixed(0, { groupSeparator: ',' }) ?? '-'}
-              {' NAR / week'}
+              {' ZERO / week'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -347,7 +347,7 @@ export default function Manage({
                   {stakingInfo?.rewardRate
                     ?.multiply((60 * 60 * 24 * 7).toString())
                     ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'}
-                  {' NAR / week'}
+                  {' ZERO / week'}
                 </TYPE.black>
               </RowBetween>
             </AutoColumn>
@@ -366,7 +366,7 @@ export default function Manage({
           </span>
           Estimated Harvest is a close benchmark of how much NAR you should receive per week prior to any burns. True
           harvest relies on your NARPOWER and BUFF RATE, learn more{' '}
-          <a href="https://docs.narwhalswap.org/liquidity-mining" target="_blank">
+          <a href="https://neumekca.city/docs/" target="_blank">
             here
           </a>
         </TYPE.main>

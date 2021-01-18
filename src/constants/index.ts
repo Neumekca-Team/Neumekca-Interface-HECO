@@ -14,8 +14,8 @@ type ChainTokenList = {
 //const NAR_ADDRESS = '0xA1303E6199b319a891b79685F0537D289af1FC83' BSC
 const NAR_ADDRESS = '0xace469b7Bfe1759FF6a4BEF62feb3623EFeA6d58'
 export const NAR: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, NAR_ADDRESS, 18, 'NAR', 'NAR Token'),
-  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, NAR_ADDRESS, 18, 'NAR', 'NAR Token'),
+  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
+  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
   [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
   [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token')
 }
@@ -31,8 +31,8 @@ export const GOLD_WETH = new Token(
   ChainId.HT_TESTNET,
   '0x879D20AA3f8F70DEB73a5C13Fe68F62661D039C0',
   18,
-  'GOLD-BNB NLP',
-  'GOLD-BNB NLP'
+  'LEON-BNB NLP',
+  'LEON-BNB NLP'
 )
 
 export const GOLD: { [chainId in ChainId]: Token } = {
@@ -40,28 +40,28 @@ export const GOLD: { [chainId in ChainId]: Token } = {
     ChainId.BSC_MAINNET,
     '0x8f4087Cb09E0F378f4278a314C94A636665dE24b',
     18,
-    'GOLD',
-    'NAR Ticket Token'
+    'LEON',
+    'ZERO Ticket Token'
   ),
   [ChainId.BSC_TESTNET]: new Token(
     ChainId.BSC_TESTNET,
     '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14',
     18,
-    'GOLD',
-    'NAR Ticket Token'
+    'LEON',
+    'ZERO Ticket Token'
   ),
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
     '0x38117Ac37078c5b46Aa109164f1C64A58C158a58',
     18,
-    'GOLD',
+    'LEON',
     'ZERO Ticket Token'
   ),
   [ChainId.HT_TESTNET]: new Token(
     ChainId.HT_TESTNET,
     '0x38117Ac37078c5b46Aa109164f1C64A58C158a58',
     18,
-    'GOLD',
+    'LEON',
     'ZERO Ticket Token'
   )
 }
@@ -71,28 +71,28 @@ export const GEM: { [chainId in ChainId]: Token } = {
     ChainId.BSC_MAINNET,
     '0x4BbB275012EBE258556B8debE5C07bE98e8d3859',
     18,
-    'GEM',
-    'NAR Dividend Token'
+    'SNOW',
+    'ZERO Dividend Token'
   ),
   [ChainId.BSC_TESTNET]: new Token(
     ChainId.BSC_TESTNET,
     '0x1c43A76FC8b6eC300e2919A708a100AAd24652e9',
     18,
-    'GEM',
-    'NAR Dividend Token'
+    'SNOW',
+    'ZERO Dividend Token'
   ),
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
     '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44',
     18,
-    'GEM',
+    'SNOW',
     'ZERO Dividend Token'
   ),
   [ChainId.HT_TESTNET]: new Token(
     ChainId.HT_TESTNET,
     '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44',
     18,
-    'GEM',
+    'SNOW',
     'ZERO Dividend Token'
   )
 }
@@ -192,8 +192,8 @@ export const THUGS_NAR = new Token(
   ChainId.BSC_MAINNET,
   '0xB648ecF23Bb8fe854c6267d6fb046f2d483251EA',
   18,
-  'THUGS-NAR NLP',
-  'THUGS-NAR NLP'
+  'THUGS-ZERO NLP',
+  'THUGS-ZERO NLP'
 )
 export const THUGS = new Token(
   ChainId.BSC_MAINNET,
@@ -217,29 +217,29 @@ export const CHRISTMAS: { [chainId in ChainId]: Token } = {
     ChainId.BSC_MAINNET,
     '0x66245518ac3410B55B6d5667F9A937Db207A4618',
     18,
-    'mooChristmasNarwhal',
-    'Moo Christmas Narwhal'
+    'mooChristmasZerowhal',
+    'Moo Christmas Zerowhal'
   ),
   [ChainId.BSC_TESTNET]: new Token(
     ChainId.BSC_TESTNET,
     '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14',
     18,
-    'mooChristmasNarwhal',
-    'Moo Christmas Narwhal'
+    'mooChristmasZerowhal',
+    'Moo Christmas Zerowhal'
   ),
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
     '0x66245518ac3410B55B6d5667F9A937Db207A4618',
     18,
-    'mooChristmasNarwhal',
-    'Moo Christmas Narwhal'
+    'mooChristmasZerowhal',
+    'Moo Christmas Zerowhal'
   ),
   [ChainId.HT_TESTNET]: new Token(
     ChainId.HT_TESTNET,
     '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14',
     18,
-    'mooChristmasNarwhal',
-    'Moo Christmas Narwhal'
+    'mooChristmasZerowhal',
+    'Moo Christmas Zerowhal'
   )
 }
 

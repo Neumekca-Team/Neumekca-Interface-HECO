@@ -28,6 +28,9 @@ const CardWrapper = styled(Box)`
 
 const PreloadWrapper = styled(Box)`
   margin-top: 42px;
+  font-size: 24px;
+  font-weight: bold;
+  color:white;
 `
 
 const GOLDImage = styled.img`
@@ -54,12 +57,12 @@ export default function Gold() {
             <AutoRow marginBottom={16}>
               <GOLDImage src={GOLDToken} />
               <TYPE.body fontSize={36} fontWeight={500}>
-                GOLD
+                LEON
               </TYPE.body>
             </AutoRow>
-            <TYPE.black>Stake token to earn GOLD.</TYPE.black>
-            <TYPE.black>GOLD can be used to get NFT.</TYPE.black>
-            <TYPE.black>GOLD tokens are calculated per blocks</TYPE.black>
+            <TYPE.black>Stake token to earn LEON.</TYPE.black>
+            <TYPE.black>LEON can be used to get NFT.</TYPE.black>
+            <TYPE.black>LEON tokens are calculated per blocks</TYPE.black>
           </AutoColumn>
         </SubPressedCard>
       </FlatCard>
@@ -70,7 +73,7 @@ export default function Gold() {
           <Loader style={{ margin: 'auto' }} />
         </PreloadWrapper>
       ) : !stakingTicketsExist && !stakingTicketsExistV2 ? (
-        <PreloadWrapper>No active GOLD pools</PreloadWrapper>
+        <PreloadWrapper>No active LEON pools</PreloadWrapper>
       ) : (
         <CardWrapper>
           {stakingTicketsExistV2 &&
