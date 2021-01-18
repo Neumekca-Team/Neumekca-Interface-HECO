@@ -17,68 +17,230 @@ export const NAR: { [chainId in ChainId]: Token } = {
   [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, NAR_ADDRESS, 18, 'NAR', 'NAR Token'),
   [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, NAR_ADDRESS, 18, 'NAR', 'NAR Token'),
   [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
-  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
+  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token')
 }
 export const NAR_BNB: { [chainId in ChainId]: [Token, Token] } = {
   [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET], NAR[ChainId.BSC_MAINNET]],
   [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET], NAR[ChainId.BSC_TESTNET]],
   [ChainId.HT_TESTNET]: [WETH[ChainId.HT_TESTNET], NAR[ChainId.HT_TESTNET]],
   [ChainId.HT_MAINNET]: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]]
-
 }
 
 //export const GOLD_WETH = new Token(ChainId.BSC_MAINNET, '0x903903A2aa2A222360D8f3c4A7205b933Da60e95', 18, 'GOLD-BNB NLP', 'GOLD-BNB NLP')
-export const GOLD_WETH = new Token(ChainId.HT_TESTNET, '0x879D20AA3f8F70DEB73a5C13Fe68F62661D039C0', 18, 'GOLD-BNB NLP', 'GOLD-BNB NLP')
+export const GOLD_WETH = new Token(
+  ChainId.HT_TESTNET,
+  '0x879D20AA3f8F70DEB73a5C13Fe68F62661D039C0',
+  18,
+  'GOLD-BNB NLP',
+  'GOLD-BNB NLP'
+)
 
 export const GOLD: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, '0x8f4087Cb09E0F378f4278a314C94A636665dE24b', 18, 'GOLD', 'NAR Ticket Token'),
-  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14', 18, 'GOLD', 'NAR Ticket Token'),
-  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, '0x38117Ac37078c5b46Aa109164f1C64A58C158a58', 18, 'GOLD', 'ZERO Ticket Token'),
-  [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, '0x38117Ac37078c5b46Aa109164f1C64A58C158a58', 18, 'GOLD', 'ZERO Ticket Token')
-
+  [ChainId.BSC_MAINNET]: new Token(
+    ChainId.BSC_MAINNET,
+    '0x8f4087Cb09E0F378f4278a314C94A636665dE24b',
+    18,
+    'GOLD',
+    'NAR Ticket Token'
+  ),
+  [ChainId.BSC_TESTNET]: new Token(
+    ChainId.BSC_TESTNET,
+    '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14',
+    18,
+    'GOLD',
+    'NAR Ticket Token'
+  ),
+  [ChainId.HT_MAINNET]: new Token(
+    ChainId.HT_MAINNET,
+    '0x38117Ac37078c5b46Aa109164f1C64A58C158a58',
+    18,
+    'GOLD',
+    'ZERO Ticket Token'
+  ),
+  [ChainId.HT_TESTNET]: new Token(
+    ChainId.HT_TESTNET,
+    '0x38117Ac37078c5b46Aa109164f1C64A58C158a58',
+    18,
+    'GOLD',
+    'ZERO Ticket Token'
+  )
 }
 
 export const GEM: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, '0x4BbB275012EBE258556B8debE5C07bE98e8d3859', 18, 'GEM', 'NAR Dividend Token'),
-  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0x1c43A76FC8b6eC300e2919A708a100AAd24652e9', 18, 'GEM', 'NAR Dividend Token'),
-  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44', 18, 'GEM', 'ZERO Dividend Token'),
-  [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44', 18, 'GEM', 'ZERO Dividend Token')
-
+  [ChainId.BSC_MAINNET]: new Token(
+    ChainId.BSC_MAINNET,
+    '0x4BbB275012EBE258556B8debE5C07bE98e8d3859',
+    18,
+    'GEM',
+    'NAR Dividend Token'
+  ),
+  [ChainId.BSC_TESTNET]: new Token(
+    ChainId.BSC_TESTNET,
+    '0x1c43A76FC8b6eC300e2919A708a100AAd24652e9',
+    18,
+    'GEM',
+    'NAR Dividend Token'
+  ),
+  [ChainId.HT_MAINNET]: new Token(
+    ChainId.HT_MAINNET,
+    '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44',
+    18,
+    'GEM',
+    'ZERO Dividend Token'
+  ),
+  [ChainId.HT_TESTNET]: new Token(
+    ChainId.HT_TESTNET,
+    '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44',
+    18,
+    'GEM',
+    'ZERO Dividend Token'
+  )
 }
 
-export const BTCB_WETH = new Token(ChainId.BSC_MAINNET, '0x3111446eC6026EB3ae54EAdCfBDD5ECB09D6d451', 18, 'BTC-BNB NLP', 'BTC-BNB NLP')
+export const BTCB_WETH = new Token(
+  ChainId.BSC_MAINNET,
+  '0x3111446eC6026EB3ae54EAdCfBDD5ECB09D6d451',
+  18,
+  'BTC-BNB NLP',
+  'BTC-BNB NLP'
+)
 export const BTCB = new Token(ChainId.BSC_MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Bitcoin')
-export const T_BTCB = new Token(ChainId.BSC_TESTNET, '0x6ce8dA28E2f864420840cF74474eFf5fD80E65B8', 18, 'BTCB', 'Bitcoin')
+export const T_BTCB = new Token(
+  ChainId.BSC_TESTNET,
+  '0x6ce8dA28E2f864420840cF74474eFf5fD80E65B8',
+  18,
+  'BTCB',
+  'Bitcoin'
+)
 
-export const ETHB_WETH = new Token(ChainId.BSC_MAINNET, '0xD921E7efc0Ac8eaaF4AddaF46Ce289E70886b233', 18, 'ETH-BNB NLP', 'ETH-BNB NLP')
+export const ETHB_WETH = new Token(
+  ChainId.BSC_MAINNET,
+  '0xD921E7efc0Ac8eaaF4AddaF46Ce289E70886b233',
+  18,
+  'ETH-BNB NLP',
+  'ETH-BNB NLP'
+)
 export const ETHB = new Token(ChainId.BSC_MAINNET, '0x2170Ed0880ac9A755fd29B2688956BD959F933F8', 18, 'ETH', 'Ethereum')
 
-export const B_DAI = new Token(ChainId.BSC_MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Token')
-export const T_DAI = new Token(ChainId.BSC_TESTNET, '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867', 18, 'DAI', 'Dai Token')
+export const B_DAI = new Token(
+  ChainId.BSC_MAINNET,
+  '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
+  18,
+  'DAI',
+  'Dai Token'
+)
+export const T_DAI = new Token(
+  ChainId.BSC_TESTNET,
+  '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
+  18,
+  'DAI',
+  'Dai Token'
+)
 
-export const BUSD_WETH = new Token(ChainId.BSC_MAINNET, '0x5EC32C21C9A6215D239F2BD0Df22d7632b4717c3', 18, 'BUSD-BNB NLP', 'BUSD-BNB NLP')
-export const BUSD = new Token(ChainId.BSC_MAINNET, '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56', 18, 'BUSD', 'BUSD Token')
-export const T_BUSD = new Token(ChainId.BSC_TESTNET, '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee', 6, 'BUSD', 'BUSD Token')
-export const H_BUSD = new Token(ChainId.HT_TESTNET, '0x02ceb61daf1f0b8ea3f22c1c0f02c5f025b150e5', 6, 'HUSD', 'HUSD Token')
+export const BUSD_WETH = new Token(
+  ChainId.BSC_MAINNET,
+  '0x5EC32C21C9A6215D239F2BD0Df22d7632b4717c3',
+  18,
+  'BUSD-BNB NLP',
+  'BUSD-BNB NLP'
+)
+export const BUSD = new Token(
+  ChainId.BSC_MAINNET,
+  '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+  18,
+  'BUSD',
+  'BUSD Token'
+)
+export const T_BUSD = new Token(
+  ChainId.BSC_TESTNET,
+  '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+  6,
+  'BUSD',
+  'BUSD Token'
+)
+export const H_BUSD = new Token(
+  ChainId.HT_TESTNET,
+  '0x02ceb61daf1f0b8ea3f22c1c0f02c5f025b150e5',
+  6,
+  'HUSD',
+  'HUSD Token'
+)
 
+export const B_USDT = new Token(
+  ChainId.BSC_MAINNET,
+  '0x55d398326f99059fF775485246999027B3197955',
+  18,
+  'USDT',
+  'Tether USD'
+)
+export const T_USDT = new Token(
+  ChainId.BSC_TESTNET,
+  '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
+  6,
+  'USDT',
+  'Tether USD'
+)
+export const HT_USDT = new Token(
+  ChainId.HT_TESTNET,
+  '0x02e1afeef2a25eabd0362c4ba2dc6d20ca638151',
+  18,
+  'USDT',
+  'Tether USD'
+)
 
+export const THUGS_NAR = new Token(
+  ChainId.BSC_MAINNET,
+  '0xB648ecF23Bb8fe854c6267d6fb046f2d483251EA',
+  18,
+  'THUGS-NAR NLP',
+  'THUGS-NAR NLP'
+)
+export const THUGS = new Token(
+  ChainId.BSC_MAINNET,
+  '0xE10e9822A5de22F8761919310DDA35CD997d63c0',
+  18,
+  'THUGS',
+  'THUGS Token'
+)
 
-export const B_USDT = new Token(ChainId.BSC_MAINNET, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD')
-export const T_USDT = new Token(ChainId.BSC_TESTNET, '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd', 6, 'USDT', 'Tether USD')
-export const HT_USDT = new Token(ChainId.HT_TESTNET, '0x02e1afeef2a25eabd0362c4ba2dc6d20ca638151', 18, 'USDT', 'Tether USD')
-
-export const THUGS_NAR = new Token(ChainId.BSC_MAINNET, '0xB648ecF23Bb8fe854c6267d6fb046f2d483251EA', 18, 'THUGS-NAR NLP', 'THUGS-NAR NLP')
-export const THUGS = new Token(ChainId.BSC_MAINNET, '0xE10e9822A5de22F8761919310DDA35CD997d63c0', 18, 'THUGS', 'THUGS Token')
-
-export const BLIQ_WETH = new Token(ChainId.BSC_MAINNET, '0xb05abA947E59049b3582Db7e1063545Ad1c76561', 18, 'BLIQ-BNB NLP', 'BLIQ-BNB NLP')
+export const BLIQ_WETH = new Token(
+  ChainId.BSC_MAINNET,
+  '0xb05abA947E59049b3582Db7e1063545Ad1c76561',
+  18,
+  'BLIQ-BNB NLP',
+  'BLIQ-BNB NLP'
+)
 export const BLIQ = new Token(ChainId.BSC_MAINNET, '0xC97faC34CeB0Bb1B2bdAf3b59ADA378b99111a22', 18, 'BLIQ', 'Bliquid')
 
 export const CHRISTMAS: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, '0x66245518ac3410B55B6d5667F9A937Db207A4618', 18, 'mooChristmasNarwhal', 'Moo Christmas Narwhal'),
-  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14', 18, 'mooChristmasNarwhal', 'Moo Christmas Narwhal'),
-  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, '0x66245518ac3410B55B6d5667F9A937Db207A4618', 18, 'mooChristmasNarwhal', 'Moo Christmas Narwhal'),
-  [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14', 18, 'mooChristmasNarwhal', 'Moo Christmas Narwhal')
-
+  [ChainId.BSC_MAINNET]: new Token(
+    ChainId.BSC_MAINNET,
+    '0x66245518ac3410B55B6d5667F9A937Db207A4618',
+    18,
+    'mooChristmasNarwhal',
+    'Moo Christmas Narwhal'
+  ),
+  [ChainId.BSC_TESTNET]: new Token(
+    ChainId.BSC_TESTNET,
+    '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14',
+    18,
+    'mooChristmasNarwhal',
+    'Moo Christmas Narwhal'
+  ),
+  [ChainId.HT_MAINNET]: new Token(
+    ChainId.HT_MAINNET,
+    '0x66245518ac3410B55B6d5667F9A937Db207A4618',
+    18,
+    'mooChristmasNarwhal',
+    'Moo Christmas Narwhal'
+  ),
+  [ChainId.HT_TESTNET]: new Token(
+    ChainId.HT_TESTNET,
+    '0x6eFb681698688548D9dA11129a24B2d4b0Cf0d14',
+    18,
+    'mooChristmasNarwhal',
+    'Moo Christmas Narwhal'
+  )
 }
 
 const WETH_ONLY: ChainTokenList = {
@@ -90,7 +252,7 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET]],
   [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET]],
   [ChainId.HT_MAINNET]: [WETH[ChainId.HT_MAINNET]],
-  [ChainId.HT_TESTNET]: [WETH[ChainId.HT_TESTNET]],
+  [ChainId.HT_TESTNET]: [WETH[ChainId.HT_TESTNET]]
 }
 
 // used to construct intermediary pairs for trading
@@ -195,7 +357,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     color: '#315CF5',
     mobile: true,
     mobileOnly: true
-  },
+  }
   // FORTMATIC: {
   //   connector: fortmatic,
   //   name: 'Fortmatic',

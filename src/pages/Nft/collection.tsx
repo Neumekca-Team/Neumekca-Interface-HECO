@@ -50,7 +50,8 @@ const TabButton = styled.button<{ isActive: boolean }>`
   :hover,
   :focus {
     color: ${({ theme }) => darken(0.1, theme.text1)};
-    box-shadow: inset 5px 5px 10px ${({ theme }) => theme.shadowColor1}, inset -5px -5px 10px ${({ theme }) => theme.shadowColor2};
+    box-shadow: inset 5px 5px 10px ${({ theme }) => theme.shadowColor1},
+      inset -5px -5px 10px ${({ theme }) => theme.shadowColor2};
   }
 `
 
@@ -61,7 +62,6 @@ const CardWrapper = styled(Box)`
 // const PreloadWrapper = styled(Box)`
 //   margin-top: 42px;
 // `
-
 
 interface INftCollection {
   id: Number
@@ -98,7 +98,6 @@ export default function Collection() {
   const userNfts = useUserNfts()
   const theme = useContext(ThemeContext)
 
-
   const [nftCollection, setNftCollection] = useState<NftInfo[]>()
   const [nftInfos, setNftInfos] = useState<NftInfo[]>()
 
@@ -108,7 +107,7 @@ export default function Collection() {
     const fetchCollection = async () => {
       const res = await axios.get<INftCollection[]>(NFT_BASE_URL[chainId])
       const runeAvailable: NftInfo[] = res.data
-        .filter(e => e.types === 2 || e.types === 1)
+        .filter(e => e.types === 2 || e.types === 1 || e.types === 3)
         .map(e => iNftCollectionToNftInfo(e))
       setNftCollection(runeAvailable)
     }
@@ -130,25 +129,22 @@ export default function Collection() {
   }, [userNfts])
 
   return (
-
-  <PageWrapper gap="lg" justify="center">
-        {(nftCollection ? (
-          nftCollection.length !== 0 ? (
-            <CardWrapper>
-              {nftCollection.map(nftInfo => {
-                return <NFTCard key={nftInfo.token_id} nftInfo={nftInfo} />
-              })}
-            </CardWrapper>
-          ) : (
-            <AutoColumn justify="center" gap="md">
-              <TYPE.white marginTop={64}>No NFT collection</TYPE.white>
-            </AutoColumn>
-          )
+    <PageWrapper gap="lg" justify="center">
+      {nftCollection ? (
+        nftCollection.length !== 0 ? (
+          <CardWrapper>
+            {nftCollection.map(nftInfo => {
+              return <NFTCard key={nftInfo.token_id} nftInfo={nftInfo} />
+            })}
+          </CardWrapper>
         ) : (
-          <Loader style={{ margin: 'auto' }} />
-        ))}
+          <AutoColumn justify="center" gap="md">
+            <TYPE.white marginTop={64}>No NFT collection</TYPE.white>
+          </AutoColumn>
+        )
+      ) : (
+        <Loader style={{ margin: 'auto' }} />
+      )}
     </PageWrapper>
-
-  
   )
 }
