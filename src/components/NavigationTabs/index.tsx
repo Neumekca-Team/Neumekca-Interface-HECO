@@ -40,7 +40,7 @@ const tabOrder = [
   {
     path: '/snow',
     textKey: 'SNOW',
-    icon: 'las la-retweet',
+    icon: 'ri-coin-line',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
     regex: /\/snow/,
     className: '',
@@ -49,7 +49,7 @@ const tabOrder = [
       {
         path: '/snow',
         textKey: 'SNOW',
-        icon: 'las la-retweet',
+        icon: 'ri-money-dollar-circle-line',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/snow/,
         className: '',
@@ -57,7 +57,7 @@ const tabOrder = [
       {
         path: '/snowpools',
         textKey: 'SNOW pools',
-        icon: 'las la-retweet',
+        icon: 'ri-hand-coin-line',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/snowpools/,
         className: '',
@@ -67,7 +67,7 @@ const tabOrder = [
   {
     path: '/leon',
     textKey: 'LEON',
-    icon: 'las la-retweet',
+    icon: 'ri-copper-diamond-line',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
     regex: /\/leon/,
     className: '',
@@ -75,7 +75,7 @@ const tabOrder = [
   {
     path: '/myNft',
     textKey: 'NFT',
-    icon: 'las la-retweet',
+    icon: 'ri-folder-2-line',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
     regex: /\/myNft/,
     className: '',
@@ -84,7 +84,7 @@ const tabOrder = [
       {
         path: '/cryotank',
         textKey: 'Cryotank',
-        icon: 'las la-retweet',
+        icon: 'ri-hand-coin-line',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/cryotank/,
         className: '',
@@ -92,7 +92,7 @@ const tabOrder = [
       {
         path: '/collection',
         textKey: 'Collection',
-        icon: 'las la-retweet',
+        icon: 'ri-folders-line',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/collection/,
         className: '',
@@ -100,7 +100,7 @@ const tabOrder = [
       {
         path: '/mining',
         textKey: 'Mining',
-        icon: 'las la-retweet',
+        icon: 'ri-landscape-line',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/mining/,
         className: '',
@@ -108,7 +108,7 @@ const tabOrder = [
       {
         path: '/my-nft',
         textKey: 'My NFT',
-        icon: 'las la-retweet',
+        icon: 'ri-image-line',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/my-nft/,
         className: '',
@@ -118,7 +118,7 @@ const tabOrder = [
   {
     path: '/souk',
     textKey: 'Souk',
-    icon: 'las la-retweet',
+    icon: 'ri-store-2-line',
     // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
     regex: /\/souk/,
     className: '',
@@ -127,7 +127,7 @@ const tabOrder = [
       {
         path: '/souk',
         textKey: 'Souk',
-        icon: 'las la-retweet',
+        icon: 'ri-store-2-line',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/souk/,
         className: '',
@@ -135,7 +135,7 @@ const tabOrder = [
       {
         path: '/account',
         textKey: 'Account',
-        icon: 'las la-retweet',
+        icon: 'ri-account-box-fill',
         // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
         regex: /\/account/,
         className: '',
@@ -196,7 +196,7 @@ function NavigationTabs({ location: { pathname }, history }) {
 
                       <li key={textKey} className="">
                         <a href={'#'+textKey} className="collapsed" data-toggle="collapse" aria-expanded="false">
-                          <i className="ri-notification-line iq-arrow-left"></i><span>{textKey}</span>
+                          <i className={icon + ' iq-arrow-left'}></i><span>{textKey}</span>
                           <i className="las la-angle-right iq-arrow-right arrow-active"></i>
                           <i className="las la-angle-down iq-arrow-right arrow-hover"></i>
                         </a>
