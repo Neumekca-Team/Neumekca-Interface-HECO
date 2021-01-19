@@ -4,10 +4,7 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { DEFAULT_TOKEN_LIST_URL } from '../../constants'
 import { AppState } from '../index'
-
-/**
- * Token instances created from token info.
- */
+import axios from 'axios'
 export class WrappedTokenInfo extends Token {
   public readonly tokenInfo: TokenInfo
   constructor(tokenInfo: TokenInfo) {
@@ -31,10 +28,13 @@ const EMPTY_LIST: TokenAddressMap = {
   [ChainId.HT_TESTNET]: {},
 }
 
+
+  
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
   'WeakMap' in window ? new WeakMap<TokenList, TokenAddressMap>() : null
 
 export function listToTokenMap(list: TokenList): TokenAddressMap {
+
   const result = listCache?.get(list)
   if (result) return result
 
@@ -56,23 +56,35 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
   return map
 }
 
+
+
+export const getTokenList = async () => {
+  const res = await axios.get<TokenList>('http://api.neumekca.city/tokenlist')
+  const tokenList: TokenList = res.data;
+  localStorage.setItem('myData',JSON.stringify(tokenList));
+}
+
+
+
 export function useTokenList(url: string): TokenAddressMap {
   const lists = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
+  let current = lists[url]?.current
+  var a = localStorage.getItem('myData') || '{}' ;
+  //current = JSON.parse(a) as TokenList ;
   return useMemo(() => {
-    const current = lists[url]?.current
     if (!current) return EMPTY_LIST
     return listToTokenMap(current)
   }, [lists, url])
 }
 
 export function useDefaultTokenList(): TokenAddressMap {
+
   return useTokenList(DEFAULT_TOKEN_LIST_URL)
 }
 
 // returns all downloaded current lists
 export function useAllLists(): TokenList[] {
   const lists = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
-
   return useMemo(
     () =>
       Object.keys(lists)

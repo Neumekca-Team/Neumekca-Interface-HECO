@@ -4,24 +4,30 @@ import schema from '@uniswap/token-lists/src/tokenlist.schema.json'
 import Ajv from 'ajv'
 import uriToHttp from '../../utils/uriToHttp'
 
+
 const tokenListValidator = new Ajv({ allErrors: true }).compile(schema)
 
 /**
  * Contains the logic for resolving a URL to a valid token list
  * @param listUrl list url
  */
-async function getTokenList(listUrl: string): Promise<TokenList> {
+
+
+
+
+export async function getTokenList(listUrl: string): Promise<TokenList> {
   const urls = uriToHttp(listUrl)
+
   for (const url of urls) {
     let response
     try {
-      response = await fetch(url)
+      response = await fetch('http://api.neumekca.city/tokenlist')
       if (!response.ok) continue
     } catch (error) {
       console.error(`failed to fetch list ${listUrl} at uri ${url}`)
       continue
     }
-
+    
     const json = await response.json()
     if (!tokenListValidator(json)) {
       throw new Error(
@@ -49,6 +55,9 @@ export const fetchTokenList = createAsyncThunk<TokenList, string>(
       }))
 )
 
+// export const acceptListUpdate = createAction<string>('lists/acceptListUpdate')
+// export const addList = createAction<string>('lists/addList')
+// export const rejectVersionUpdate = createAction<Version>('lists/rejectVersionUpdate')
 export const acceptListUpdate = createAction<string>('lists/acceptListUpdate')
 export const addList = createAction<string>('lists/addList')
 export const rejectVersionUpdate = createAction<Version>('lists/rejectVersionUpdate')

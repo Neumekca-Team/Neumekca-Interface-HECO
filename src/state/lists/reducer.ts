@@ -19,11 +19,14 @@ const initialState: ListsState = {
   byUrl: {}
 }
 
+
+
 export default createReducer(initialState, builder =>
   builder
     .addCase(fetchTokenList.pending, (state, { meta: { arg: url, requestId } }) => {
+
       state.byUrl[url] = {
-        current: null,
+        current: (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0],
         pendingUpdate: null,
         ...state.byUrl[url],
         loadingRequestId: requestId,
@@ -41,7 +44,7 @@ export default createReducer(initialState, builder =>
           ...state.byUrl[url],
           loadingRequestId: null,
           error: null,
-          current: current,
+          current: (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0],
           pendingUpdate: tokenList
         }
       } else {
@@ -49,7 +52,7 @@ export default createReducer(initialState, builder =>
           ...state.byUrl[url],
           loadingRequestId: null,
           error: null,
-          current: tokenList,
+          current: (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0],
           pendingUpdate: null
         }
       }
@@ -64,7 +67,7 @@ export default createReducer(initialState, builder =>
         ...state.byUrl[url],
         loadingRequestId: null,
         error: error.message ?? 'Unknown error',
-        current: null,
+        current: (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0],
         pendingUpdate: null
       }
     })
@@ -73,7 +76,7 @@ export default createReducer(initialState, builder =>
         state.byUrl[url] = {
           loadingRequestId: null,
           pendingUpdate: null,
-          current: null,
+          current: (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0],
           error: null
         }
       }
@@ -85,10 +88,10 @@ export default createReducer(initialState, builder =>
       state.byUrl[url] = {
         ...state.byUrl[url],
         pendingUpdate: null,
-        current: state.byUrl[url].pendingUpdate
+        current: (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0]
       }
     })
     .addCase(updateVersion, state => {
-      delete state.byUrl['https://img.neumekca.city/tokens/list.json']
+      delete state.byUrl['https://unpkg.com/@narwhalswap/default-token-list@1.5.9/build/tokens.json']
     })
 )

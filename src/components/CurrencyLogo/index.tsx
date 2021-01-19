@@ -7,7 +7,7 @@ import { WrappedTokenInfo } from '../../state/lists/hooks'
 import uriToHttp from '../../utils/uriToHttp'
 
 const getTokenLogoURL = address =>
-  `https://raw.githubusercontent.com/narwhalswap/default-token-list/master/images/${address}.png`
+  `https://img.neumekca.city/images/${address}.png`
 const BAD_URIS: { [tokenAddress: string]: true } = {}
 
 const Image = styled.img<{ size: string; neomorph: boolean }>`
@@ -58,6 +58,7 @@ export default function CurrencyLogo({
     let uri: string | undefined
 
     if (currency instanceof WrappedTokenInfo) {
+   
       if (currency.logoURI && !BAD_URIS[currency.logoURI]) {
         uri = uriToHttp(currency.logoURI).filter(s => !BAD_URIS[s])[0]
       }
