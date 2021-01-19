@@ -105,10 +105,7 @@ export default function Nft() {
   const [nftInfos, setNftInfos] = useState<NftInfo[]>()
 
   useEffect(() => {
-
-    console.log(userNfts);
     if (!userNfts || userNfts == undefined || !chainId) return
-    console.log('vào');
     const fetchAvailable = async () => {
       const res = await axios.get<NftInfo[]>(
         `${NFT_BASE_URL[chainId]}/list?${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
