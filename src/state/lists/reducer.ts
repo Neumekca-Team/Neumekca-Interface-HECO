@@ -89,6 +89,6 @@ export default createReducer(initialState, builder =>
       }
     })
     .addCase(updateVersion, state => {
-      delete state.byUrl['https://unpkg.com/@narwhalswap/default-token-list@1.5.9/build/tokens.json']
+      delete state.byUrl['https://img.neumekca.city/tokens/list.json']
     })
 )

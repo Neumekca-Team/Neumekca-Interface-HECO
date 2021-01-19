@@ -404,7 +404,7 @@ export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16))
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
 
 // the Uniswap Default token list lives here
-export const DEFAULT_TOKEN_LIST_URL = 'https://unpkg.com/@narwhalswap/default-token-list@latest'
+export const DEFAULT_TOKEN_LIST_URL = 'https://img.neumekca.city/tokens/list.json'
 
 // base URI for NFT
 export const NFT_BASE_URL: { [chainId in ChainId]: string } = {

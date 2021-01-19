@@ -178,7 +178,7 @@ export default function ManageV2({
         <PoolData>
           <AutoColumn gap="sm">
             <RowBetween>
-              <TYPE.body style={{ margin: 0 }}>Your BUFFRATE</TYPE.body>
+              <TYPE.body style={{ margin: 0 }}>Your CHRONOS INJECTED</TYPE.body>
               {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) &&
                 stakingInfo?.userInfoTimeStamp &&
                 (!isMaxBuffRate ? (
@@ -190,7 +190,7 @@ export default function ManageV2({
                       fontSize="0.8rem"
                       onClick={() => setShowUpdateBuffRateModal(true)}
                     >
-                      Update BUFFRATE
+                      Update CHRONOS INJECTED
                     </ButtonPrimary>
                   </Countdown>
                 ) : (
@@ -377,19 +377,22 @@ export default function ManageV2({
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ⭐️
           </span>
-          BUFF RATE depends on the staked days. It starts at 1 when staking and increases by 50% per day until the
-          MAXIMUM BUFF RATE. And reset to 1 when harvesting NAR tokens or unstacking NLP tokens.
+          CHRONOS INJECTED depends on the staked days. It starts at 14 when staking and increases by 49% per day until the
+          MAXIMUM CHRONOS INJECTED. And reset to 14 when harvesting ZERO tokens or unstacking JLP tokens. Learn more{' '}
+          <a href="https://neumekca.city/docs/" target="_blank">
+            here
+          </a>
         </TYPE.main>
-        <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
+        {/* <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ✨
           </span>
           Estimated Harvest is a close benchmark of how much NAR you should receive per week prior to any burns. True
-          harvest relies on your NARPOWER and BUFF RATE, learn more{' '}
+          harvest relies on your NARPOWER and CHRONOS INJECTED, learn more{' '}
           <a href="https://docs.narwhalswap.org/liquidity-mining" target="_blank">
             here
           </a>
-        </TYPE.main>
+        </TYPE.main> */}
 
         {!showAddLiquidityButton && (
           <DataRow>

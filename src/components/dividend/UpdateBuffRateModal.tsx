@@ -46,7 +46,7 @@ export default function UpdateBuffRateModal({ isOpen, onDismiss, stakingInfo }: 
         .updateBuffRate(account, { gasLimit: 350000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Update your BUFFRATE`
+            summary: `Update your CHRONOS INJECTED`
           })
           setHash(response.hash)
         })
@@ -70,7 +70,7 @@ export default function UpdateBuffRateModal({ isOpen, onDismiss, stakingInfo }: 
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <RowBetween>
-            <TYPE.mediumHeader>Update Your BUFFRATE</TYPE.mediumHeader>
+            <TYPE.mediumHeader>Update Your CHRONOS INJECTED</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOnDismiss} />
           </RowBetween>
           {stakingInfo?.narPower && (
@@ -78,21 +78,21 @@ export default function UpdateBuffRateModal({ isOpen, onDismiss, stakingInfo }: 
               <TYPE.body fontWeight={600} fontSize={36}>
                 {stakingInfo?.narPower?.divide(stakingInfo?.stakedAmount).toSignificant(6)}
               </TYPE.body>
-              <TYPE.body>Your BUFFRATE</TYPE.body>
+              <TYPE.body>Your CHRONOS INJECTED</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            BUFFRATE can increases by 50% per day. Keep update everyday for powerful your NARPOWER!!
+            CHRONOS INJECTED can increases by 49% per day. Keep update everyday for powerful your NARPOWER!!
           </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onUpdateBuffRate}>
-            {error ?? 'Update BUFFRATE'}
+            {error ?? 'Update CHRONOS INJECTED'}
           </ButtonError>
         </ContentWrapper>
       )}
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Updating Your BUFFRATE</TYPE.body>
+            <TYPE.body fontSize={20}>Updating Your CHRONOS INJECTED</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -100,7 +100,7 @@ export default function UpdateBuffRateModal({ isOpen, onDismiss, stakingInfo }: 
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Updated Your BUFFRATE!!</TYPE.body>
+            <TYPE.body fontSize={20}>Updated Your CHRONOS INJECTED!!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

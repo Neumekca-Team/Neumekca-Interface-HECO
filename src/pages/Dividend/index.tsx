@@ -298,7 +298,7 @@ export default function Dividend() {
         <PoolData>
           <AutoColumn gap="sm">
             <RowBetween>
-              <TYPE.white style={{ margin: 0, color: 'white' }}>Your BUFFRATE</TYPE.white>
+              <TYPE.white style={{ margin: 0, color: 'white' }}>Your CHRONOS INJECTED</TYPE.white>
               {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) &&
                 stakingInfo?.userInfoTimeStamp &&
                 (!isMaxBuffRate ? (
@@ -311,7 +311,7 @@ export default function Dividend() {
                       color="white"
                       onClick={() => setShowUpdateBuffRateModal(true)}
                     >
-                      Update BUFFRATE
+                      Update CHRONOS INJECTED
                     </ButtonPrimary>
                   </Countdown>
                 ) : (
@@ -325,10 +325,10 @@ export default function Dividend() {
         </PoolData>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.white style={{ margin: 0, color: 'white' }}>Your ZEROPOWER</TYPE.white>
+            <TYPE.white style={{ margin: 0, color: 'white' }}>Your NULLSKILLS</TYPE.white>
             <TYPE.white fontSize={24} fontWeight={500} color='white'>
               {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
-              {' ZEROPOWER'}
+              {' NULLSKILLS'}
             </TYPE.white>
           </AutoColumn>
         </PoolData>
@@ -524,19 +524,22 @@ export default function Dividend() {
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ⭐️
           </span>
-          BUFF RATE depends on the staked days. It starts at 1 when staking and increases by 50% per day until the
-          MAXIMUM BUFF RATE. And reset to 1 when harvesting ZERO tokens or unstacking ZERO tokens.
-        </TYPE.white>
-        <TYPE.white style={{ textAlign: 'center' }} fontSize={14}>
-          <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
-            ✨
-          </span>
-          Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
-          harvest relies on your ZEROPOWER and BUFF RATE, learn more{' '}
+          CHRONOS INJECTED depends on the staked days. It starts at 14 when staking and increases by 49% per day until the
+          MAXIMUM CHRONOS INJECTED. And reset to 14 when harvesting ZERO tokens or unstacking ZERO tokens. Learn more{' '}
           <a href="https://neumekca.city/docs/" target="_blank">
             here
           </a>
         </TYPE.white>
+        {/* <TYPE.white style={{ textAlign: 'center' }} fontSize={14}>
+          <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
+            ✨
+          </span>
+          Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
+          harvest relies on your NULLSKILLS and CHRONOS INJECTED, learn more{' '}
+          <a href="https://neumekca.city/docs/" target="_blank">
+            here
+          </a>
+        </TYPE.white> */}
 
         {!showAddLiquidityButton && (
           <DataRow>
