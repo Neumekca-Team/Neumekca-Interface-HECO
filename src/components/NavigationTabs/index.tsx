@@ -226,7 +226,7 @@ function NavigationTabs({ location: { pathname }, history }) {
                 </a>
                 <ul id="icon" className="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                   <li className=" ">
-                    <a href="https://t.me/neumekca"  target='_blank'>
+                    <a href="https://t.me/neumekcagroup"  target='_blank'>
                       <i className="ri-telegram-fill"></i><span>Telegram</span>
                     </a>
                   </li>
@@ -243,6 +243,11 @@ function NavigationTabs({ location: { pathname }, history }) {
                   <li className=" ">
                     <a href="https://github.com/Neumekca-City"  target='_blank'>
                       <i className="ri-github-fill"></i><span>Github</span>
+                    </a>
+                  </li>
+                  <li className=" ">
+                    <a href="https://naplesblockchain.space/wp-content/uploads/2021/01/Neumekca-City-Security-Audit-Report-by-Naples.pdf" target='_blank'>
+                      <i className="ri-shield-star-fill"></i><span>Audit Report</span>
                     </a>
                   </li>
                 </ul>

@@ -118,11 +118,11 @@ export default function Menu() {
             <PieChart size={14} />
             {t('analytics')}
           </MenuItem>
-          <MenuItem id="link" href="https://twitter.com/bscswapprotocol">
+          <MenuItem id="link" href="https://twitter.com/neumekca">
             <Send size={14} />
             Twitter
           </MenuItem>
-          <MenuItem id="link" href="https://t.me/bscswap">
+          <MenuItem id="link" href="https://t.me/neumekcagroup">
             <Send size={14} />
             {t('telegram')}
           </MenuItem>
@@ -138,7 +138,7 @@ export default function Menu() {
             <Code size={14} />
             {t('code')}
           </MenuItem>
-          <MenuItem id="link" href="https://medium.com/@bscswapprotocol">
+          <MenuItem id="link" href="https://medium.com/@neumekcacity">
             <BookOpen size={14} />
             Medium
           </MenuItem>

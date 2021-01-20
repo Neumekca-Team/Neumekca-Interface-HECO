@@ -299,8 +299,8 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
 }
 
 export const BURNED_ADDRESS = '0x6969696969696969696969696969696969696969'
-export const DIVIDEND_ADDRESS = '0xF18e0A2F39d9f29Ad192aaE1a719ae3aCF8AB5D3'
-export const DIVIDEND_ADDRESS2 = '0xF18e0A2F39d9f29Ad192aaE1a719ae3aCF8AB5D3'
+export const DIVIDEND_ADDRESS = '0xE8CccB718de63da9D498279A40D2248E4D46296B'
+export const DIVIDEND_ADDRESS2 = '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e'
 
 export interface WalletInfo {
   connector?: AbstractConnector
