@@ -153,7 +153,7 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
           <TYPE.darkGray>
             {valueOfTotalStakedAmountInBUSD
               ? `$${valueOfTotalStakedAmountInBUSD.toFixed(0, { groupSeparator: ',' })}`
-              : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} BNB`}
+              : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} HT`}
           </TYPE.darkGray>
         </RowBetween>
         <RowBetween>

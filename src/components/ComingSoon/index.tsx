@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../../assets/images/logo.png'
+import Logo from '../../assets/images/logocms.png'
 import LogoDark from '../../assets/images/logodark.png'
 import styled from 'styled-components'
 import { AutoColumn } from '../Column'

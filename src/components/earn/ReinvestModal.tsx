@@ -82,7 +82,7 @@ export default function ReinvestModal({ isOpen, onDismiss, stakingInfo }: Stakin
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            When you reinvest rewards will be convert to NLP and stake.
+            When you reinvest rewards will be convert to JLP and stake.
           </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onReinvest}>
             {error ?? 'Reinvest'}

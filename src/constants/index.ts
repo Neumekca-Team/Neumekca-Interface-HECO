@@ -19,20 +19,20 @@ export const NAR: { [chainId in ChainId]: Token } = {
   [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
   [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token')
 }
-export const NAR_BNB: { [chainId in ChainId]: [Token, Token] } = {
+export const NAR_HT: { [chainId in ChainId]: [Token, Token] } = {
   [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET], NAR[ChainId.BSC_MAINNET]],
   [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET], NAR[ChainId.BSC_TESTNET]],
   [ChainId.HT_TESTNET]: [WETH[ChainId.HT_TESTNET], NAR[ChainId.HT_TESTNET]],
   [ChainId.HT_MAINNET]: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]]
 }
 
-//export const GOLD_WETH = new Token(ChainId.BSC_MAINNET, '0x903903A2aa2A222360D8f3c4A7205b933Da60e95', 18, 'GOLD-BNB NLP', 'GOLD-BNB NLP')
+//export const GOLD_WETH = new Token(ChainId.BSC_MAINNET, '0x903903A2aa2A222360D8f3c4A7205b933Da60e95', 18, 'GOLD-HT JLP', 'GOLD-HT JLP')
 export const GOLD_WETH = new Token(
   ChainId.HT_TESTNET,
   '0x879D20AA3f8F70DEB73a5C13Fe68F62661D039C0',
   18,
-  'LEON-BNB NLP',
-  'LEON-BNB NLP'
+  'LEON-HT JLP',
+  'LEON-HT JLP'
 )
 
 export const GOLD: { [chainId in ChainId]: Token } = {
@@ -101,8 +101,8 @@ export const BTCB_WETH = new Token(
   ChainId.BSC_MAINNET,
   '0x3111446eC6026EB3ae54EAdCfBDD5ECB09D6d451',
   18,
-  'BTC-BNB NLP',
-  'BTC-BNB NLP'
+  'BTC-HT JLP',
+  'BTC-HT JLP'
 )
 export const BTCB = new Token(ChainId.BSC_MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Bitcoin')
 export const T_BTCB = new Token(
@@ -117,8 +117,8 @@ export const ETHB_WETH = new Token(
   ChainId.BSC_MAINNET,
   '0xD921E7efc0Ac8eaaF4AddaF46Ce289E70886b233',
   18,
-  'ETH-BNB NLP',
-  'ETH-BNB NLP'
+  'ETH-HT JLP',
+  'ETH-HT JLP'
 )
 export const ETHB = new Token(ChainId.BSC_MAINNET, '0x2170Ed0880ac9A755fd29B2688956BD959F933F8', 18, 'ETH', 'Ethereum')
 
@@ -141,8 +141,8 @@ export const BUSD_WETH = new Token(
   ChainId.BSC_MAINNET,
   '0x5EC32C21C9A6215D239F2BD0Df22d7632b4717c3',
   18,
-  'BUSD-BNB NLP',
-  'BUSD-BNB NLP'
+  'BUSD-HT JLP',
+  'BUSD-HT JLP'
 )
 export const BUSD = new Token(
   ChainId.BSC_MAINNET,
@@ -192,8 +192,8 @@ export const THUGS_NAR = new Token(
   ChainId.BSC_MAINNET,
   '0xB648ecF23Bb8fe854c6267d6fb046f2d483251EA',
   18,
-  'THUGS-ZERO NLP',
-  'THUGS-ZERO NLP'
+  'THUGS-ZERO JLP',
+  'THUGS-ZERO JLP'
 )
 export const THUGS = new Token(
   ChainId.BSC_MAINNET,
@@ -207,8 +207,8 @@ export const BLIQ_WETH = new Token(
   ChainId.BSC_MAINNET,
   '0xb05abA947E59049b3582Db7e1063545Ad1c76561',
   18,
-  'BLIQ-BNB NLP',
-  'BLIQ-BNB NLP'
+  'BLIQ-HT JLP',
+  'BLIQ-HT JLP'
 )
 export const BLIQ = new Token(ChainId.BSC_MAINNET, '0xC97faC34CeB0Bb1B2bdAf3b59ADA378b99111a22', 18, 'BLIQ', 'Bliquid')
 
@@ -298,7 +298,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
   // ]
 }
 
-export const BURNED_ADDRESS = '0x7777777777777777777777777777777777777777'
+export const BURNED_ADDRESS = '0x6969696969696969696969696969696969696969'
 export const DIVIDEND_ADDRESS = '0xF18e0A2F39d9f29Ad192aaE1a719ae3aCF8AB5D3'
 export const DIVIDEND_ADDRESS2 = '0xF18e0A2F39d9f29Ad192aaE1a719ae3aCF8AB5D3'
 

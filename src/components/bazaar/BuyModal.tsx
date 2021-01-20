@@ -141,9 +141,9 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
 
               <PriceSection>
                 <RowBetween>
-                  <TYPE.subHeader>Price (BNB):</TYPE.subHeader>
+                  <TYPE.subHeader>Price (HT):</TYPE.subHeader>
                   <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                    {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} BNB
+                    {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} HT
                   </TYPE.subHeader>
                 </RowBetween>
                 <RowBetween>
@@ -159,7 +159,7 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
           {approval === ApprovalState.APPROVED ? (
             <RowBetween>
               <ButtonPrimary mr="0.5rem" disabled={false} onClick={onBuyWithBNB}>
-                Buy with BNB
+                Buy with HT
               </ButtonPrimary>
               <ButtonPrimary disabled={false} onClick={onBuyWithNAR}>
                 Buy with NAR

@@ -53,7 +53,7 @@
   "currentPoolSize": "현재 풀 크기",
   "yourPoolShare": "풀 공유",
   "noZero": "0이 될 수 없습니다.",
-  "mustBeETH": "입력 중 하나는 BNB 여야합니다.",
+  "mustBeETH": "입력 중 하나는 HT 여야합니다.",
   "enterCurrencyOrLabelCont": "Enter a {{ inputCurrency }} or {{ label }} value to continue.",
   "youAreAdding": "추가",
   "and": "and",

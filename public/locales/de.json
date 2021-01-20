@@ -53,7 +53,7 @@
   "currentPoolSize": "Aktuelle Größe des Pools",
   "yourPoolShare": "Dein Anteil am Pool",
   "noZero": "Wert darf nicht Null sein.",
-  "mustBeETH": "Einer der Inputs muß BNB sein.",
+  "mustBeETH": "Einer der Inputs muß HT sein.",
   "enterCurrencyOrLabelCont": "{{ inputCurrency }} oder {{ label }} Wert eingeben um fortzufahren.",
   "youAreAdding": "Du fügst zwischen",
   "and": "und",

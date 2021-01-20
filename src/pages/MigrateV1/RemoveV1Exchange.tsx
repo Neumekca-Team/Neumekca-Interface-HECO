@@ -79,7 +79,7 @@ function V1PairRemoval({
         })
 
         addTransaction(response, {
-          summary: `Remove ${token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/BNB V1 liquidity`
+          summary: `Remove ${token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/HT V1 liquidity`
         })
         setPendingRemovalHash(response.hash)
       })

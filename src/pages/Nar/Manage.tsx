@@ -209,11 +209,11 @@ export default function Manage({
         <RowEvenly>
           <TYPE.body style={{ marginLeft: 32 }}>
             {stakingInfo?.commonMin?.toFixed(2) ?? '-'}
-            {'NLP'}
+            {'JLP'}
           </TYPE.body>
           <TYPE.body style={{ marginRight: 32 }}>
             {stakingInfo?.commonMax?.toFixed(2) ?? '-'}
-            {'NLP'}
+            {'JLP'}
           </TYPE.body>
         </RowEvenly>
       </GaugeWrapper>
@@ -237,11 +237,11 @@ export default function Manage({
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Step 1. Get NLP Liquidity tokens</TYPE.white>
+                <TYPE.white fontWeight={600}>Step 1. Get JLP Liquidity tokens</TYPE.white>
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`NLP tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`JLP tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary
@@ -302,7 +302,7 @@ export default function Manage({
                     {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
                   </TYPE.black>
                   <TYPE.black>
-                    NLP {currencyA?.symbol}-{currencyB?.symbol}
+                    JLP {currencyA?.symbol}-{currencyB?.symbol}
                   </TYPE.black>
                 </RowBetween>
               </AutoColumn>
@@ -383,7 +383,7 @@ export default function Manage({
               marginBottom="8px"
               onClick={handleDepositClick}
             >
-              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake NLP Tokens'}
+              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake JLP Tokens'}
             </ButtonPrimary>
 
             {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
@@ -402,7 +402,7 @@ export default function Manage({
           </DataRow>
         )}
         {!userLiquidityUnstaked ? null : userLiquidityUnstaked.equalTo('0') ? null : (
-          <TYPE.main>{userLiquidityUnstaked.toSignificant(6)} NLP tokens available</TYPE.main>
+          <TYPE.main>{userLiquidityUnstaked.toSignificant(6)} JLP tokens available</TYPE.main>
         )}
       </PositionInfo>
     </PageWrapper>

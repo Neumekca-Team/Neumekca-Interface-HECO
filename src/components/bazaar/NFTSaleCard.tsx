@@ -70,9 +70,9 @@ export function SaleCard({ nftInfo }: { nftInfo?: NftInfo }) {
           <TYPE.subHeader fontSize={11}>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.subHeader>
           
           <RowBetween>
-            <TYPE.subHeader fontSize={11}>Price (BNB):</TYPE.subHeader>
+            <TYPE.subHeader fontSize={11}>Price (HT):</TYPE.subHeader>
             <TYPE.subHeader fontSize={11} fontWeight={700} color={theme.primary1}>
-              {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} BNB
+              {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} HT
             </TYPE.subHeader>
           </RowBetween>
 
@@ -111,9 +111,9 @@ export function UserCard({ nftInfo, isSale }: { nftInfo?: NftInfo; isSale: boole
           {isSale && (
             <>
               <RowBetween>
-                <TYPE.subHeader>Price (BNB):</TYPE.subHeader>
+                <TYPE.subHeader>Price (HT):</TYPE.subHeader>
                 <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                  {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} BNB
+                  {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} HT
                 </TYPE.subHeader>
               </RowBetween>
 

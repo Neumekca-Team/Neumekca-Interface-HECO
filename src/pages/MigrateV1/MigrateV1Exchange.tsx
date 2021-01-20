@@ -67,7 +67,7 @@ export function V1LiquidityInfo({
         <div style={{ marginLeft: '.75rem' }}>
           <TYPE.mediumHeader>
             {<FormattedPoolCurrencyAmount currencyAmount={liquidityTokenAmount} />}{' '}
-            {token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/BNB
+            {token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/HT
           </TYPE.mediumHeader>
         </div>
       </AutoRow>
@@ -217,26 +217,26 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
             <RowBetween>
               <TYPE.body>V1 Price:</TYPE.body>
               <TYPE.black>
-                {v1SpotPrice?.toSignificant(6)} {token.symbol}/BNB
+                {v1SpotPrice?.toSignificant(6)} {token.symbol}/HT
               </TYPE.black>
             </RowBetween>
             <RowBetween>
               <div />
               <TYPE.black>
-                {v1SpotPrice?.invert()?.toSignificant(6)} BNB/{token.symbol}
+                {v1SpotPrice?.invert()?.toSignificant(6)} HT/{token.symbol}
               </TYPE.black>
             </RowBetween>
 
             <RowBetween>
               <TYPE.body>V2 Price:</TYPE.body>
               <TYPE.black>
-                {v2SpotPrice?.toSignificant(6)} {token.symbol}/BNB
+                {v2SpotPrice?.toSignificant(6)} {token.symbol}/HT
               </TYPE.black>
             </RowBetween>
             <RowBetween>
               <div />
               <TYPE.black>
-                {v2SpotPrice?.invert()?.toSignificant(6)} BNB/{token.symbol}
+                {v2SpotPrice?.invert()?.toSignificant(6)} HT/{token.symbol}
               </TYPE.black>
             </RowBetween>
 
@@ -259,13 +259,13 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
             <RowBetween>
               <TYPE.body>V1 Price:</TYPE.body>
               <TYPE.black>
-                {v1SpotPrice?.toSignificant(6)} {token.symbol}/BNB
+                {v1SpotPrice?.toSignificant(6)} {token.symbol}/HT
               </TYPE.black>
             </RowBetween>
             <RowBetween>
               <div />
               <TYPE.black>
-                {v1SpotPrice?.invert()?.toSignificant(6)} BNB/{token.symbol}
+                {v1SpotPrice?.invert()?.toSignificant(6)} HT/{token.symbol}
               </TYPE.black>
             </RowBetween>
           </AutoColumn>
@@ -314,7 +314,7 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
         </div>
       </LightCard>
       <TYPE.darkGray style={{ textAlign: 'center' }}>
-        {`Your Uniswap V1 ${token.symbol}/BNB liquidity will become Uniswap V2 ${token.symbol}/BNB liquidity.`}
+        {`Your Uniswap V1 ${token.symbol}/HT liquidity will become Uniswap V2 ${token.symbol}/HT liquidity.`}
       </TYPE.darkGray>
     </AutoColumn>
   )

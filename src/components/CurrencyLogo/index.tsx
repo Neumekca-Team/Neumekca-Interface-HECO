@@ -2,7 +2,7 @@ import { Currency, ETHER, Token } from '@bscswap/sdk'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import EthereumLogo from '../../assets/images/bnb.png'
+import EthereumLogo from '../../assets/images/coin/source/HT.svg'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import uriToHttp from '../../utils/uriToHttp'
 

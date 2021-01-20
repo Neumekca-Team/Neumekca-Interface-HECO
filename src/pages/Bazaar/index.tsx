@@ -88,11 +88,11 @@ const typeOptions: OptionProps[] = [
 
 const gradeOptions: OptionProps[] = [
   { value: '0', label: 'All' },
-  { value: '1', label: 'Common' },
-  { value: '2', label: 'Rare' },
-  { value: '3', label: 'Epic' },
-  { value: '4', label: 'Legendary' },
-  { value: '5', label: 'Transcendent' },
+  { value: '1', label: 'Alpha' },
+  { value: '2', label: 'Beta' },
+  { value: '3', label: 'Gamma' },
+  { value: '4', label: 'Delta' },
+  { value: '5', label: 'Omega' },
   { value: '6', label: 'N/A' }
 ]
 

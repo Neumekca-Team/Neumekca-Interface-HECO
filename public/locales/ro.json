@@ -44,7 +44,7 @@
   "currentPoolSize": "Mărimea Actualului Fond Comun",
   "yourPoolShare": "Partea Ta Din Fond Comun",
   "noZero": "Cantitatea nu poate fi zero.",
-  "mustBeETH": "Una dintre valori trebuie să fie BNB.",
+  "mustBeETH": "Una dintre valori trebuie să fie HT.",
   "enterCurrencyOrLabelCont": "Setează o valoare pentru {{ inputCurrency }} sau {{ label }} pentru a continua. ",
   "youAreAdding": "Adaugi între",
   "and": "și",

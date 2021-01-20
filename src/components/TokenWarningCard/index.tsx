@@ -100,12 +100,12 @@ export function TokenWarningCards({ currencies }: { currencies: { [field in Fiel
           <TYPE.main color={'red2'}>Token imported</TYPE.main>
         </AutoRow>
         <TYPE.body color={'red2'}>
-          Anyone can create and name any BEP20 token on Binance Smart Chain, including creating fake versions of existing tokens
+          Anyone can create and name any HRC20 token on Binance Smart Chain, including creating fake versions of existing tokens
           and tokens that claim to represent projects that do not have a token.
         </TYPE.body>
         <TYPE.body color={'red2'}>
           Similar to BscScan, this site can load arbitrary tokens via token addresses. Please do your own research
-          before interacting with any BEP20 token.
+          before interacting with any HRC20 token.
         </TYPE.body>
         {Object.keys(currencies).map(field => {
           const dismissed = field === Field.INPUT ? dismissedToken0 : dismissedToken1

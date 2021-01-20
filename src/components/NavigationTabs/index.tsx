@@ -232,12 +232,12 @@ function NavigationTabs({ location: { pathname }, history }) {
                   </li>
                   <li className=" ">
                     <a href="https://twitter.com/Neumekca"  target='_blank'>
-                      <i className="ri-twitter-line"></i><span>twitter</span>
+                      <i className="ri-twitter-line"></i><span>Twitter</span>
                     </a>
                   </li>
                   <li className=" ">
-                    <a href="https://www.linkedin.com/company/naples-blockchain-service" target='_blank'>
-                      <i className="ri-linkedin-box-fill"></i><span>linkedin</span>
+                    <a href="https://medium.com/@neumekcacity" target='_blank'>
+                      <i className="ri-medium-fill"></i><span>Medium</span>
                     </a>
                   </li>
                   <li className=" ">
