@@ -28,6 +28,14 @@ export const STAKING_REWARDS_DIVIDEND_INFO: {
       poolAddress: '0x6D32E17f7510fDB85415bB9469bD39F54CC2Db5d',
       poolId: 0
     }
+  ],
+  [ChainId.HT_TESTNET]: [
+    {
+      stakeToken: NAR[ChainId.HT_TESTNET],
+      representativeToken: GEM[ChainId.HT_TESTNET],
+      poolAddress: '0xF18e0A2F39d9f29Ad192aaE1a719ae3aCF8AB5D3',
+      poolId: 0
+    }
   ]
 }
 

@@ -77,9 +77,6 @@
     "fortmatic": "^2.2.1",
     "react-select": "^3.2.0"
   },
-  "resolutions": {
-    "@walletconnect/web3-provider": "1.1.1-alpha.0"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && copyfiles LICENSE README.md WeChat.jpg logo.png build/",
