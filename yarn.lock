@@ -1146,24 +1146,6 @@
   resolved "https://registry.yarnpkg.com/@bscswap/contracts/-/contracts-1.0.1.tgz#396b65ff26af746f86e991ab0dce0b77724e5974"
   integrity sha512-UIDqa9bTjM297ThqEAiKp5gvCC6HkdHoL0/JdE/t4wCZiJmWTyhul0FtRLGc28dQ51PcliZeiQQOqyGNgZ4Pnw==
 
-"@bscswap/contracts@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@bscswap/contracts/-/contracts-1.0.2.tgz#c6d639a43018bec808be02004c6a103b923fd604"
-  integrity sha512-/tJ/GviHfCqzGAkO2W2YkDkWNgcySueHfjlqhbXAA1EmOAhIqHr0IbT7PJpE2/dkegEnuv3moCCl2hndK8dHRA==
-
-"@neumekca/neumekca-sdk@3.0.15":
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/@neumekca/neumekca-sdk/-/sdk-3.0.15.tgz#3d0d63b92471d16e24257156a1b8c241582ccdad"
-  integrity sha512-DSslMJyAlL3vUK+5Z3e6p2p0avIbHqj36ym2dCXNJ6G78sP79F4i51ivyFsWuW5n3LPesvi2OPO5l3zyWL9IgQ==
-  dependencies:
-    "@bscswap/contracts" "1.0.2"
-    big.js "^5.2.2"
-    decimal.js-light "^2.5.0"
-    jsbi "^3.1.1"
-    tiny-invariant "^1.1.0"
-    tiny-warning "^1.0.3"
-    toformat "^2.0.0"
-
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -1938,6 +1920,18 @@
   dependencies:
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
+
+"@neumekca/neumekca-sdk@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@neumekca/neumekca-sdk/-/neumekca-sdk-1.0.1.tgz#f1ec7743ee42a35d550700442d3ffb5f3c8670aa"
+  integrity sha512-WnvSLujsqq70DJL7RsHiZ1Z+VY6SB26nr5kFKS/UmBKTyoI2BukhjOXp3O/a3DaWP/AW0juI4WLtZIFkC8VWaQ==
+  dependencies:
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.1"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
