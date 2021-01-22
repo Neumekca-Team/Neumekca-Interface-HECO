@@ -1,6 +1,6 @@
 import { Contract } from '@ethersproject/contracts'
-import { ChainId, WETH } from '@bscswap/sdk'
-import { abi as INarwhalswapPairABI } from '@bscswap/contracts/build/IJuncturePair.json'
+import { ChainId, WETH } from '@neumekca/neumekca-sdk'
+import { abi as INarwhalswapPairABI } from '@bscswap/contracts/build/IBSCswapPair.json'
 import { useMemo } from 'react'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
@@ -14,7 +14,7 @@ import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
 import UNISOCKS_ABI from '../constants/abis/unisocks.json'
 import ERC20_ABI from '../constants/abis/erc20.json'
 import WETH_ABI from '../constants/abis/weth.json'
-import PRESALE_ABI from '../constants/abis/erc20'
+import PRESALE_ABI from '../constants/abis/presale.json'
 import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from '../constants/abis/migrator'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'

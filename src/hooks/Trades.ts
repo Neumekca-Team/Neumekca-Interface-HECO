@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Pair, Token, Trade } from '@bscswap/sdk'
+import { Currency, CurrencyAmount, Pair, Token, Trade } from '@neumekca/neumekca-sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
 

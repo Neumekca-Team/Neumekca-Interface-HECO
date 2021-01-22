@@ -1,4 +1,4 @@
-import { ChainId } from '@bscswap/sdk'
+import { ChainId } from '@neumekca/neumekca-sdk'
 import MULTICALL_ABI from './abi.json'
 
 const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {

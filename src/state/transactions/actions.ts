@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
-import { ChainId } from '@bscswap/sdk'
+import { ChainId } from '@neumekca/neumekca-sdk'
 
 export interface SerializableTransactionReceipt {
   to: string

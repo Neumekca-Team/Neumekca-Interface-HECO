@@ -1,6 +1,6 @@
-import { TokenAmount, Pair, Currency } from '@bscswap/sdk'
+import { TokenAmount, Pair, Currency } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { abi as IJuncturePairABI } from '@bscswap/contracts/build/IJuncturePair.json'
+import { abi as IJuncturePairABI } from '@bscswap/contracts/build/IBSCswapPair.json'
 import { Interface } from '@ethersproject/abi'
 import { useActiveWeb3React } from '../hooks'
 

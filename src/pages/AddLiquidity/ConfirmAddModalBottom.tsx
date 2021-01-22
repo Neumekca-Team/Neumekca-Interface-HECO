@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Fraction, Percent } from '@bscswap/sdk'
+import { Currency, CurrencyAmount, Fraction, Percent } from '@neumekca/neumekca-sdk'
 import React from 'react'
 import { Text } from 'rebass'
 import { ButtonPrimary } from '../../components/Button'

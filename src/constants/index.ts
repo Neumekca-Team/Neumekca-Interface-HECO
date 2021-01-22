@@ -1,5 +1,5 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
-import { ChainId, JSBI, Percent, Token, WETH } from '@bscswap/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@neumekca/neumekca-sdk'
 
 import { injected } from '../connectors'
 
@@ -11,6 +11,9 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
+
+export const PRESALE_ADDRESS = '0xace469b7Bfe1759FF6a4BEF62feb3623EFeA6d58'
+
 //const NAR_ADDRESS = '0xA1303E6199b319a891b79685F0537D289af1FC83' BSC
 const NAR_ADDRESS = '0xace469b7Bfe1759FF6a4BEF62feb3623EFeA6d58'
 export const NAR: { [chainId in ChainId]: Token } = {
@@ -19,6 +22,7 @@ export const NAR: { [chainId in ChainId]: Token } = {
   [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
   [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token')
 }
+
 export const NAR_HT: { [chainId in ChainId]: [Token, Token] } = {
   [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET], NAR[ChainId.BSC_MAINNET]],
   [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET], NAR[ChainId.BSC_TESTNET]],

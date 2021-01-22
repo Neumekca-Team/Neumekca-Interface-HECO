@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Countdown from 'react-countdown'
 import { Link } from 'react-router-dom'
 
-import { JSBI } from '@bscswap/sdk'
+import { JSBI } from '@neumekca/neumekca-sdk'
 import { RouteComponentProps } from 'react-router-dom'
 import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { useCurrency } from '../../hooks/Tokens'

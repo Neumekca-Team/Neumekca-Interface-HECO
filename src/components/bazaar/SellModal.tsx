@@ -10,7 +10,7 @@ import { RowBetween, AutoRow } from '../Row'
 import PlaceHolder from '../../assets/images/nft_placeholder.png'
 import { Input as NumericalInput } from '../NumericalInput'
 
-import { JSBI, Token, TokenAmount } from '@bscswap/sdk'
+import { JSBI, Token, TokenAmount } from '@neumekca/neumekca-sdk'
 import { NftInfo } from '../../state/nft/hooks'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'

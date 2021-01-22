@@ -12,7 +12,7 @@ import ClaimRewardModal from './ClaimRewardModal'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import Countdown from 'react-countdown'
 
-import { ChainId, WETH } from '@bscswap/sdk'
+import { ChainId, WETH } from '@neumekca/neumekca-sdk'
 import { BLIQ, BLIQ_WETH } from '../../constants'
 import { TicketStakingInfo } from '../../state/nft/hooks'
 import usePrevious from '../../hooks/usePrevious'

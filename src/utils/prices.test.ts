@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@bscswap/sdk'
+import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@neumekca/neumekca-sdk'
 import { computeTradePriceBreakdown } from './prices'
 
 describe('prices', () => {

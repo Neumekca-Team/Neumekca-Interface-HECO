@@ -1,4 +1,4 @@
-import { Currency } from '@bscswap/sdk'
+import { Currency } from '@neumekca/neumekca-sdk'
 import React from 'react'
 import styled from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'

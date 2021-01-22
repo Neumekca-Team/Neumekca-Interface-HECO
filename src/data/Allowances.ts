@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from '@bscswap/sdk'
+import { Token, TokenAmount } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
 
 import { useTokenContract, useNftContract } from '../hooks/useContract'

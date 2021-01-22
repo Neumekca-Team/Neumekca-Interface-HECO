@@ -9,7 +9,7 @@ import { RowBetween } from '../Row'
 import PlaceHolder from '../../assets/images/nft_placeholder.png'
 import { Dots } from '../../components/swap/styleds'
 
-import { JSBI } from '@bscswap/sdk'
+import { JSBI } from '@neumekca/neumekca-sdk'
 import { NAR } from '../../constants'
 import { NftInfo } from '../../state/nft/hooks'
 import { TransactionResponse } from '@ethersproject/providers'

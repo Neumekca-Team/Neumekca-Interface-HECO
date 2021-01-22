@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@bscswap/sdk'
+import { ChainId, Token } from '@neumekca/neumekca-sdk'
 import { TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'

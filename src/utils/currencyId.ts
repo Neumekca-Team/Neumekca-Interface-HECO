@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@bscswap/sdk'
+import { Currency, ETHER, Token } from '@neumekca/neumekca-sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === ETHER) return 'HT'

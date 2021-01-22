@@ -1,5 +1,5 @@
 import { Interface } from '@ethersproject/abi'
-import { ChainId } from '@bscswap/sdk'
+import { ChainId } from '@neumekca/neumekca-sdk'
 import NFT_FACTORY_ABI from './nft-factory.json'
 import NFT_ABI from './nft.json'
 import NFT_BAZAAR_ABI from './nft-bazaar.json'

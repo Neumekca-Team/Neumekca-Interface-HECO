@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@bscswap/sdk'
+import { Currency, ETHER, Token } from '@neumekca/neumekca-sdk'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 

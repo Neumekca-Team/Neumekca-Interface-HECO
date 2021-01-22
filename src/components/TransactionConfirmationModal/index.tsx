@@ -1,4 +1,4 @@
-import { ChainId } from '@bscswap/sdk'
+import { ChainId } from '@neumekca/neumekca-sdk'
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import Modal from '../Modal'

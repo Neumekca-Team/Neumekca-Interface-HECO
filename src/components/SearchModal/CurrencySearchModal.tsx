@@ -1,4 +1,4 @@
-import { Currency, Token } from '@bscswap/sdk'
+import { Currency, Token } from '@neumekca/neumekca-sdk'
 import React, { KeyboardEvent, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import { useTranslation } from 'react-i18next'

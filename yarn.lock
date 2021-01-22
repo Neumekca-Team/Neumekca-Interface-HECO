@@ -1151,9 +1151,9 @@
   resolved "https://registry.yarnpkg.com/@bscswap/contracts/-/contracts-1.0.2.tgz#c6d639a43018bec808be02004c6a103b923fd604"
   integrity sha512-/tJ/GviHfCqzGAkO2W2YkDkWNgcySueHfjlqhbXAA1EmOAhIqHr0IbT7PJpE2/dkegEnuv3moCCl2hndK8dHRA==
 
-"@bscswap/sdk@3.0.15":
+"@neumekca/neumekca-sdk@3.0.15":
   version "3.0.15"
-  resolved "https://registry.yarnpkg.com/@bscswap/sdk/-/sdk-3.0.15.tgz#3d0d63b92471d16e24257156a1b8c241582ccdad"
+  resolved "https://registry.yarnpkg.com/@neumekca/neumekca-sdk/-/sdk-3.0.15.tgz#3d0d63b92471d16e24257156a1b8c241582ccdad"
   integrity sha512-DSslMJyAlL3vUK+5Z3e6p2p0avIbHqj36ym2dCXNJ6G78sP79F4i51ivyFsWuW5n3LPesvi2OPO5l3zyWL9IgQ==
   dependencies:
     "@bscswap/contracts" "1.0.2"

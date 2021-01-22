@@ -1,4 +1,4 @@
-import { CurrencyAmount, JSBI, Trade } from '@bscswap/sdk'
+import { CurrencyAmount, JSBI, Trade } from '@neumekca/neumekca-sdk'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'

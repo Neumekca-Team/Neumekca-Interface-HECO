@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { JSBI } from '@bscswap/sdk'
+import { JSBI } from '@neumekca/neumekca-sdk'
 import Modal from '../Modal'
 import { AutoColumn } from '../Column'
 import styled from 'styled-components'

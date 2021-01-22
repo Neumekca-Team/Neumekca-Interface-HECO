@@ -22,6 +22,14 @@ const tabOrder = [
     className: '',
   },
   {
+    path: '/presale',
+    textKey: 'Presale',
+    icon: 'ri-shopping-cart-fill',
+    // iconActive: require('../../assets/images/icon/dashboard-white.svg'),
+    regex: /\/presale/,
+    className: '',
+  },
+  {
     path: '/farms',
     textKey: 'Farms',
     icon: 'lab la-sketch',
@@ -370,17 +378,26 @@ export function SelectGEMTabs({ active }: { active: string }) {
   )
 }
 
-export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
+export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' | 'presale' }) {
   const { t } = useTranslation()
   var tmp;
-  if (active === 'swap') {
-    tmp = <HeaderCard>
+
+  switch(active){
+    case 'swap':
+      tmp = <HeaderCard>
       {t('swap')}
     </HeaderCard>
-  } else {
-    tmp = <HeaderCard>
+    break;
+    case 'pool':
+      tmp = <HeaderCard>
       {t('pool')}
     </HeaderCard>
+    break;
+    default:
+      tmp = <HeaderCard>
+      {'Presale'}
+    </HeaderCard>
+    break;
   }
 
   return (

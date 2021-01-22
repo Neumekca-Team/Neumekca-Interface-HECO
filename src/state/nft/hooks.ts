@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Token, TokenAmount, WETH } from '@bscswap/sdk'
+import { ChainId, JSBI, Token, TokenAmount, WETH } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
 import { GOLD, GOLD_WETH, GEM, NAR, THUGS_NAR, THUGS, BLIQ_WETH, BLIQ, BURNED_ADDRESS } from '../../constants'
 import { STACKING_TICKETS_INTERFACE } from '../../constants/abis/staking-tickets'

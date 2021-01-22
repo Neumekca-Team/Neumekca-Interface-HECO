@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Token, TokenAmount } from '@bscswap/sdk'
+import { ChainId, JSBI, Token, TokenAmount } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
 import { NAR, GEM } from '../../constants'
 import { STAKING_REWARDS_DIVIDEND_INTERFACE } from '../../constants/abis/staking-rewards'

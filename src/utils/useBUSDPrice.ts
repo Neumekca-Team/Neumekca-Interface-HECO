@@ -1,4 +1,4 @@
-import { ChainId, Currency, currencyEquals, JSBI, Price, WETH, Token } from '@bscswap/sdk'
+import { ChainId, Currency, currencyEquals, JSBI, Price, WETH, Token } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
 import { BUSD, H_BUSD } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'

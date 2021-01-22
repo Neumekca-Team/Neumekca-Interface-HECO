@@ -39,6 +39,7 @@ import Gold from './Gold'
 import Bazaar from './Bazaar'
 import Account from './Bazaar/account'
 import Dashboard from './Dashboard'
+import Presale from './Presale'
 
 
 const Marginer = styled.div`
@@ -87,6 +88,15 @@ export default function App() {
                   <Route exact strict path="/leon" component={Gold} />
                   <Route exact strict path="/souk" component={Bazaar} />
                   <Route exact strict path="/account" component={Account} />
+                  {/* <Route exact strict path="/presale" component={Presale} /> */}
+                  <Route
+                          path={[
+                            '/presale',
+                            '/presale/sale',
+                            '/presale/sale/:lpToken?',
+                          ]}
+                          component={() => <Presale  />}
+                        />
                 </Switch>
           
             </div>
