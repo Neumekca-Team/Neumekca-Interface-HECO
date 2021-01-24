@@ -3,7 +3,7 @@
     // data-mode="click" for using event
     // data-dark="false" for property
     // icon class // la-sun // la-moon
-    const storageDark = localStorage.getItem('dark')
+    const storageDark = '' //localStorage.getItem('dark')
 
     if($('body').hasClass('dark')){
         changeMode('true');

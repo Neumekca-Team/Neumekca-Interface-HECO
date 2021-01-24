@@ -24,7 +24,11 @@
 }
 
 .logo-presale-list{
-    margin-left: 40%;
+    margin-left: 42%;
+}
+
+.open-currency-select-button span {
+    color:black;
 }
 
 
@@ -314,4 +318,9 @@ body{
 
 
 
-
+  @media (min-width: 800px){
+    .div-center{
+        margin-left: 20%;
+      
+    }
+  }

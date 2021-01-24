@@ -1,12 +1,12 @@
 import { Contract } from '@ethersproject/contracts'
 import { ChainId, WETH } from '@neumekca/neumekca-sdk'
-import { abi as INarwhalswapPairABI } from '@bscswap/contracts/build/IBSCswapPair.json'
+import { abi as INarwhalswapPairABI } from '../constants/contracts/IBSCswapPair.json'
 import { useMemo } from 'react'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
 } from '../constants/abis/argent-wallet-detector'
-import { NAR } from '../constants'
+import { NAR, PRESALE_ADDRESS } from '../constants'
 import NAR_ABI from '../constants/abis/nar.json'
 import STAKING_REWARDS_ABI from '../constants/abis/staking_rewards.json'
 import STAKING_DIVIDEND_ABI from '../constants/abis/staking_dividend.json'
@@ -90,8 +90,14 @@ export function useMulticallContract(): Contract | null {
   return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
 }
 
-export function usePresaleContract(presaleAddress?: string): Contract | null {
-  return useContract(presaleAddress, PRESALE_ABI, false)
+export function usePresaleContract(): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? PRESALE_ADDRESS[chainId].address : undefined, PRESALE_ABI, false)
+}
+
+export function usePresaleContractCallBack(): Contract | null {
+  const  {chainId} = useActiveWeb3React()
+  return useContract(chainId ? PRESALE_ADDRESS[chainId].address : undefined,PRESALE_ABI, true)
 }
 
 export function useNarContract(): Contract | null {

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import logo from '../../assets/images/logo.png'
+import { TokenInfo, TokenList } from '@uniswap/token-lists/dist/types'
 import { margin } from 'polished';
-
-
-let tokenSailorMoon = '0x514910771af9ca656af840dff83e8264ecf986ca';
-let tokenNeumekca = '0x522DE80C85B8a736A19e1D073c849EF6a7f055A6';
+import { usePresaleContract } from '../../hooks/useContract';
+import { NEVER_RELOAD, useMultipleContractSingleData, useSingleCallResult } from '../../state/multicall/hooks';
+import { useMemo } from 'react'
 
 
 const PresalePoolBox = styled.div`
@@ -94,20 +93,39 @@ const StyledNavLink = styled(NavLink)`
 
 
 export default function FarmsList() {
+  const contract = usePresaleContract()
+  const tokenList = useSingleCallResult(contract, 'token').result;
+ // useMemo(() => (tokenList ? tokenList?.[0] : undefined), [tokenList]);
+  if(tokenList !== undefined && tokenList.length > 0){
+    var tokenAvaiable = (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0].tokens;
+  }
 
   return (
     <>
       <PresalePoolBox>
-        <PresalePool>
-          <StyledNavLink to={'/presale/sale?token=' + tokenNeumekca}>
-            <div className='default'>
-              <div className='img'><img className='logo-presale-list' src={logo} alt=""  /></div>
-              <div className='info'>
-                <h3>Neumékca City</h3>
-              </div>
-            </div>
-          </StyledNavLink>
-        </PresalePool>
+        {
+          (tokenList !== undefined && tokenList.length > 0) ? 
+          tokenList.map((key, index) => {
+  
+            let obj = tokenAvaiable.filter(x=>x.address == key)[0];
+   
+            let tmp = (obj !== undefined) ? 
+             (
+                <PresalePool key={index}>
+                <StyledNavLink to={'/presale/sale?token='+ obj.address}>
+                  <div className='default'>
+                    <div className='img'><img className='logo-presale-list' src={obj.logoURI} alt="" /></div>
+                    <div className='info'>
+                      <h3>{obj.name}</h3>
+                    </div>
+                  </div>
+                </StyledNavLink>
+              </PresalePool>
+            )  :  <></>;
+            return tmp;
+           
+         }): <></>
+        }
       </PresalePoolBox>
     </>
   )

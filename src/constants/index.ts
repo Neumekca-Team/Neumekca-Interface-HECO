@@ -12,7 +12,13 @@ type ChainTokenList = {
 }
 
 
-export const PRESALE_ADDRESS = '0xace469b7Bfe1759FF6a4BEF62feb3623EFeA6d58'
+
+export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
+  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, '0xe62Ffc910F807aD4496c14bAD52d5c8108AAad05', 18, 'ZERO', 'ZERO Token'),
+  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0xe62Ffc910F807aD4496c14bAD52d5c8108AAad05', 18, 'ZERO', 'ZERO Token'),
+  [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, '0xe62Ffc910F807aD4496c14bAD52d5c8108AAad05', 18, 'ZERO', 'ZERO Token'),
+  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, '0xe62Ffc910F807aD4496c14bAD52d5c8108AAad05', 18, 'ZERO', 'ZERO Token')
+}
 
 //const NAR_ADDRESS = '0xA1303E6199b319a891b79685F0537D289af1FC83' BSC
 const NAR_ADDRESS = '0xace469b7Bfe1759FF6a4BEF62feb3623EFeA6d58'
