@@ -27,7 +27,7 @@ export default function Presale() {
 
   let tokenClaim = Number(useSingleCallResult(contract, 'getInvestedAmount', [userAddress]).result) ?? 0;
 
-  const activeClaimPresale = false;// Boolean(useSingleCallResult(contract, 'isPresaleActive')) ?? false;
+  const activeClaimPresale =  Boolean(useSingleCallResult(contract, 'isPresaleActive')) ?? false;
 
   var tokenAvaiable = (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0].tokens;
   let tokenInfo = tokenAvaiable.filter(x => x.address == queryString)[0];
