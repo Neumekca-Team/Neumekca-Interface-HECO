@@ -324,3 +324,25 @@ body{
       
     }
   }
+
+
+  .input-group-append{
+      width: 100px;
+  }
+
+  .title-card{
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 8px;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(5, 187, 201);
+    font-size: 30px;
+    font-weight: bold;
+    flex: 1 1 0%;
+    transition: all 0.3s ease 0s;
+    text-align: center;
+  }
