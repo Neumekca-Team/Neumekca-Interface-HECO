@@ -1,6 +1,6 @@
 import { Contract } from '@ethersproject/contracts'
 import { ChainId, WETH } from '@neumekca/neumekca-sdk'
-import { abi as INarwhalswapPairABI } from '../constants/contracts/IBSCswapPair.json'
+import { abi as INarwhalswapPairABI } from '../constants/abis/IJuncturePair.json'
 import { useMemo } from 'react'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
@@ -96,8 +96,8 @@ export function usePresaleContract(): Contract | null {
 }
 
 export function usePresaleContractCallBack(): Contract | null {
-  const  {chainId} = useActiveWeb3React()
-  return useContract(chainId ? PRESALE_ADDRESS[chainId].address : undefined,PRESALE_ABI, true)
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? PRESALE_ADDRESS[chainId].address : undefined, PRESALE_ABI, true)
 }
 
 export function useNarContract(): Contract | null {
