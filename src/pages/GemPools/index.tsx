@@ -25,14 +25,13 @@ const PreloadWrapper = styled(Box)`
   margin-top: 42px;
   font-size: 24px;
   font-weight: bold;
-  color:white;
+  color: white;
 `
 
 const TokenImage = styled.img`
   width: 32px;
   margin-right: 8px;
 `
-
 
 export default function GemPools() {
   const { chainId } = useActiveWeb3React()
@@ -41,10 +40,7 @@ export default function GemPools() {
   const stakingGemsExist = Boolean(typeof chainId === 'number' && (STAKING_GEMS_INFO[chainId]?.length ?? 0) > 0)
 
   return (
-
-       <PageWrapper gap="lg" justify="center">
-     
-
+    <PageWrapper gap="lg" justify="center">
       <FlatCard style={{ padding: 16 }}>
         <SubPressedCard style={{ padding: 16 }}>
           <AutoColumn>
@@ -75,7 +71,5 @@ export default function GemPools() {
         </CardWrapper>
       )}
     </PageWrapper>
-  
-
-   )
+  )
 }

@@ -10,7 +10,7 @@ export default function Presale() {
       <Suspense fallback={null}>
         <Switch>
           <Route exact strict path="/presale" component={() => <PresalePool />} />
-          <Route exact strict path={"/presale/sale"} component={() => <Swap />} />
+          <Route exact strict path={'/presale/sale'} component={() => <Swap />} />
           <Redirect to="/presale" />
         </Switch>
       </Suspense>
