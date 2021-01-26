@@ -98,7 +98,6 @@ export function usePresaleContract(): Contract | null {
 export function usePresaleContractCallBack(): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId ? PRESALE_ADDRESS[chainId].address : undefined, PRESALE_ABI, true)
-  
 }
 
 export function useNarContract(): Contract | null {

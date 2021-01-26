@@ -28,7 +28,7 @@ export function useETHBalances(
 
   const results = useSingleContractMultipleData(
     multicallContract,
-    'getEthBalance',
+    'getHTBalance',
     addresses.map(address => [address])
   )
 
