@@ -263,6 +263,11 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -280,7 +285,12 @@
 		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "amountHT",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountOfToken",
 				"type": "uint256"
 			}
 		],
@@ -301,6 +311,19 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "isClaimable",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -371,13 +394,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
+		"inputs": [],
 		"name": "presale",
 		"outputs": [],
 		"stateMutability": "payable",
