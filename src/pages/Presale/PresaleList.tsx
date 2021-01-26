@@ -1,131 +1,65 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { TokenInfo, TokenList } from '@uniswap/token-lists/dist/types'
-import { margin } from 'polished'
-import { usePresaleContract } from '../../hooks/useContract'
-import { NEVER_RELOAD, useMultipleContractSingleData, useSingleCallResult } from '../../state/multicall/hooks'
-import { useMemo } from 'react'
+import { PRESALE_POOL_INFO } from '../../state/presale/hooks'
+import { useActiveWeb3React } from '../../hooks'
+import logo from '../../assets/images/coin/source/ZERO.png'
+
 
 const PresalePoolBox = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin-top: 20px;
 `
-
-const PresalePool = styled.div`
-  width: 50%;
-  height: 220px;
-  margin-bottom: 20px;
-  .default {
-    background: linear-gradient(180deg, #81befa 0%, #4a8af4 100%);
-  }
-  &:nth-child(2n) {
-    padding-left: 10px;
-  }
-  &:nth-child(2n-1) {
-    padding-right: 10px;
-  }
-
-  @media screen and (max-width: 960px) {
-    width: 100%;
-    &:nth-child(2n) {
-      padding-left: 0px;
-    }
-    &:nth-child(2n-1) {
-      padding-right: 0px;
-    }
-  }
-`
-
-const StyledNavLink = styled(NavLink)`
-  width: 100%;
-  height: 100%;
-  box-shadow: 0.4375rem 0.125rem 1.625rem 0 rgba(0, 0, 0, 0.06);
-  display: block;
-  border-radius: 10px;
-  text-decoration: none;
-  .default {
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    padding: 22px 10px 0;
-    border-radius: 10px;
-    .img {
-      height: 82px;
-      border-radius: 100%;
-      margin: auth;
-      img {
-        display: block;
-        height: 100%;
-      }
-    }
-    .info {
-      width: 100%;
-      text-align: center;
-      margin: 0px 0 0;
-      h3 {
-        color: #fff;
-        font-size: 18px;
-        margin: 0;
-        font-weight: 800;
-      }
-      p {
-        color: #fff;
-        font-size: 14px;
-        margin: 0;
-        padding: 0;
-        line-height: 35px;
-        .pecent {
-          padding: 2px 3px;
-          background: #14a15e;
-          border-radius: 4px;
-          display: inline-block;
-          margin-left: 5px;
-          line-height: 21px;
-        }
-      }
-    }
-  }
-`
+function toDateTime(secs) {
+  var t = new Date(Date.UTC(1970, 0, 1)); // Epoch
+  t.setUTCSeconds(secs);
+  return t;
+}
 
 export default function FarmsList() {
-  const contract = usePresaleContract()
-  const tokenList = useSingleCallResult(contract, 'token').result
-  // useMemo(() => (tokenList ? tokenList?.[0] : undefined), [tokenList]);
-  if (tokenList !== undefined && tokenList.length > 0) {
-    var tokenAvaiable = (JSON.parse(localStorage.getItem('myData') || '{}') as TokenList[])[0].tokens
-  }
-
+  const { chainId, account } = useActiveWeb3React()
+  const tokenList = PRESALE_POOL_INFO[chainId].sort(x =>x.poolId);
   return (
     <>
       <PresalePoolBox>
-        {tokenList !== undefined && tokenList.length > 0 ? (
-          tokenList.map((key, index) => {
-            let obj = tokenAvaiable.filter(x => x.address == key)[0]
-
-            let tmp =
-              obj !== undefined ? (
-                <PresalePool key={index}>
-                  <StyledNavLink to={'/presale/sale?token=' + obj.address}>
-                    <div className="default">
-                      <div className="img">
-                        <img className="logo-presale-list" src={obj.logoURI} alt="" />
-                      </div>
-                      <div className="info">
-                        <h3>{obj.name}</h3>
-                      </div>
-                    </div>
-                  </StyledNavLink>
-                </PresalePool>
-              ) : (
-                <></>
-              )
-            return tmp
-          })
-        ) : (
-          <></>
-        )}
+        <div className='row'>
+        {tokenList.map(({ earnToken, 
+        isActive, poolAddress, 
+        poolId, projectLink, 
+        startTime, projectName,price,capacity }, index) => {
+         
+         return (
+           
+           <div className="col-lg-4 col-md-4" key={index}>
+             <div className="card">
+               <div className="card-header" style={{textAlign:'center'}}>
+               <img src={logo} width='200px' />
+                 <h4 className="card-title">{projectName}</h4>
+                </div>
+               <div className="card-body">
+               
+                 <p className="card-text">Symbol: <span style={{float:'right'}}>{earnToken.symbol}</span></p>
+                 <p className="card-text">Price: <span style={{float:'right'}}>{price} HT</span></p>
+                 <p className="card-text">Capacity: <span style={{float:'right'}}>{capacity} {earnToken.symbol}</span></p>
+                 <p className="card-text">date: <span style={{float:'right'}}>{startTime}</span></p>
+                 <p className="card-text"><a href={projectLink} target={'_blank'}>{'Project link'}</a></p>
+                 {isActive ? 
+                    <NavLink to={'/presale/sale?token=' + poolAddress} className="btn btn-primary" style={{width: '100%'}}>
+                              Buy
+                    </NavLink>
+                    : 
+                      <button className="btn btn-warning" style={{width: '100%'}} disabled>In Active</button>
+                 }
+                 
+               </div>
+             </div>
+           </div>
+   
+         )
+       })}
+        </div>
+     
       </PresalePoolBox>
     </>
   )

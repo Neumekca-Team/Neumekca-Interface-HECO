@@ -1,6 +1,7 @@
 import { ChainId, Currency, currencyEquals, JSBI, Price, WETH, Token } from '@neumekca/neumekca-sdk'
+
 import { useMemo } from 'react'
-import { BUSD, H_BUSD } from '../constants'
+import { H_USD, H_BUSD } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'
 import { useActiveWeb3React } from '../hooks'
 import { wrappedCurrency } from './wrappedCurrency'
@@ -11,6 +12,8 @@ import { wrappedCurrency } from './wrappedCurrency'
  */
 export default function useBUSDPrice(currency?: Currency): Price | undefined {
   const { chainId } = useActiveWeb3React()
+  console.log(chainId)
+  
   const wrapped = wrappedCurrency(currency, chainId)
   const tokenPairs: [Currency | undefined, Currency | undefined][] = useMemo(
     () => [
@@ -18,8 +21,8 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
         chainId && wrapped && currencyEquals(WETH[chainId], wrapped) ? undefined : currency,
         chainId ? WETH[chainId] : undefined
       ],
-      [wrapped?.equals(BUSD) ? undefined : wrapped, chainId === ChainId.BSC_MAINNET ? BUSD : H_BUSD],
-      [chainId ? WETH[chainId] : undefined, chainId === ChainId.BSC_MAINNET ? BUSD : H_BUSD]
+      [wrapped?.equals(H_USD) ? undefined : wrapped, chainId === ChainId.HT_MAINNET ? H_USD : H_USD],
+      [chainId ? WETH[chainId] : undefined, chainId === ChainId.HT_MAINNET ? H_USD : H_USD]
     ],
     [chainId, currency, wrapped]
   )
@@ -30,7 +33,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
       return undefined
     }
     // busd on each chain
-    const busd: Token = chainId === ChainId.BSC_MAINNET ? BUSD : H_BUSD
+    const busd: Token = chainId === ChainId.HT_MAINNET ? H_USD : H_USD
     // handle weth/eth
     if (wrapped.equals(WETH[chainId])) {
       if (usdcPair) {
@@ -46,6 +49,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
     }
 
     const ethPairETHAmount = ethPair?.reserveOf(WETH[chainId])
+    console.log('WETH[chainId]',WETH[chainId])
     const ethPairETHBUSDValue: JSBI =
       ethPairETHAmount && usdcEthPair ? usdcEthPair.priceOf(WETH[chainId]).quote(ethPairETHAmount).raw : JSBI.BigInt(0)
 

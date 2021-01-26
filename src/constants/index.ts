@@ -5,7 +5,7 @@ import { injected } from '../connectors'
 
 //export const ROUTER_ADDRESS = '0xE85C6ab56A3422E7bAfd71e81Eb7d0f290646078'
 
-export const ROUTER_ADDRESS = '0x58C91236D59186De05b60EBd26d9015533B58F4e'
+export const ROUTER_ADDRESS = '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92'
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
@@ -35,7 +35,7 @@ export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
-    '0xe62Ffc910F807aD4496c14bAD52d5c8108AAad05',
+    '0x4182Eb9f891145E842C898e70e8c25eB03CC4EF6',
     18,
     'ZERO',
     'ZERO Token'
@@ -43,7 +43,7 @@ export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
 }
 
 //const NAR_ADDRESS = '0xA1303E6199b319a891b79685F0537D289af1FC83' BSC
-const NAR_ADDRESS = '0x50B4005C42e7bd0BC1c030b52B74fe1b23920Df6'
+const NAR_ADDRESS = '0x522DE80C85B8a736A19e1D073c849EF6a7f055A6'
 export const NAR: { [chainId in ChainId]: Token } = {
   [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
   [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
@@ -177,7 +177,7 @@ export const BUSD_WETH = new Token(
   'BUSD-HT JLP'
 )
 export const BUSD = new Token(
-  ChainId.BSC_MAINNET,
+  ChainId.HT_MAINNET,
   '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
   18,
   'BUSD',
@@ -190,6 +190,7 @@ export const T_BUSD = new Token(
   'BUSD',
   'BUSD Token'
 )
+
 export const H_BUSD = new Token(
   ChainId.HT_TESTNET,
   '0x02ceb61daf1f0b8ea3f22c1c0f02c5f025b150e5',
@@ -197,6 +198,15 @@ export const H_BUSD = new Token(
   'HUSD',
   'HUSD Token'
 )
+
+export const H_USD = new Token(
+  ChainId.HT_MAINNET,
+  '0x0298c2b32eae4da002a15f36fdf7615bea3da047',
+  6,
+  'HUSD',
+  'HUSD Token'
+)
+
 
 export const B_USDT = new Token(
   ChainId.BSC_MAINNET,
