@@ -93,7 +93,7 @@ function TransactionSubmittedContent({
 
           <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>
             <Text fontWeight={500} fontSize={14} color={theme.primary1}>
-              View on BscScan Explorer
+              View on HTScan Explorer
             </Text>
           </ExternalLink>
           <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>

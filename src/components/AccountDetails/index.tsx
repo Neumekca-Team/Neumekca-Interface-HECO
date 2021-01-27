@@ -365,7 +365,7 @@ export default function AccountDetails({
                           href={getEtherscanLink(chainId, ENSName, 'address')}
                         >
                           <LinkIcon size={16} />
-                          <span style={{ marginLeft: '4px' }}>View on BscScan Explorer</span>
+                          <span style={{ marginLeft: '4px' }}>View on HTScab Explorer</span>
                         </AddressLink>
                       </div>
                     </AccountControl>
@@ -383,7 +383,7 @@ export default function AccountDetails({
                           href={getEtherscanLink(chainId, account, 'address')}
                         >
                           <LinkIcon size={16} />
-                          <span style={{ marginLeft: '4px' }}>View on BscScan Explorer</span>
+                          <span style={{ marginLeft: '4px' }}>View on HTscan Explorer</span>
                         </AddressLink>
                       </div>
                     </AccountControl>

@@ -357,3 +357,20 @@ body{
     background-color: #dff6f8;
     color: #05bbc9;
 }
+
+@media (max-width: 600px){
+    
+
+    .iq-sidebar{
+        background-color:  #29a29d;
+    }
+
+    #navbarSupportedContent{
+        padding-top: 8px;
+        padding-right: 8px;
+        margin-top: 10px;
+    }
+    .navbar-collapse{
+        background: none !important;
+    }
+  }
