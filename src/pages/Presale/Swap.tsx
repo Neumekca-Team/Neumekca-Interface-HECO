@@ -15,6 +15,8 @@ import logo from '../../assets/images/coin/source/ZERO.png'
 import { PRESALE_ABI } from '../../constants/abis/presale'
 
 export default function Presale() {
+
+ 
   const queryString = window.location.hash.split('?')[1].replace('token=', '');
   const { account, chainId } = useActiveWeb3React()
   const contractCallBack = useContract(queryString,PRESALE_ABI,true);
@@ -29,14 +31,16 @@ export default function Presale() {
 
   const maxToken = objs && objs.length > 1 ? objs[1] : null;
 
-  let tokenClaim = Number(useSingleCallResult(contract, 'getInvestedAmount', [userAddress]).result) ?? 0;
+  let claim = Number(useSingleCallResult(contract, 'getInvestedAmount', [userAddress]).result) ?? 0;
 
   const activeClaimPresale =  Boolean(useSingleCallResult(contract, 'isPresaleActive')) ?? false;
 
   var tokenAvaiable = PRESALE_POOL_INFO[chainId];
   let tokenInfo = tokenAvaiable.filter(x => x.poolAddress == queryString)[0];
 
-  let investToken = 1000;
+  let investToken = 0;
+
+  let tokenClaim = ((claim*rateToken) / (10**18)).toLocaleString();
 
 
   const [priceInput, setPriceInput] = useState(0);
@@ -52,7 +56,7 @@ export default function Presale() {
 
   function PresaleBuy() {
 
-    console.log(contractCallBack)
+    //console.log(contractCallBack)
     // contractCallBack
     //   .presale(`0x${JSBI.BigInt(priceInput * (10 ** 18)).toString(16)}`, { gasLimit: 350000, value: `0x${JSBI.BigInt(priceInput * (10 ** 18)).toString(16)}` })
     //   .then((response: TransactionResponse) => {
@@ -85,6 +89,8 @@ export default function Presale() {
         console.log(error)
       })
   }
+
+ 
 
   return (
     <>
@@ -145,7 +151,7 @@ export default function Presale() {
                         Price
                       </ClickableText>
                       <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
-                        {rateToken ? rateToken  : '-'} ZERO per HT
+                        {rateToken ? rateToken.toLocaleString()  : '-'} ZERO per HT
                       </ClickableText>
                     </RowBetween>
                     {investToken ? 
@@ -154,7 +160,7 @@ export default function Presale() {
                         Invest:
                       </ClickableText>
                       <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
-                            {'1.000'}
+                            {investToken.toLocaleString()}
                       </ClickableText>
                     </RowBetween>)
                     : ''

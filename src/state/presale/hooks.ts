@@ -44,6 +44,7 @@ export const PRESALE_POOL_INFO: {
       earnToken: new Token(ChainId.HT_MAINNET, '0xC97faC34CeB0Bb1B2bdAf3b59ADA378b99111a22', 18, 'BLIQ', 'Bliquid'),
       poolAddress: '0x4182Eb9f891145E842C898e70e8c25eB03CC4EF6',
       poolId: 0,
+      projectName : 'Katana zero',
       isActive: true,
       projectLink: 'https://www.app.neumekca.city',
       startTime: '27/01/2021',
@@ -52,7 +53,8 @@ export const PRESALE_POOL_INFO: {
       earnToken: new Token(ChainId.HT_MAINNET, '0xC97faC34CeB0Bb1B2bdAf3b59ADA378b99111a22', 18, 'BLIQ', 'Bliquid'),
       poolAddress: '0x4182Eb9f891145E842C898e70e8c25eB03CC4EF6',
       poolId: 1,
-      isActive: true,
+      projectName : 'Comming soon',
+      isActive: false,
       projectLink: 'https://www.app.neumekca.city',
       startTime: '27/01/2021',
     }

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { PRESALE_POOL_INFO } from '../../state/presale/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import logo from '../../assets/images/coin/source/ZERO.png'
-
+import commingsoon from '../../assets/images/comming-soon.png'
 
 const PresalePoolBox = styled.div`
   flex-wrap: wrap;
@@ -32,10 +32,11 @@ export default function FarmsList() {
          return (
            
            <div className="col-lg-4 col-md-4" key={index}>
-             <div className="card">
+             <div className="card card-pool">
                <div className="card-header" style={{textAlign:'center'}}>
-               <img src={logo} width='200px' />
-                 <h4 className="card-title">{projectName}</h4>
+                 {isActive ? <img src={logo} width='200px' height='200px' /> : <img src={commingsoon} width='200px' height='200px' /> }
+               
+               <h4 className="card-title title-card">{projectName}</h4>
                 </div>
                <div className="card-body">
                
@@ -49,7 +50,7 @@ export default function FarmsList() {
                               Buy
                     </NavLink>
                     : 
-                      <button className="btn btn-warning" style={{width: '100%'}} disabled>In Active</button>
+                      <button className="btn btn-default" style={{width: '100%'}} disabled>In Active</button>
                  }
                  
                </div>

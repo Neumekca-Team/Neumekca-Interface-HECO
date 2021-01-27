@@ -346,3 +346,14 @@ body{
     transition: all 0.3s ease 0s;
     text-align: center;
   }
+
+
+  .card-pool{
+      background-color: #dff6f8;
+      color: #05bbc9;
+  }
+
+  .card-pool .card-title{
+    background-color: #dff6f8;
+    color: #05bbc9;
+}
