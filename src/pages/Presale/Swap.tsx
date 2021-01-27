@@ -3,8 +3,8 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { TokenInfo, TokenList } from '@uniswap/token-lists/dist/types'
 import { useActiveWeb3React } from '../../hooks'
 import { TransactionResponse } from '@ethersproject/providers'
-import { useContract, usePresaleContract, usePresaleContractCallBack } from '../../hooks/useContract';
-import { NEVER_RELOAD, useMultipleContractSingleData, useSingleCallResult } from '../../state/multicall/hooks';
+import { useContract, usePresaleContract, usePresaleContractCallBack } from '../../hooks/useContract'
+import { NEVER_RELOAD, useMultipleContractSingleData, useSingleCallResult } from '../../state/multicall/hooks'
 import { useMemo } from 'react'
 import { BigNumber, ethers } from 'ethers'
 import HTIcon from '../../assets/images/coin/source/HT.svg'
@@ -15,47 +15,43 @@ import logo from '../../assets/images/coin/source/ZERO.png'
 import { PRESALE_ABI } from '../../constants/abis/presale'
 
 export default function Presale() {
-
- 
-  const queryString = window.location.hash.split('?')[1].replace('token=', '');
+  const queryString = window.location.hash.split('?')[1].replace('token=', '')
   const { account, chainId } = useActiveWeb3React()
-  const contractCallBack = useContract(queryString,PRESALE_ABI,true);
-   
-  var userAddress = account;
+  const contractCallBack = useContract(queryString, PRESALE_ABI, true)
 
-  const contract = useContract(queryString,PRESALE_ABI,false);
-  
-  const objs = useSingleCallResult(contract, 'getPresaleRate', [userAddress]).result as BigNumber[];
-  var value = 0;
-  const rateToken = objs ? objs[0].toNumber() : null;
+  var userAddress = account
 
-  const maxToken = objs && objs.length > 1 ? objs[1] : null;
+  const contract = useContract(queryString, PRESALE_ABI, false)
 
-  let claim = Number(useSingleCallResult(contract, 'getInvestedAmount', [userAddress]).result) ?? 0;
+  const objs = useSingleCallResult(contract, 'getPresaleRate', [userAddress]).result as BigNumber[]
+  var value = 0
+  const rateToken = objs ? objs[0].toNumber() : null
 
-  const activeClaimPresale =  Boolean(useSingleCallResult(contract, 'isPresaleActive')) ?? false;
+  const maxToken = objs && objs.length > 1 ? objs[1] : null
 
-  var tokenAvaiable = PRESALE_POOL_INFO[chainId];
-  let tokenInfo = tokenAvaiable.filter(x => x.poolAddress == queryString)[0];
+  let claim = Number(useSingleCallResult(contract, 'getInvestedAmount', [userAddress]).result) ?? 0
 
-  let investToken = 0;
+  const activeClaimPresale = Boolean(useSingleCallResult(contract, 'isPresaleActive')) ?? false
 
-  let tokenClaim = ((claim*rateToken) / (10**18)).toLocaleString();
+  var tokenAvaiable = PRESALE_POOL_INFO[chainId]
+  let tokenInfo = tokenAvaiable.filter(x => x.poolAddress == queryString)[0]
 
+  let investToken = 0
 
-  const [priceInput, setPriceInput] = useState(0);
-  const [priceOutput, setPriceOutput] = useState(0);
-  const handleChange = (e) => {
-    setPriceInput(e.target.value);
-    setPriceOutput(priceInput * rateToken);
+  let tokenClaim = ((claim * rateToken) / 10 ** 18).toLocaleString()
+
+  const [priceInput, setPriceInput] = useState(0)
+  const [priceOutput, setPriceOutput] = useState(0)
+  const handleChange = e => {
+    setPriceInput(e.target.value)
+    setPriceOutput(priceInput * rateToken)
   }
 
   useEffect(() => {
-    setPriceOutput(priceInput * rateToken);
+    setPriceOutput(priceInput * rateToken)
   }, [priceInput, priceOutput, rateToken])
 
   function PresaleBuy() {
-
     //console.log(contractCallBack)
     // contractCallBack
     //   .presale(`0x${JSBI.BigInt(priceInput * (10 ** 18)).toString(16)}`, { gasLimit: 350000, value: `0x${JSBI.BigInt(priceInput * (10 ** 18)).toString(16)}` })
@@ -67,8 +63,8 @@ export default function Presale() {
     //     console.log(error)
     //   })
 
-      contractCallBack
-      .presale( { gasLimit: 350000, value: `0x${JSBI.BigInt(priceInput * (10 ** 18)).toString(16)}` })
+    contractCallBack
+      .presale({ gasLimit: 350000, value: `0x${JSBI.BigInt(priceInput * 10 ** 18).toString(16)}` })
       .then((response: TransactionResponse) => {
         console.log('response', response)
       })
@@ -76,7 +72,6 @@ export default function Presale() {
         //setAttempting(false)
         console.log(error)
       })
-
   }
 
   function PresaleClaim() {
@@ -90,11 +85,9 @@ export default function Presale() {
       })
   }
 
- 
-
   return (
     <>
-      <div className='col-md-6 col-sm-12 col-xs-12 div-center'>
+      <div className="col-md-6 col-sm-12 col-xs-12 div-center">
         <br />
         <br />
         <div className="card">
@@ -104,10 +97,10 @@ export default function Presale() {
             </div>
           </div>
           <div className="card-body">
-            <form >
+            <form>
               <div className="input-group">
                 <input
-                  className='form-control'
+                  className="form-control"
                   id="tokenInput"
                   name="tokenInput"
                   type="number"
@@ -116,15 +109,20 @@ export default function Presale() {
                 />
 
                 <div className="input-group-append">
-                  <button style={{ width: '100%', color: '#05bbc9', background:'#dff6f8', border:'none' }} className="btn btn-success" type="button"  >
-                  <img src={HTIcon} width='20' /> {'HT'}
-                    </button>
+                  <button
+                    style={{ width: '100%', color: '#05bbc9', background: '#dff6f8', border: 'none' }}
+                    className="btn btn-success"
+                    type="button"
+                  >
+                    <img src={HTIcon} width="20" /> {'HT'}
+                  </button>
                 </div>
               </div>
 
               <br />
               <div className="input-group">
-                <input className='form-control'
+                <input
+                  className="form-control"
                   id="tokenOuput"
                   name="tokenOutput"
                   type="number"
@@ -133,52 +131,73 @@ export default function Presale() {
                   value={priceOutput}
                 />
                 <div className="input-group-append">
-                  <button style={{ width: '100%', color: '#05bbc9', background:'#dff6f8', border:'none' }} className="btn btn-success" type="button">
-                    <img src={logo} width='20' /> {tokenInfo.earnToken.symbol}
+                  <button
+                    style={{ width: '100%', color: '#05bbc9', background: '#dff6f8', border: 'none' }}
+                    className="btn btn-success"
+                    type="button"
+                  >
+                    <img src={logo} width="20" /> {tokenInfo.earnToken.symbol}
                   </button>
                 </div>
               </div>
               <br />
               <div className="input-group">
-                <button onClick={PresaleBuy} style={{ width: '100%', color: '#05bbc9', background:'#dff6f8', border:'none' }} className="btn btn-success" type="button"  >
+                <button
+                  onClick={PresaleBuy}
+                  style={{ width: '100%', color: '#05bbc9', background: '#dff6f8', border: 'none' }}
+                  className="btn btn-success"
+                  type="button"
+                >
                   Buy
-               </button>
+                </button>
               </div>
-              <br/>
-             
+              <br />
+
               <RowBetween align="center">
-                      <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
-                        Price
-                      </ClickableText>
-                      <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
-                        {rateToken ? rateToken.toLocaleString()  : '-'} ZERO per HT
-                      </ClickableText>
-                    </RowBetween>
-                    {investToken ? 
-                    (<RowBetween align="center">
-                      <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
-                        Invest:
-                      </ClickableText>
-                      <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
-                            {investToken.toLocaleString()}
-                      </ClickableText>
-                    </RowBetween>)
-                    : ''
-                    }
-                    
+                <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
+                  Price
+                </ClickableText>
+                <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
+                  {rateToken ? rateToken.toLocaleString() : '-'} ZERO per HT
+                </ClickableText>
+              </RowBetween>
+              {investToken ? (
+                <RowBetween align="center">
+                  <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
+                    Invest:
+                  </ClickableText>
+                  <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
+                    {investToken.toLocaleString()}
+                  </ClickableText>
+                </RowBetween>
+              ) : (
+                ''
+              )}
             </form>
             <br />
-            {activeClaimPresale ?
-              (<div className="input-group">
-                <button style={{ width: '100%', color: '#05bbc9', background:'#dff6f8', border:'none' }} className="btn btn-success" type="button" >Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}</button>
-              </div>)
-              :
-              (<div className="input-group">
-                <button style={{ width: '100%', color: 'black', background:'#e9ecef' , border:'none' }} className="btn btn-success" type="button" disabled>Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}</button>
-              </div>)
-            }
+            {activeClaimPresale ? (
+              <div className="input-group">
+                <button
+                  style={{ width: '100%', color: '#05bbc9', background: '#dff6f8', border: 'none' }}
+                  className="btn btn-success"
+                  type="button"
+                >
+                  Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}
+                </button>
+              </div>
+            ) : (
+              <div className="input-group">
+                <button
+                  style={{ width: '100%', color: 'black', background: '#e9ecef', border: 'none' }}
+                  className="btn btn-success"
+                  type="button"
+                  disabled
+                >
+                  Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}
+                </button>
+              </div>
+            )}
             <br />
-           
           </div>
         </div>
       </div>

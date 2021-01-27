@@ -218,6 +218,19 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "fundAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -259,11 +272,6 @@
 		],
 		"name": "getPresaleRate",
 		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
 			{
 				"internalType": "uint256",
 				"name": "",
@@ -403,6 +411,32 @@
 	{
 		"inputs": [],
 		"name": "refundInvestors",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "seize",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_fund",
+				"type": "address"
+			}
+		],
+		"name": "setFundingAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

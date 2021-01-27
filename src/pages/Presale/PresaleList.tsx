@@ -12,55 +12,76 @@ const PresalePoolBox = styled.div`
   margin-top: 20px;
 `
 function toDateTime(secs) {
-  var t = new Date(Date.UTC(1970, 0, 1)); // Epoch
-  t.setUTCSeconds(secs);
-  return t;
+  var t = new Date(Date.UTC(1970, 0, 1)) // Epoch
+  t.setUTCSeconds(secs)
+  return t
 }
 
 export default function FarmsList() {
   const { chainId, account } = useActiveWeb3React()
-  const tokenList = PRESALE_POOL_INFO[chainId].sort(x =>x.poolId);
+  const tokenList = PRESALE_POOL_INFO[chainId].sort(x => x.poolId)
   return (
     <>
       <PresalePoolBox>
-        <div className='row'>
-        {tokenList.map(({ earnToken, 
-        isActive, poolAddress, 
-        poolId, projectLink, 
-        startTime, projectName,price,capacity }, index) => {
-         
-         return (
-           
-           <div className="col-lg-4 col-md-4" key={index}>
-             <div className="card card-pool">
-               <div className="card-header" style={{textAlign:'center'}}>
-                 {isActive ? <img src={logo} width='200px' height='200px' /> : <img src={commingsoon} width='200px' height='200px' /> }
-               
-               <h4 className="card-title title-card">{projectName}</h4>
+        <div className="row">
+          {tokenList.map(
+            (
+              { earnToken, isActive, poolAddress, poolId, projectLink, startTime, projectName, price, capacity },
+              index
+            ) => {
+              return (
+                <div className="col-lg-4 col-md-4" key={index}>
+                  <div className="card card-pool">
+                    <div className="card-header" style={{ textAlign: 'center' }}>
+                      {isActive ? (
+                        <img src={logo} width="200px" height="200px" />
+                      ) : (
+                        <img src={commingsoon} width="200px" height="200px" />
+                      )}
+
+                      <h4 className="card-title title-card">{projectName}</h4>
+                    </div>
+                    <div className="card-body">
+                      <p className="card-text">
+                        Symbol: <span style={{ float: 'right' }}>{earnToken.symbol}</span>
+                      </p>
+                      <p className="card-text">
+                        Price: <span style={{ float: 'right' }}>{price} HT</span>
+                      </p>
+                      <p className="card-text">
+                        Capacity:{' '}
+                        <span style={{ float: 'right' }}>
+                          {capacity} {earnToken.symbol}
+                        </span>
+                      </p>
+                      <p className="card-text">
+                        Session start: <span style={{ float: 'right' }}>{startTime}</span>
+                      </p>
+                      <p className="card-text">
+                        <a href={projectLink} target={'_blank'}>
+                          {'Project link'}
+                        </a>
+                      </p>
+                      {isActive ? (
+                        <NavLink
+                          to={'/presale/sale?token=' + poolAddress}
+                          className="btn btn-primary"
+                          style={{ width: '100%' }}
+                        >
+                          Buy
+                        </NavLink>
+                      ) : (
+                        <button className="btn btn-default" style={{ width: '100%' }} disabled>
+                          In Active
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
-               <div className="card-body">
-               
-                 <p className="card-text">Symbol: <span style={{float:'right'}}>{earnToken.symbol}</span></p>
-                 <p className="card-text">Price: <span style={{float:'right'}}>{price} HT</span></p>
-                 <p className="card-text">Capacity: <span style={{float:'right'}}>{capacity} {earnToken.symbol}</span></p>
-                 <p className="card-text">date: <span style={{float:'right'}}>{startTime}</span></p>
-                 <p className="card-text"><a href={projectLink} target={'_blank'}>{'Project link'}</a></p>
-                 {isActive ? 
-                    <NavLink to={'/presale/sale?token=' + poolAddress} className="btn btn-primary" style={{width: '100%'}}>
-                              Buy
-                    </NavLink>
-                    : 
-                      <button className="btn btn-default" style={{width: '100%'}} disabled>In Active</button>
-                 }
-                 
-               </div>
-             </div>
-           </div>
-   
-         )
-       })}
+              )
+            }
+          )}
         </div>
-     
       </PresalePoolBox>
     </>
   )

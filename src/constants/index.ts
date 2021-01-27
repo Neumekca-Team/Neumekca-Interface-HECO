@@ -43,7 +43,7 @@ export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
 }
 
 //const NAR_ADDRESS = '0xA1303E6199b319a891b79685F0537D289af1FC83' BSC
-const NAR_ADDRESS = '0x522DE80C85B8a736A19e1D073c849EF6a7f055A6'
+const NAR_ADDRESS = '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D'
 export const NAR: { [chainId in ChainId]: Token } = {
   [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
   [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
