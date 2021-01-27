@@ -36,7 +36,11 @@ export default function Presale() {
   var tokenAvaiable = PRESALE_POOL_INFO[chainId]
   let tokenInfo = tokenAvaiable.filter(x => x.poolAddress == queryString)[0]
 
-  let investToken = 0
+  let hardCap =  40540;
+  let curCap = 20000;
+  let percentCompleteHardCap = (curCap/hardCap)*100;
+  let investToken = 0;
+
 
   let tokenClaim = ((claim * rateToken) / 10 ** 18).toLocaleString()
 
@@ -52,16 +56,7 @@ export default function Presale() {
   }, [priceInput, priceOutput, rateToken])
 
   function PresaleBuy() {
-    //console.log(contractCallBack)
-    // contractCallBack
-    //   .presale(`0x${JSBI.BigInt(priceInput * (10 ** 18)).toString(16)}`, { gasLimit: 350000, value: `0x${JSBI.BigInt(priceInput * (10 ** 18)).toString(16)}` })
-    //   .then((response: TransactionResponse) => {
-    //     console.log('response', response)
-    //   })
-    //   .catch((error: any) => {
-    //     //setAttempting(false)
-    //     console.log(error)
-    //   })
+   
 
     contractCallBack
       .presale({ gasLimit: 350000, value: `0x${JSBI.BigInt(priceInput * 10 ** 18).toString(16)}` })
@@ -84,7 +79,7 @@ export default function Presale() {
         console.log(error)
       })
   }
-
+  let style =  percentCompleteHardCap.toFixed(2).toString() + '%'
   return (
     <>
       <div className="col-md-6 col-sm-12 col-xs-12 div-center">
@@ -171,10 +166,30 @@ export default function Presale() {
                   </ClickableText>
                 </RowBetween>
               ) : (
-                ''
-              )}
+                  ''
+                )}
             </form>
+            {/* <RowBetween align="center">
+                <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
+                        {'b'}
+                </ClickableText>
+                <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
+                  {'a'} 
+                </ClickableText>
+              </RowBetween> */}
             <br />
+            <br />
+            <div className="iq-details">
+              <div className="iq-progress-bar bg-primary-light mt-2">
+                <span className="bg-primary iq-progress progress-1"
+                 data-percent={percentCompleteHardCap.toFixed(2)}  
+                 style={{transition: 'transition: width 2s ease 0s', width: style}}>
+                  <span className="progress-text-one bg-primary">{percentCompleteHardCap.toFixed(2)}%</span>
+                </span>
+              </div>
+            </div>
+            <br />
+         
             {activeClaimPresale ? (
               <div className="input-group">
                 <button
@@ -186,17 +201,17 @@ export default function Presale() {
                 </button>
               </div>
             ) : (
-              <div className="input-group">
-                <button
-                  style={{ width: '100%', color: 'black', background: '#e9ecef', border: 'none' }}
-                  className="btn btn-success"
-                  type="button"
-                  disabled
-                >
-                  Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}
-                </button>
-              </div>
-            )}
+                <div className="input-group">
+                  <button
+                    style={{ width: '100%', color: 'black', background: '#e9ecef', border: 'none' }}
+                    className="btn btn-success"
+                    type="button"
+                    disabled
+                  >
+                    Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}
+                  </button>
+                </div>
+              )}
             <br />
           </div>
         </div>
