@@ -47,6 +47,7 @@ import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
+import styled from 'styled-components'
 
 export default function Swap() {
 
@@ -253,7 +254,8 @@ export default function Swap() {
   }, [attemptingTxn, showConfirm, swapErrorMessage, trade, txHash])
 
   return (
-    <>
+    <div className='col-md-8 col-lg-8 col-xs-12 col-sm-12'>
+      <PageWrapper gap="lg" justify="center">
       {showWarning && <TokenWarningCards currencies={currencies} />}
       <AppBody disabled={showWarning}>
         <SwapPoolTabs active={'swap'} />
@@ -454,6 +456,10 @@ export default function Swap() {
         </Wrapper>
       </AppBody>
       <AdvancedSwapDetailsDropdown trade={trade} />
-    </>
+      </PageWrapper>
+    </div>
   )
 }
+const PageWrapper = styled(AutoColumn)`
+  width: 100%;
+`

@@ -21,42 +21,11 @@ import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import Swap from "../Swap";
 enum Fields {
   TOKEN0 = 0,
   TOKEN1 = 1
 }
 
-const ColBeHalfScreenLeft = styled.div`
-
-@media screen and (min-width: 800px) {
-    width: 50%;
-    // padding-left: 20%;
-    padding-right: 5%;
-    float: left;
-  }
-
- 
-
-    @media screen and (max-width: 800px) {
-        width: 100%;
-        padding-left: 5%;
-    padding-right: 5%;
-        float: right;
-      }
-`
-const ColBeHalfScreenRight = styled.div`
-@media screen and (min-width: 800px) {
-    width: 50%;
-    float: left;
-  }
-    @media screen and (max-width: 800px) {
-        width: 100%;
-        padding-left: 5%;
-        padding-right: 5%;
-        float: right;
-      }
-`
 
 export default function PoolFinder() {
   const { account } = useActiveWeb3React()
@@ -114,12 +83,8 @@ export default function PoolFinder() {
   return (
 
     <>
-    <div className="col-md-12">
-
-        <ColBeHalfScreenLeft>
-            <Swap />
-        </ColBeHalfScreenLeft>
-        <ColBeHalfScreenRight>
+ <div className='col-md-8 col-lg-8 col-xs-12 col-sm-12'>
+      <PageWrapper gap="lg" justify="center"> 
         <AppBody>
       <FindPoolTabs />
       <AutoColumn gap="md">
@@ -232,8 +197,12 @@ export default function PoolFinder() {
       />
     </AppBody>
   
-        </ColBeHalfScreenRight>  
+        </PageWrapper>  
     </div>
     </>
 )
 }
+
+const PageWrapper = styled(AutoColumn)`
+  width: 100%;
+`

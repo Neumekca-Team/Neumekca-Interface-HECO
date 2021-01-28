@@ -156,7 +156,7 @@ export default function Menu() {
           </MenuItem>
           <MenuItem id="link" href={getEtherscanLink(chainId, '0xd954551853F55deb4Ae31407c423e67B1621424A', 'address')}>
             <BookOpen size={14} />
-            {t('bscscancontract')}
+            Smart Contract
           </MenuItem>
         </MenuFlyout>
       )}

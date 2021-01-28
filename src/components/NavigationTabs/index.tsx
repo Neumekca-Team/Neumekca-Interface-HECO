@@ -379,21 +379,10 @@ export function SelectGEMTabs({ active }: { active: string }) {
 }
 
 export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' | 'presale' }) {
-  const { t } = useTranslation()
   var tmp;
 
   switch(active){
-    case 'swap':
-      tmp = <HeaderCard>
-      {t('swap')}
-    </HeaderCard>
-    break;
-    case 'pool':
-      tmp = <HeaderCard>
-      {t('pool')}
-    </HeaderCard>
-    break;
-    default:
+    case 'presale':
       tmp = <HeaderCard>
       {'Presale'}
     </HeaderCard>
@@ -401,9 +390,17 @@ export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' | 'presale' }
   }
 
   return (
-    <Tabs style={{}}>
-      {tmp}
-    </Tabs>
+    <Tabs style={{ marginBottom: '20px' }}>
+    <StyledNavLink id={`swap-nav-link`} to={'/swap'} isActive={() => active === 'swap'}>
+      {'Swap'}
+    </StyledNavLink>
+    <StyledNavLink id={`pool-nav-link`} to={'/pool'} isActive={() => active === 'pool'}>
+      {'Pool'}
+    </StyledNavLink>
+  </Tabs>
+    // <Tabs style={{}}>
+    //   {tmp}
+    // </Tabs>
   )
 }
 

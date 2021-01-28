@@ -10,7 +10,7 @@ import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { StyledInternalLink, TYPE } from '../../theme'
-
+import styled from 'styled-components'
 import { Text } from 'rebass'
 import { LightCard } from '../../components/Card'
 import { RowBetween } from '../../components/Row'
@@ -61,27 +61,29 @@ export default function Pool() {
 
   return (
     <>
+     <div className='col-md-8 col-lg-8 col-xs-12 col-sm-12'>
+      <PageWrapper gap="lg" justify="center"> 
       <AppBody>
         <SwapPoolTabs active={'pool'} />
         <AutoColumn gap="lg" justify="center">
           <ButtonPrimary id="join-pool-button" as={Link} style={{ padding: 16 }} to="/add/HT">
             <Text fontWeight={500} fontSize={20}>
-              {t('addLiquidity')}
+             Add Liquidity
             </Text>
           </ButtonPrimary>
 
           <AutoColumn gap="12px" style={{ width: '100%' }}>
             <RowBetween padding={'0 8px'}>
               <Text color={theme.text1} fontWeight={500}>
-                {t('yourLiquidity')}
+                Your Liquidity
               </Text>
-              <Question text={t('whenyouaddtokenliquidity')} />
+              <Question text={'When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below.'} />
             </RowBetween>
 
             {!account ? (
               <LightCard padding="40px">
                 <TYPE.body color={theme.text3} textAlign="center">
-                {t('connectToViewLiquidity')}
+                Connect to a wallet to view your liquidity.
                 </TYPE.body>
               </LightCard>
             ) : v2IsLoading ? (
@@ -99,7 +101,7 @@ export default function Pool() {
             ) : (
               <LightCard padding="40px">
                 <TYPE.body color={theme.text3} textAlign="center">
-                  {t('noLiquidityFound')}
+                No liquidity found.
                 </TYPE.body>
               </LightCard>
             )}
@@ -108,13 +110,19 @@ export default function Pool() {
               <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : 'Dont see a pool you joined?'}{' '}
                 <NavLink id="import-pool-link" to={'/find'}>
-                  {hasV1Liquidity ? 'Migrate now.' : t('importit')}
+                  {hasV1Liquidity ? 'Migrate now.' : 'Import'}
                 </NavLink>
               </Text>
             </div>
           </AutoColumn>
         </AutoColumn>
       </AppBody>
-    </>
+   </PageWrapper>
+   </div>
+   </>
   )
 }
+
+const PageWrapper = styled(AutoColumn)`
+  width: 100%;
+`

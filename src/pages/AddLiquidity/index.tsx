@@ -39,7 +39,6 @@ import { currencyId } from '../../utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
 import { useTranslation } from 'react-i18next'
 
-import Swap from "../Swap";
 
 export default function AddLiquidity({
   match: {
@@ -252,39 +251,7 @@ export default function AddLiquidity({
       </AutoColumn>
     )
   }
-  const ColBeHalfScreenLeft = styled.div`
-
-  @media screen and (min-width: 800px) {
-      width: 50%;
-      // padding-left: 20%;
-      padding-right: 5%;
-      float: left;
-    }
-  
-   
-  
-      @media screen and (max-width: 800px) {
-          width: 100%;
-          padding-left: 5%;
-      padding-right: 5%;
-          float: right;
-        }
-  `
-  const ColBeHalfScreenRight = styled.div`
-  @media screen and (min-width: 800px) {
-      width: 50%;
-      float: left;
-    }
-  
-   
-  
-      @media screen and (max-width: 800px) {
-          width: 100%;
-          padding-left: 5%;
-          padding-right: 5%;
-          float: right;
-        }
-  `
+ 
 
   const modalBottom = () => {
     return (
@@ -341,12 +308,8 @@ export default function AddLiquidity({
  
   return (
     <>
-      <div className="col-md-12">
-            <ColBeHalfScreenLeft>
-                <Swap />
-            </ColBeHalfScreenLeft>
-            <ColBeHalfScreenRight>
-                
+      <div className='col-md-8 col-lg-8 col-xs-12 col-sm-12'>
+      <PageWrapper gap="lg" justify="center"> 
       <AppBody>
         <AddRemoveTabs adding={true} />
         <Wrapper>
@@ -493,8 +456,12 @@ export default function AddLiquidity({
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
         </AutoColumn>
       ) : null}
-            </ColBeHalfScreenRight> 
+       </PageWrapper>
       </div>
     </>
   )
 }
+
+const PageWrapper = styled(AutoColumn)`
+  width: 100%;
+`

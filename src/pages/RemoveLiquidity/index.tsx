@@ -465,13 +465,8 @@ export default function RemoveLiquidity({
 
   return (
     <>
-    <div className="col-md-12">
-          <ColBeHalfScreenLeft>
-                <Swap />
-            </ColBeHalfScreenLeft>
-
-            <ColBeHalfScreenRight>
-               
+    <div className='col-md-8 col-lg-8 col-xs-12 col-sm-12'>
+      <PageWrapper gap="lg" justify="center"> 
       <AppBody>
         <AddRemoveTabs adding={false} />
         <Wrapper>
@@ -692,41 +687,12 @@ export default function RemoveLiquidity({
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
         </AutoColumn>
       ) : null}
-            </ColBeHalfScreenRight>
+         </PageWrapper>
     </div>
     </>
   )
 }
-const ColBeHalfScreenLeft = styled.div`
 
-@media screen and (min-width: 800px) {
-    width: 50%;
-    // padding-left: 20%;
-    padding-right: 5%;
-    float: left;
-  }
-
- 
-
-    @media screen and (max-width: 800px) {
-        width: 100%;
-        padding-left: 5%;
-    padding-right: 5%;
-        float: right;
-      }
-`
-const ColBeHalfScreenRight = styled.div`
-@media screen and (min-width: 800px) {
-    width: 50%;
-    float: left;
-  }
-
- 
-
-    @media screen and (max-width: 800px) {
-        width: 100%;
-        padding-left: 5%;
-        padding-right: 5%;
-        float: right;
-      }
+const PageWrapper = styled(AutoColumn)`
+  width: 100%;
 `
