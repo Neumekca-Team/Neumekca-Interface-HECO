@@ -31,16 +31,15 @@ export default function Presale() {
 
   let claim = Number(useSingleCallResult(contract, 'getInvestedAmount', [userAddress]).result) ?? 0
 
-  const activeClaimPresale = Boolean(useSingleCallResult(contract, 'isPresaleActive')) ?? false
+  const activeClaimPresale = Boolean(useSingleCallResult(contract, 'isClaimable')) ?? false
 
   var tokenAvaiable = PRESALE_POOL_INFO[chainId]
   let tokenInfo = tokenAvaiable.filter(x => x.poolAddress == queryString)[0]
 
-  let hardCap =  40540;
-  let curCap = 20000;
-  let percentCompleteHardCap = (curCap/hardCap)*100;
-  let investToken = 0;
-
+  let hardCap = 40540
+  let curCap = 23691
+  let percentCompleteHardCap = (curCap / hardCap) * 100
+  let investToken = 0
 
   let tokenClaim = ((claim * rateToken) / 10 ** 18).toLocaleString()
 
@@ -56,8 +55,6 @@ export default function Presale() {
   }, [priceInput, priceOutput, rateToken])
 
   function PresaleBuy() {
-   
-
     contractCallBack
       .presale({ gasLimit: 350000, value: `0x${JSBI.BigInt(priceInput * 10 ** 18).toString(16)}` })
       .then((response: TransactionResponse) => {
@@ -79,7 +76,7 @@ export default function Presale() {
         console.log(error)
       })
   }
-  let style =  percentCompleteHardCap.toFixed(2).toString() + '%'
+  let style = percentCompleteHardCap.toFixed(2).toString() + '%'
   return (
     <>
       <div className="col-md-6 col-sm-12 col-xs-12 div-center">
@@ -166,8 +163,8 @@ export default function Presale() {
                   </ClickableText>
                 </RowBetween>
               ) : (
-                  ''
-                )}
+                ''
+              )}
             </form>
             {/* <RowBetween align="center">
                 <ClickableText fontWeight={500} fontSize={14} color={'#05bbc9'}>
@@ -181,18 +178,21 @@ export default function Presale() {
             <br />
             <div className="iq-details">
               <div className="iq-progress-bar bg-primary-light mt-2">
-                <span className="bg-primary iq-progress progress-1"
-                 data-percent={percentCompleteHardCap.toFixed(2)}  
-                 style={{transition: 'transition: width 2s ease 0s', width: style}}>
+                <span
+                  className="bg-primary iq-progress progress-1"
+                  data-percent={percentCompleteHardCap.toFixed(2)}
+                  style={{ transition: 'transition: width 2s ease 0s', width: style }}
+                >
                   <span className="progress-text-one bg-primary">{percentCompleteHardCap.toFixed(2)}%</span>
                 </span>
               </div>
             </div>
             <br />
-         
+
             {activeClaimPresale ? (
               <div className="input-group">
                 <button
+                  onClick={PresaleClaim}
                   style={{ width: '100%', color: '#05bbc9', background: '#dff6f8', border: 'none' }}
                   className="btn btn-success"
                   type="button"
@@ -201,17 +201,17 @@ export default function Presale() {
                 </button>
               </div>
             ) : (
-                <div className="input-group">
-                  <button
-                    style={{ width: '100%', color: 'black', background: '#e9ecef', border: 'none' }}
-                    className="btn btn-success"
-                    type="button"
-                    disabled
-                  >
-                    Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}
-                  </button>
-                </div>
-              )}
+              <div className="input-group">
+                <button
+                  style={{ width: '100%', color: 'black', background: '#e9ecef', border: 'none' }}
+                  className="btn btn-success"
+                  type="button"
+                  disabled
+                >
+                  Your claimable purchased tokens: {tokenClaim ? tokenClaim : '0'}
+                </button>
+              </div>
+            )}
             <br />
           </div>
         </div>

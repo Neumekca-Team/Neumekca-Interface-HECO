@@ -122,6 +122,7 @@ export const STAKING_REWARDS_V2_INFO: {
     startTime?: number
   }[]
 } = {
+  /* 
   [ChainId.BSC_MAINNET]: [
     {
       tokens: [WETH[ChainId.BSC_MAINNET], NAR[ChainId.BSC_MAINNET]],
@@ -150,6 +151,22 @@ export const STAKING_REWARDS_V2_INFO: {
       stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
       rnlpAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
       poolId: 1
+    }
+  ], */
+  [ChainId.HT_MAINNET]: [
+    {
+      tokens: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]],
+      stakingRewardAddress: '0xed93ccFA7FB5ebd037d1EfEe362583E28A9b3CE5',
+      rnlpAddress: '0x282EA4e76Fd9C812A1B4974716DD9C396a2Be202',
+      poolId: 0,
+      startTime: 1612137600
+    },
+    {
+      tokens: [T_BTCB, NAR[ChainId.HT_MAINNET]],
+      stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
+      rnlpAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
+      poolId: 1,
+      startTime: 1612137600
     }
   ]
 }
@@ -182,7 +199,7 @@ export interface StakingInfo {
   commonMax: TokenAmount
 
   startTime?: number
-  poolId: number  
+  poolId: number
 }
 
 // gets the staking info from the network for the active chain id
@@ -713,7 +730,10 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
         const buffRateTimestamp = userInfoState?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0
         const userMaxBuffRate = JSBI.BigInt(userMaxBuffrateState?.result?.[0] ?? 3)
         const commonMinAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(averageLpState?.result?.[0] ?? 0))
-        const commonMaxAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.multiply(commonMinAmount.raw, JSBI.BigInt(13)))
+        const commonMaxAmount = new TokenAmount(
+          dummyPair.liquidityToken,
+          JSBI.multiply(commonMinAmount.raw, JSBI.BigInt(13))
+        )
 
         const getHypotheticalRewardRate = (
           narPower: TokenAmount,

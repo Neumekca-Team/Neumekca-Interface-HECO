@@ -44,7 +44,7 @@ export const PRESALE_POOL_INFO: {
       poolAddress: '0x0D3Bc2cEe458Ce321a65ac8890CC31538Af870a9',
       poolId: 0,
       projectName: 'Neumékca City',
-      isActive: true,
+      isActive: false,
       projectLink: 'https://www.app.neumekca.city',
       startTime: '1 PM UTC, Jan 27, 2021',
       price: '74 ZERO per',
