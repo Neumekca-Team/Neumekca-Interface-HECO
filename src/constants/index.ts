@@ -143,7 +143,7 @@ export const GEM: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
-    '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44',
+    '0xcE0d5178a1Fb5abbDBd56DED8282D8f4B8b51eFb',
     18,
     'SNOW',
     'ZERO Dividend Token'
