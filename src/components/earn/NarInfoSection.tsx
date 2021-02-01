@@ -33,11 +33,8 @@ const NarData = styled(DataCard)`
 
 export default function NarInfoSection() {
   const { chainId } = useActiveWeb3React()
-  console.log('1')
   const nar = chainId ? NAR[chainId] : undefined
-  console.log('2')
   const narPrice = useBUSDPrice(nar)
-  console.log('3')
   const narSupplyInfo = useNarSupplyInfo()
 
   const mkc = narSupplyInfo?.circulating && narPrice?.quote(narSupplyInfo?.circulating)

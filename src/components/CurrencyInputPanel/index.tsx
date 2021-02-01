@@ -1,4 +1,4 @@
-import { Currency, Pair, TokenAmount } from '@neumekca/neumekca-sdk'
+import { Currency, Pair, TokenAmount,ETHER } from '@neumekca/neumekca-sdk'
 import React, { useState, useContext, useCallback } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { darken } from 'polished'
@@ -156,7 +156,7 @@ export default function CurrencyInputPanel({
   const { t } = useTranslation()
 
   const [modalOpen, setModalOpen] = useState(false)
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account, currency)
   const theme = useContext(ThemeContext)
 
@@ -232,7 +232,10 @@ export default function CurrencyInputPanel({
                     ? currency.symbol.slice(0, 4) +
                       '...' +
                       currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
-                    : currency?.symbol) || t('selectToken')}
+                    : currency !== ETHER
+                    ? currency?.symbol
+                    : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                      currency?.toDisplayableSymbol(chainId!)) || t('selectToken')}
                 </StyledTokenName>
               )}
               {!disableCurrencySelect && <StyledDropDown selected={!!currency} />}

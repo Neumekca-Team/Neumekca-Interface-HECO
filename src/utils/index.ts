@@ -110,8 +110,9 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 }
 
 // account is optional
-export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
-  return getContract(ROUTER_ADDRESS, IJunctureRouter02ABI, library, account)
+export function getRouterContract(_: number, library: Web3Provider, account?: string, chainId? : any): Contract {
+
+  return getContract( ROUTER_ADDRESS[chainId as ChainId] , IJunctureRouter02ABI, library, account)
 }
 
 export function escapeRegExp(string: string): string {

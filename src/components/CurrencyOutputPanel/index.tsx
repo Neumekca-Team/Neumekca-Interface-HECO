@@ -156,7 +156,7 @@ export default function CurrencyOPanel({
   const { t } = useTranslation()
 
   const [modalOpen, setModalOpen] = useState(false)
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account, currency)
   const theme = useContext(ThemeContext)
 
@@ -233,7 +233,7 @@ export default function CurrencyOPanel({
                     ? currency.symbol.slice(0, 4) +
                       '...' +
                       currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
-                    : currency?.symbol) || t('selectToken')}
+                    : currency?.toDisplayableSymbol(chainId)) || t('selectToken')}
                 </StyledTokenName>
               )}
               {!disableCurrencySelect && <StyledDropDown selected={!!currency} />}

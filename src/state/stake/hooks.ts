@@ -847,9 +847,9 @@ export function useNarSupplyInfo(): NarSupplyInfo | undefined {
 
   const totalSupplyCall = useSingleCallResult(contract, 'totalSupply')
   const totalBurnedCall = useSingleCallResult(contract, '_totalBurnToken')
-  const burnedCall = useSingleCallResult(contract, 'balanceOf', [BURNED_ADDRESS])
-  const dividendCall = useSingleCallResult(contract, 'balanceOf', [DIVIDEND_ADDRESS])
-  const dividendCall2 = useSingleCallResult(contract, 'balanceOf', [DIVIDEND_ADDRESS2])
+  const burnedCall = useSingleCallResult(contract, 'balanceOf', [chainId ? BURNED_ADDRESS[chainId] : undefined])
+  const dividendCall = useSingleCallResult(contract, 'balanceOf', [chainId ? DIVIDEND_ADDRESS[chainId] : undefined])
+  const dividendCall2 = useSingleCallResult(contract, 'balanceOf', [chainId ? DIVIDEND_ADDRESS2[chainId] : undefined])
 
   return useMemo(() => {
     if (!chainId || !nar) return undefined

@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, ETHER, JSBI, Token } from '@neumekca/neumekca-sdk'
+import { Currency, CurrencyAmount, currencyEquals, ETHER, JSBI, Token,ChainId } from '@neumekca/neumekca-sdk'
 import React, { CSSProperties, memo, useContext, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
@@ -19,6 +19,12 @@ import { isDefaultToken } from '../../utils'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
+}
+
+function formatSymbol (currency?: Currency | null, chainId?: any | null){
+  if (!currency) return ''
+  if (currency === ETHER) return currency.toDisplayableSymbol(chainId)
+  return currency.symbol
 }
 
 export default function CurrencyList({
@@ -68,7 +74,10 @@ export default function CurrencyList({
           <RowFixed>
             <CurrencyLogo currency={currency} size={'24px'} style={{ marginRight: '14px' }} />
             <Column>
-              <Text fontWeight={500}>{currency.symbol}</Text>
+            <Text title={currency.name} fontWeight={500}>
+          {formatSymbol(currency, chainId)}
+        </Text>
+             
               <FadedSpan>
                 {customAdded ? (
                   <TYPE.main fontWeight={500}>

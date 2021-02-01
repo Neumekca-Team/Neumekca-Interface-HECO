@@ -12,8 +12,7 @@ import { wrappedCurrency } from './wrappedCurrency'
  */
 export default function useBUSDPrice(currency?: Currency): Price | undefined {
   const { chainId } = useActiveWeb3React()
-  console.log(chainId)
-  
+
   const wrapped = wrappedCurrency(currency, chainId)
   const tokenPairs: [Currency | undefined, Currency | undefined][] = useMemo(
     () => [
@@ -21,8 +20,8 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
         chainId && wrapped && currencyEquals(WETH[chainId], wrapped) ? undefined : currency,
         chainId ? WETH[chainId] : undefined
       ],
-      [wrapped?.equals(H_USD) ? undefined : wrapped, chainId === ChainId.HT_MAINNET ? H_USD : H_USD],
-      [chainId ? WETH[chainId] : undefined, chainId === ChainId.HT_MAINNET ? H_USD : H_USD]
+      [wrapped, chainId ? H_USD[chainId] : undefined],
+      [chainId ? WETH[chainId] : undefined, chainId ? H_USD[chainId] : undefined]
     ],
     [chainId, currency, wrapped]
   )
@@ -33,7 +32,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
       return undefined
     }
     // busd on each chain
-    const busd: Token = chainId === ChainId.HT_MAINNET ? H_USD : H_USD
+    const busd = H_USD[chainId];
     // handle weth/eth
     if (wrapped.equals(WETH[chainId])) {
       if (usdcPair) {

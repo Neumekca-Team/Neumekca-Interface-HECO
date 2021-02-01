@@ -28,7 +28,7 @@ enum Fields {
 
 
 export default function PoolFinder() {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
 
   const [showSearch, setShowSearch] = useState<boolean>(false)
@@ -98,7 +98,7 @@ export default function PoolFinder() {
             <Row>
               <CurrencyLogo currency={currency0} />
               <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                {currency0.symbol}
+              {currency0 === ETHER ? currency0.toDisplayableSymbol(chainId!) : currency0.symbol}
               </Text>
             </Row>
           ) : (
@@ -122,7 +122,7 @@ export default function PoolFinder() {
             <Row>
               <CurrencyLogo currency={currency1} />
               <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                {currency1.symbol}
+              {currency1 === ETHER ? currency1.toDisplayableSymbol(chainId!) : currency1.symbol}
               </Text>
             </Row>
           ) : (

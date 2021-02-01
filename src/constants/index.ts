@@ -5,7 +5,15 @@ import { injected } from '../connectors'
 
 //export const ROUTER_ADDRESS = '0xE85C6ab56A3422E7bAfd71e81Eb7d0f290646078'
 
-export const ROUTER_ADDRESS = '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92'
+
+
+export const ROUTER_ADDRESS: { [chainId in ChainId]: string } =  {
+
+  [ChainId.HT_MAINNET]: '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
+  [ChainId.HT_TESTNET]: '0xca8e585a44375fab1bf6ad50887a770d06f0e32e',
+  [ChainId.BSC_MAINNET]: '0xB88040A237F8556Cf63E305a06238409B3CAE7dC',
+  [ChainId.BSC_TESTNET]: '0xB88040A237F8556Cf63E305a06238409B3CAE7dC'
+}
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
@@ -42,13 +50,11 @@ export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
   )
 }
 
-//const NAR_ADDRESS = '0xA1303E6199b319a891b79685F0537D289af1FC83' BSC
-const NAR_ADDRESS = '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D'
 export const NAR: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
-  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
-  [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token'),
-  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, NAR_ADDRESS, 18, 'ZERO', 'ZERO Token')
+  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token'),
+  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token'),
+  [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token'),
+  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token')
 }
 
 export const NAR_HT: { [chainId in ChainId]: [Token, Token] } = {
@@ -199,14 +205,6 @@ export const H_BUSD = new Token(
   'HUSD Token'
 )
 
-export const H_USD = new Token(
-  ChainId.HT_MAINNET,
-  '0x0298c2b32eae4da002a15f36fdf7615bea3da047',
-  6,
-  'HUSD',
-  'HUSD Token'
-)
-
 
 export const B_USDT = new Token(
   ChainId.BSC_MAINNET,
@@ -215,6 +213,39 @@ export const B_USDT = new Token(
   'USDT',
   'Tether USD'
 )
+
+
+export const H_USD: { [chainId in ChainId]: Token } =  {
+  [ChainId.HT_MAINNET]: new Token(
+    ChainId.HT_MAINNET,
+    '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
+    18,
+    'HUSD',
+    'HUSD Token'
+  ),
+  [ChainId.HT_TESTNET]: new Token(
+    ChainId.HT_MAINNET,
+    '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
+    18,
+    'HUSD',
+    'HUSD Token'
+  ),
+  [ChainId.BSC_MAINNET]: new Token(
+    ChainId.BSC_MAINNET,
+    '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+    18,
+    'BUSD',
+    'BUSD Token'
+  ),
+  [ChainId.BSC_TESTNET]: new Token(
+    ChainId.BSC_TESTNET,
+    '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+    18,
+    'BUSD',
+    'BUSD Token'
+  ),
+
+}
 export const T_USDT = new Token(
   ChainId.BSC_TESTNET,
   '0x337610d27c682E347C9cD60BD4b3b107C9d34dDd',
@@ -286,11 +317,6 @@ export const CHRISTMAS: { [chainId in ChainId]: Token } = {
 }
 
 const WETH_ONLY: ChainTokenList = {
-  // [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
-  // [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
-  // [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
-  // [ChainId.GÖRLI]: [WETH[ChainId.GÖRLI]],
-  // [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
   [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET]],
   [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET]],
   [ChainId.HT_MAINNET]: [WETH[ChainId.HT_MAINNET]],
@@ -340,9 +366,30 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
   // ]
 }
 
-export const BURNED_ADDRESS = '0x6969696969696969696969696969696969696969'
-export const DIVIDEND_ADDRESS = '0xE8CccB718de63da9D498279A40D2248E4D46296B'
-export const DIVIDEND_ADDRESS2 = '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e'
+
+export const BURNED_ADDRESS: { [chainId in ChainId]?: string } =  {
+
+  [ChainId.HT_MAINNET]: '0x6969696969696969696969696969696969696969',
+  [ChainId.HT_TESTNET]: '0x6969696969696969696969696969696969696969',
+  [ChainId.BSC_MAINNET]: '0x6969696969696969696969696969696969696969',
+  [ChainId.BSC_TESTNET]: '0x6969696969696969696969696969696969696969'
+}
+
+export const DIVIDEND_ADDRESS: { [chainId in ChainId]?: string } =  {
+
+  [ChainId.HT_MAINNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B',
+  [ChainId.HT_TESTNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B',
+  [ChainId.BSC_MAINNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B',
+  [ChainId.BSC_TESTNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B'
+}
+
+export const DIVIDEND_ADDRESS2: { [chainId in ChainId]?: string } =  {
+
+  [ChainId.HT_MAINNET]: '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e',
+  [ChainId.HT_TESTNET]: '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e',
+  [ChainId.BSC_MAINNET]: '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e',
+  [ChainId.BSC_TESTNET]: '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e'
+}
 
 export interface WalletInfo {
   connector?: AbstractConnector

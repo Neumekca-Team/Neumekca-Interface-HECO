@@ -227,7 +227,7 @@ export function useTicketStakingInfoV2(poolIdToFilterBy?: number | null): Ticket
 
   const poolAddress = info[0]?.poolAddress
   const stakeTokenAddresses = useMemo(() => info.map(({ stakeToken }) => stakeToken.address), [info])
-  const accountArg = useMemo(() => info.map(({ poolId }) => [poolId, account ?? BURNED_ADDRESS]), [info])
+  const accountArg = useMemo(() => info.map(({ poolId }) => [poolId, account ?? (chainId ? BURNED_ADDRESS[chainId] : undefined) ]), [info])
 
   const stakingContract = useTicketStakingContractV2(poolAddress ?? undefined)
 
