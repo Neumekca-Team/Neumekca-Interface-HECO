@@ -5,8 +5,6 @@ import { injected } from '../connectors'
 
 //export const ROUTER_ADDRESS = '0xE85C6ab56A3422E7bAfd71e81Eb7d0f290646078'
 
-
-
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } =  {
 
   [ChainId.HT_MAINNET]: '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
@@ -14,6 +12,7 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } =  {
   [ChainId.BSC_MAINNET]: '0xB88040A237F8556Cf63E305a06238409B3CAE7dC',
   [ChainId.BSC_TESTNET]: '0xB88040A237F8556Cf63E305a06238409B3CAE7dC'
 }
+
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
@@ -49,6 +48,7 @@ export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
     'ZERO Token'
   )
 }
+
 
 export const NAR: { [chainId in ChainId]: Token } = {
   [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token'),
@@ -204,7 +204,6 @@ export const H_BUSD = new Token(
   'HUSD',
   'HUSD Token'
 )
-
 
 export const B_USDT = new Token(
   ChainId.BSC_MAINNET,
@@ -493,7 +492,7 @@ export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16))
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
 
 // the Uniswap Default token list lives here
-export const DEFAULT_TOKEN_LIST_URL = 'https://api-neumekca.herokuapp.com/tokenlist/'
+export const DEFAULT_TOKEN_LIST_URL = 'https://api-neumekca.herokuapp.com/hecochain/'
 
 // base URI for NFT
 export const NFT_BASE_URL: { [chainId in ChainId]: string } = {
