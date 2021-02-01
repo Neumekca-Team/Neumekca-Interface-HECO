@@ -5,8 +5,7 @@ import { injected } from '../connectors'
 
 //export const ROUTER_ADDRESS = '0xE85C6ab56A3422E7bAfd71e81Eb7d0f290646078'
 
-export const ROUTER_ADDRESS: { [chainId in ChainId]: string } =  {
-
+export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.HT_MAINNET]: '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
   [ChainId.HT_TESTNET]: '0xca8e585a44375fab1bf6ad50887a770d06f0e32e',
   [ChainId.BSC_MAINNET]: '0xB88040A237F8556Cf63E305a06238409B3CAE7dC',
@@ -49,12 +48,35 @@ export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
   )
 }
 
-
 export const NAR: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token'),
-  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token'),
-  [ChainId.HT_TESTNET]: new Token(ChainId.HT_TESTNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token'),
-  [ChainId.HT_MAINNET]: new Token(ChainId.HT_MAINNET, '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D', 18, 'ZERO', 'ZERO Token')
+  [ChainId.BSC_MAINNET]: new Token(
+    ChainId.BSC_MAINNET,
+    '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D',
+    18,
+    'ZERO',
+    'ZERO Token'
+  ),
+  [ChainId.BSC_TESTNET]: new Token(
+    ChainId.BSC_TESTNET,
+    '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D',
+    18,
+    'ZERO',
+    'ZERO Token'
+  ),
+  [ChainId.HT_TESTNET]: new Token(
+    ChainId.HT_TESTNET,
+    '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D',
+    18,
+    'ZERO',
+    'ZERO Token'
+  ),
+  [ChainId.HT_MAINNET]: new Token(
+    ChainId.HT_MAINNET,
+    '0x9Ec4C0f72f068731f439351193d2060b7dC684B5',
+    18,
+    'ZERO',
+    'ZERO Token'
+  )
 }
 
 export const NAR_HT: { [chainId in ChainId]: [Token, Token] } = {
@@ -90,7 +112,7 @@ export const GOLD: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
-    '0x38117Ac37078c5b46Aa109164f1C64A58C158a58',
+    '0xfF81E5c45589599C51eD62cD960bC01b863172B0',
     18,
     'LEON',
     'ZERO Ticket Token'
@@ -213,8 +235,7 @@ export const B_USDT = new Token(
   'Tether USD'
 )
 
-
-export const H_USD: { [chainId in ChainId]: Token } =  {
+export const H_USD: { [chainId in ChainId]: Token } = {
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
     '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
@@ -242,8 +263,7 @@ export const H_USD: { [chainId in ChainId]: Token } =  {
     18,
     'BUSD',
     'BUSD Token'
-  ),
-
+  )
 }
 export const T_USDT = new Token(
   ChainId.BSC_TESTNET,
@@ -365,25 +385,21 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
   // ]
 }
 
-
-export const BURNED_ADDRESS: { [chainId in ChainId]?: string } =  {
-
+export const BURNED_ADDRESS: { [chainId in ChainId]?: string } = {
   [ChainId.HT_MAINNET]: '0x6969696969696969696969696969696969696969',
   [ChainId.HT_TESTNET]: '0x6969696969696969696969696969696969696969',
   [ChainId.BSC_MAINNET]: '0x6969696969696969696969696969696969696969',
   [ChainId.BSC_TESTNET]: '0x6969696969696969696969696969696969696969'
 }
 
-export const DIVIDEND_ADDRESS: { [chainId in ChainId]?: string } =  {
-
+export const DIVIDEND_ADDRESS: { [chainId in ChainId]?: string } = {
   [ChainId.HT_MAINNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B',
   [ChainId.HT_TESTNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B',
   [ChainId.BSC_MAINNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B',
   [ChainId.BSC_TESTNET]: '0xE8CccB718de63da9D498279A40D2248E4D46296B'
 }
 
-export const DIVIDEND_ADDRESS2: { [chainId in ChainId]?: string } =  {
-
+export const DIVIDEND_ADDRESS2: { [chainId in ChainId]?: string } = {
   [ChainId.HT_MAINNET]: '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e',
   [ChainId.HT_TESTNET]: '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e',
   [ChainId.BSC_MAINNET]: '0xdb7a7ebA3CF57DfaA6A924f8c220260833f9725e',
