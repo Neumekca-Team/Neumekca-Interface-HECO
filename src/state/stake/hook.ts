@@ -1,6 +1,6 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { BUSD, B_USDT, B_DAI, NAR, BTCB, BURNED_ADDRESS, DIVIDEND_ADDRESS, DIVIDEND_ADDRESS2 } from '../../constants'
+import { H_USD, H_USDT, H_DAI, NAR, HTCB, BURNED_ADDRESS, DIVIDEND_ADDRESS, DIVIDEND_ADDRESS2 } from '../../constants'
 import { STAKING_REWARDS_INTERFACE, STAKING_REWARDS_CAPPED_INTERFACE } from '../../constants/abis/staking-rewards'
 import { NARWHAL_POWER_INTERFACE } from '../../constants/abis/narwhal-power'
 import { useActiveWeb3React } from '../../hooks'
@@ -22,49 +22,38 @@ export const STAKING_REWARDS_INFO: {
     poolId: number
   }[]
 } = {
-  [ChainId.BSC_MAINNET]: [
+  [ChainId.HT_MAINNET]: [
     // New pools
     {
-      tokens: [WETH[ChainId.BSC_MAINNET], NAR[ChainId.BSC_MAINNET]],
+      tokens: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x1D227F7e283D653a60F94d2350CAB7a49bB85C6f',
       rnlpAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
       powerAddress: '0x1D791EaA684A21De92618Dedea7BF373e2486956',
       poolId: 0
     },
     {
-      tokens: [WETH[ChainId.BSC_MAINNET], BUSD],
+      tokens: [WETH[ChainId.HT_MAINNET], H_USD[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x6dA9Ee0c0571b63e38950D1e12e835D5343f601B',
       rnlpAddress: '0x1f7D08d96d2520BD9196cb857e40d2A99e31de1A',
       powerAddress: '0xa1992a9777c3C11c466F44a4b9c7530719a22ea2',
       poolId: 1
     },
     {
-      tokens: [WETH[ChainId.BSC_MAINNET], B_USDT],
+      tokens: [WETH[ChainId.HT_MAINNET], H_USDT],
       stakingRewardAddress: '0xCF889a0902859662C17dC895abb7AF49EE28A013',
       rnlpAddress: '0xc0b5306224298f39E6ce9Cb9fD2acb6d03A2CC04',
       powerAddress: '0xb9C9E7Cc58DA9B727916d7dfD6bf7001C5f26210',
       poolId: 2
     },
     {
-      tokens: [WETH[ChainId.BSC_MAINNET], B_DAI],
+      tokens: [WETH[ChainId.HT_MAINNET], H_DAI],
       stakingRewardAddress: '0xb6c9B20253a4BDC65d1FDC6F4aE04f57f6523915',
       rnlpAddress: '0x6400442ad9B93aC56d18C272C977efE1e50273c1',
       powerAddress: '0x5777Ae2Ac8a042dc99dC41888C5b70f198A1e159',
       poolId: 3
     }
   ]
-  // [ChainId.BSC_TESTNET]: [
-  //   {
-  //     tokens: [WETH[ChainId.BSC_TESTNET], T_BUSD],
-  //     stakingRewardAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
-  //     rnlpAddress: '0x5d8f5534Ad36Fc6FE7175b911E164b58Bb30Ed05',
-  //   },
-  //   {
-  //     tokens: [WETH[ChainId.BSC_TESTNET], T_BUSD],
-  //     stakingRewardAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
-  //     rnlpAddress: '0x5d8f5534Ad36Fc6FE7175b911E164b58Bb30Ed05',
-  //   }
-  // ]
+
 }
 
 export const STAKING_REWARDS_CAPPED_INFO: {
@@ -75,24 +64,12 @@ export const STAKING_REWARDS_CAPPED_INFO: {
     poolId: number
   }[]
 } = {
-  [ChainId.BSC_MAINNET]: [
-    // {
-    //   tokens: [BTCB, NAR[ChainId.BSC_MAINNET]],
-    //   stakingRewardAddress: '0xaaa6ddB2022541C44e488Ea2b3F32c8C8726c107',
-    //   rnlpAddress: '0x162EcE88ac02F23d72729Efd9e5467c24D88e61d',
-    //   poolId: 0
-    // },
+  [ChainId.HT_MAINNET]: [
     {
-      tokens: [BTCB, NAR[ChainId.BSC_MAINNET]],
-      stakingRewardAddress: '0xE6E0646BD4FcD37EC7258D21295DD4cdc347F57a',
-      rnlpAddress: '0x3321aDb09550BD03Ef6F15BB6d23015b844bE1Fa',
-      poolId: 1
-    },
-    {
-      tokens: [BTCB, NAR[ChainId.BSC_MAINNET]],
+      tokens: [HTCB, NAR[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x3DFB186e8CE513f321232098Dd551e22886C1051',
       rnlpAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
-      poolId: 2
+      poolId: 0
     }
   ]
 }

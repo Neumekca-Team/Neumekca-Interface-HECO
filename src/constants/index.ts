@@ -173,6 +173,16 @@ export const T_BTCB = new Token(
   'Bitcoin'
 )
 
+export const HTCB = new Token(
+  ChainId.HT_MAINNET,
+  '0x0540d5be4e44236e82ac68099a4adb275292f396',
+  18,
+  'HTCB',
+  'Bitcoin'
+)
+
+
+
 export const ETHB_WETH = new Token(
   ChainId.BSC_MAINNET,
   '0xD921E7efc0Ac8eaaF4AddaF46Ce289E70886b233',
@@ -189,6 +199,14 @@ export const B_DAI = new Token(
   'DAI',
   'Dai Token'
 )
+export const H_DAI = new Token(
+  ChainId.HT_MAINNET,
+  '0xaa0e090f0634473c11729ec83db90f33fecd3b67',
+  18,
+  'DAI',
+  'Dai Token'
+)
+
 export const T_DAI = new Token(
   ChainId.BSC_TESTNET,
   '0xEC5dCb5Dbf4B114C9d0F65BcCAb49EC54F6A0867',
@@ -234,6 +252,16 @@ export const B_USDT = new Token(
   'USDT',
   'Tether USD'
 )
+
+export const H_USDT = new Token(
+  ChainId.HT_MAINNET,
+  '0x793cdc8ff49d78b9dc30d7736a75d525dfd3e25c',
+  18,
+  'USDT',
+  'Tether USD'
+)
+
+
 
 export const H_USD: { [chainId in ChainId]: Token } = {
   [ChainId.HT_MAINNET]: new Token(
