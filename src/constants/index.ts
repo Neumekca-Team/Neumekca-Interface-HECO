@@ -173,11 +173,11 @@ export const T_BTCB = new Token(
   'Bitcoin'
 )
 
-export const HTCB = new Token(
+export const HBTC = new Token(
   ChainId.HT_MAINNET,
   '0x0540d5be4e44236e82ac68099a4adb275292f396',
   18,
-  'HTCB',
+  'HBTC',
   'Bitcoin'
 )
 

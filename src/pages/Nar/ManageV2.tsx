@@ -134,7 +134,7 @@ export default function ManageV2({
 
   const userBuffRate = stakingInfo?.narPower?.divide(stakingInfo?.stakedAmount ?? JSBI.BigInt(1))
   const userBuffDecimal = userBuffRate?.multiply(JSBI.BigInt(10 ** 3))
-  
+
   const isMaxBuffRate =
     userBuffDecimal?.greaterThan(stakingInfo?.userMaxBuffRate) || userBuffDecimal?.equalTo(stakingInfo?.userMaxBuffRate)
 
@@ -377,8 +377,8 @@ export default function ManageV2({
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ⭐️
           </span>
-          CHRONOS INJECTED depends on the staked days. It starts at 14 when staking and increases by 49% per day until the
-          MAXIMUM CHRONOS INJECTED. And reset to 14 when harvesting ZERO tokens or unstacking JLP tokens. Learn more{' '}
+          CHRONOS INJECTED depends on the staked days. It starts at 14 when staking and increases by 49% per day until
+          the MAXIMUM CHRONOS INJECTED. And reset to 14 when harvesting ZERO tokens or unstacking JLP tokens. Learn more{' '}
           <a href="https://neumekca.city/docs/" target="_blank">
             here
           </a>

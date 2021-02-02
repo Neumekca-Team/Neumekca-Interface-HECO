@@ -34,7 +34,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
   const { account } = useActiveWeb3React()
 
   const [typedValue, setTypedValue] = useState('')
-  const { parsedAmount, error } = useDerivedStakeInfo(typedValue, stakingInfo.rnlpToken, stakingInfo.rnlpBalance)
+  const { parsedAmount, error } = useDerivedStakeInfo(typedValue, stakingInfo.jlp4fToken, stakingInfo.jlp4fBalance)
 
   // monitor call to help UI loading state
   const addTransaction = useTransactionAdder()
@@ -53,8 +53,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
   const deadline = useTransactionDeadline()
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
   const [approval, approveCallback] = useApproveTokenCallback(
-    stakingInfo.rnlpBalance,
-    stakingInfo.rnlpAddress,
+    stakingInfo.jlp4fBalance,
+    stakingInfo.jlp4fAddress,
     stakingInfo.stakingRewardAddress
   )
 
@@ -102,7 +102,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
   }, [])
 
   // used for max input button
-  const maxAmountInput = maxAmountSpend(stakingInfo.rnlpBalance)
+  const maxAmountInput = maxAmountSpend(stakingInfo.jlp4fBalance)
   const atMaxAmount = Boolean(maxAmountInput && parsedAmount?.equalTo(maxAmountInput))
   const handleMax = useCallback(() => {
     maxAmountInput && onUserInput(maxAmountInput.toExact())
@@ -128,7 +128,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
             onUserInput={onUserInput}
             onMax={handleMax}
             showMaxButton={!atMaxAmount}
-            currency={stakingInfo.rnlpToken}
+            currency={stakingInfo.jlp4fToken}
             pair={dummyPair}
             label={''}
             disableCurrencySelect={true}
@@ -151,7 +151,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
             </ButtonConfirmed>
             <ButtonError
               disabled={!!error || (signatureData === null && approval !== ApprovalState.APPROVED)}
-              error={!!error && !!stakingInfo.rnlpToken}
+              error={!!error && !!stakingInfo.jlp4fToken}
               onClick={onWithdraw}
             >
               {error ?? 'Unstake & Harvest'}

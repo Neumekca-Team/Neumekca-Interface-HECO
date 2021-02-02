@@ -1,385 +1,497 @@
 [{
-    "inputs": [{
-        "internalType": "address",
-        "name": "_narcardToken",
-        "type": "address"
-    }, {
-        "internalType": "address",
-        "name": "_narticketToken",
-        "type": "address"
-    }, {
-        "internalType": "uint256",
-        "name": "_dailyTime",
-        "type": "uint256"
-    }],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-}, {
-    "anonymous": false,
-    "inputs": [{
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-    }, {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "types",
-        "type": "uint8"
-    }, {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "powers",
-        "type": "uint256"
-    }, {
-        "indexed": false,
-        "internalType": "uint8",
-        "name": "grade",
-        "type": "uint8"
-    }, {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "blockNum",
-        "type": "uint256"
-    }, {
-        "indexed": true,
-        "internalType": "address",
-        "name": "author",
-        "type": "address"
-    }],
-    "name": "CreateCard",
-    "type": "event"
-}, {
-    "anonymous": false,
-    "inputs": [{
-        "indexed": true,
-        "internalType": "address",
-        "name": "previousOwner",
-        "type": "address"
-    }, {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-    }],
-    "name": "GovernanceTransferred",
-    "type": "event"
-}, {
-    "inputs": [],
-    "name": "DURATION",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [],
-    "name": "_governance",
-    "outputs": [{
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [],
-    "name": "burnPool",
-    "outputs": [{
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "name": "cardIndex",
-    "outputs": [{
-        "internalType": "uint8",
-        "name": "types",
-        "type": "uint8"
-    }, {
-        "internalType": "uint256",
-        "name": "powers",
-        "type": "uint256"
-    }, {
-        "internalType": "uint8",
-        "name": "grade",
-        "type": "uint8"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "name": "cardsInfo",
-    "outputs": [{
-        "internalType": "uint8",
-        "name": "types",
-        "type": "uint8"
-    }, {
-        "internalType": "uint256",
-        "name": "powers",
-        "type": "uint256"
-    }, {
-        "internalType": "uint8",
-        "name": "grade",
-        "type": "uint8"
-    }, {
-        "internalType": "uint16",
-        "name": "startRange",
-        "type": "uint16"
-    }, {
-        "internalType": "uint16",
-        "name": "endRange",
-        "type": "uint16"
-    }, {
-        "internalType": "uint16",
-        "name": "weight",
-        "type": "uint16"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [],
-    "name": "dailyTime",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [],
-    "name": "narcardToken",
-    "outputs": [{
-        "internalType": "contract INarCardToken",
-        "name": "",
-        "type": "address"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "name": "paymentsInfo",
-    "outputs": [{
-        "internalType": "contract IERC20",
-        "name": "payToken",
-        "type": "address"
-    }, {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "address",
-        "name": "governance",
-        "type": "address"
-    }],
-    "name": "setGovernance",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "totalWeight",
-    "outputs": [{
-        "internalType": "uint16",
-        "name": "",
-        "type": "uint16"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-    }],
-    "name": "userLog",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "multipier",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "timeStamp",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "contract IERC20",
-        "name": "_payToken",
-        "type": "address"
-    }, {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-    }],
-    "name": "addPayment",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-    }, {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-    }],
-    "name": "editPayment",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint8",
-        "name": "_types",
-        "type": "uint8"
-    }, {
-        "internalType": "uint256",
-        "name": "_powers",
-        "type": "uint256"
-    }, {
-        "internalType": "uint8",
-        "name": "_grade",
-        "type": "uint8"
-    }, {
-        "internalType": "uint16",
-        "name": "_startRange",
-        "type": "uint16"
-    }, {
-        "internalType": "uint16",
-        "name": "_endRange",
-        "type": "uint16"
-    }, {
-        "internalType": "uint16",
-        "name": "_weight",
-        "type": "uint16"
-    }],
-    "name": "addCardInfo",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_cid",
-        "type": "uint256"
-    }, {
-        "internalType": "uint8",
-        "name": "_types",
-        "type": "uint8"
-    }, {
-        "internalType": "uint256",
-        "name": "_powers",
-        "type": "uint256"
-    }, {
-        "internalType": "uint8",
-        "name": "_grade",
-        "type": "uint8"
-    }, {
-        "internalType": "uint16",
-        "name": "_startRange",
-        "type": "uint16"
-    }, {
-        "internalType": "uint16",
-        "name": "_endRange",
-        "type": "uint16"
-    }, {
-        "internalType": "uint16",
-        "name": "_weight",
-        "type": "uint16"
-    }],
-    "name": "editCardInfo",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-    }],
-    "name": "getNarCard",
-    "outputs": [{
-        "internalType": "uint8",
-        "name": "types",
-        "type": "uint8"
-    }, {
-        "internalType": "uint256",
-        "name": "powers",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-    }, {
-        "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-    }],
-    "name": "getPayment",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-}, {
-    "inputs": [{
-        "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-    }],
-    "name": "createCard",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "updateTime",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}]
+        "inputs": [{
+                "internalType": "contract NFTsCardToken",
+                "name": "_nullCardToken",
+                "type": "address"
+            },
+            {
+                "internalType": "contract ERC20",
+                "name": "_leonToken",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_dailyTime",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [{
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "types",
+                "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "skills",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "rank",
+                "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "blockNum",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "author",
+                "type": "address"
+            }
+        ],
+        "name": "CreateCard",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [{
+                "indexed": false,
+                "internalType": "address",
+                "name": "previousOwner",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }
+        ],
+        "name": "GovernanceTransferred",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "DURATION",
+        "outputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "_governance",
+        "outputs": [{
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+                "internalType": "uint8",
+                "name": "_types",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_skills",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_rank",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint16",
+                "name": "_startRange",
+                "type": "uint16"
+            },
+            {
+                "internalType": "uint16",
+                "name": "_endRange",
+                "type": "uint16"
+            },
+            {
+                "internalType": "uint16",
+                "name": "_weight",
+                "type": "uint16"
+            }
+        ],
+        "name": "addCardInfo",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+                "internalType": "address",
+                "name": "_payToken",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "addPayment",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "burnPool",
+        "outputs": [{
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "name": "cardIndex",
+        "outputs": [{
+                "internalType": "uint8",
+                "name": "types",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256",
+                "name": "skills",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "rank",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "name": "cardsInfo",
+        "outputs": [{
+                "internalType": "uint8",
+                "name": "types",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256",
+                "name": "skills",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "rank",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint16",
+                "name": "startRange",
+                "type": "uint16"
+            },
+            {
+                "internalType": "uint16",
+                "name": "endRange",
+                "type": "uint16"
+            },
+            {
+                "internalType": "uint16",
+                "name": "weight",
+                "type": "uint16"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+        }],
+        "name": "createCard",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "dailyTime",
+        "outputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+                "internalType": "uint256",
+                "name": "_cid",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_types",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_skills",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_rank",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint16",
+                "name": "_startRange",
+                "type": "uint16"
+            },
+            {
+                "internalType": "uint16",
+                "name": "_endRange",
+                "type": "uint16"
+            },
+            {
+                "internalType": "uint16",
+                "name": "_weight",
+                "type": "uint16"
+            }
+        ],
+        "name": "editCardInfo",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+                "internalType": "uint256",
+                "name": "_pid",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "editPayment",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+            "internalType": "uint256",
+            "name": "tokenid",
+            "type": "uint256"
+        }],
+        "name": "getNullCard",
+        "outputs": [{
+                "internalType": "uint8",
+                "name": "",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+                "internalType": "address",
+                "name": "_account",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_pid",
+                "type": "uint256"
+            }
+        ],
+        "name": "getPayment",
+        "outputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+                "internalType": "address[]",
+                "name": "_investorss",
+                "type": "address[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "_tokenIds",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_types",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "_skills",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_rank",
+                "type": "uint8"
+            }
+        ],
+        "name": "nCardGeneration",
+        "outputs": [{
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+        }],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "nullCardToken",
+        "outputs": [{
+            "internalType": "contract NFTsCardToken",
+            "name": "",
+            "type": "address"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "name": "paymentsInfo",
+        "outputs": [{
+                "internalType": "address",
+                "name": "payToken",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+            "internalType": "address",
+            "name": "governance",
+            "type": "address"
+        }],
+        "name": "setGovernance",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_types",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_skills",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_rank",
+                "type": "uint8"
+            }
+        ],
+        "name": "setNcardIndex",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "totalWeight",
+        "outputs": [{
+            "internalType": "uint16",
+            "name": "",
+            "type": "uint16"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "updateTime",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "name": "usersLog",
+        "outputs": [{
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+        }],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]

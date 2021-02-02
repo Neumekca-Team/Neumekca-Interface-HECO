@@ -1,6 +1,6 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { H_USD, H_USDT, H_DAI, NAR, HTCB, BURNED_ADDRESS, DIVIDEND_ADDRESS, DIVIDEND_ADDRESS2 } from '../../constants'
+import { H_USD, H_USDT, H_DAI, NAR, HBTC, BURNED_ADDRESS, DIVIDEND_ADDRESS, DIVIDEND_ADDRESS2 } from '../../constants'
 import { STAKING_REWARDS_INTERFACE, STAKING_REWARDS_CAPPED_INTERFACE } from '../../constants/abis/staking-rewards'
 import { NARWHAL_POWER_INTERFACE } from '../../constants/abis/narwhal-power'
 import { useActiveWeb3React } from '../../hooks'
@@ -17,7 +17,7 @@ export const STAKING_REWARDS_INFO: {
   [chainId in ChainId]?: {
     tokens: [Token, Token]
     stakingRewardAddress: string
-    rnlpAddress: string
+    jlp4fAddress: string
     powerAddress: string
     poolId: number
   }[]
@@ -27,48 +27,47 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x1D227F7e283D653a60F94d2350CAB7a49bB85C6f',
-      rnlpAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
+      jlp4fAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
       powerAddress: '0x1D791EaA684A21De92618Dedea7BF373e2486956',
       poolId: 0
     },
     {
       tokens: [WETH[ChainId.HT_MAINNET], H_USD[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x6dA9Ee0c0571b63e38950D1e12e835D5343f601B',
-      rnlpAddress: '0x1f7D08d96d2520BD9196cb857e40d2A99e31de1A',
+      jlp4fAddress: '0x1f7D08d96d2520BD9196cb857e40d2A99e31de1A',
       powerAddress: '0xa1992a9777c3C11c466F44a4b9c7530719a22ea2',
       poolId: 1
     },
     {
       tokens: [WETH[ChainId.HT_MAINNET], H_USDT],
       stakingRewardAddress: '0xCF889a0902859662C17dC895abb7AF49EE28A013',
-      rnlpAddress: '0xc0b5306224298f39E6ce9Cb9fD2acb6d03A2CC04',
+      jlp4fAddress: '0xc0b5306224298f39E6ce9Cb9fD2acb6d03A2CC04',
       powerAddress: '0xb9C9E7Cc58DA9B727916d7dfD6bf7001C5f26210',
       poolId: 2
     },
     {
       tokens: [WETH[ChainId.HT_MAINNET], H_DAI],
       stakingRewardAddress: '0xb6c9B20253a4BDC65d1FDC6F4aE04f57f6523915',
-      rnlpAddress: '0x6400442ad9B93aC56d18C272C977efE1e50273c1',
+      jlp4fAddress: '0x6400442ad9B93aC56d18C272C977efE1e50273c1',
       powerAddress: '0x5777Ae2Ac8a042dc99dC41888C5b70f198A1e159',
       poolId: 3
     }
   ]
-
 }
 
 export const STAKING_REWARDS_CAPPED_INFO: {
   [chainId in ChainId]?: {
     tokens: [Token, Token]
     stakingRewardAddress: string
-    rnlpAddress: string
+    jlp4fAddress: string
     poolId: number
   }[]
 } = {
   [ChainId.HT_MAINNET]: [
     {
-      tokens: [HTCB, NAR[ChainId.HT_MAINNET]],
+      tokens: [HBTC, NAR[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x3DFB186e8CE513f321232098Dd551e22886C1051',
-      rnlpAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
+      jlp4fAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
       poolId: 0
     }
   ]
@@ -89,9 +88,9 @@ export interface StakingInfo {
     totalRewardRate: TokenAmount
   ) => TokenAmount
 
-  rnlpAddress: string
-  rnlpToken: Token
-  rnlpBalance: TokenAmount
+  jlp4fAddress: string
+  jlp4fToken: Token
+  jlp4fBalance: TokenAmount
 
   narPair: [Token, Token]
   narPower: TokenAmount
@@ -125,7 +124,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
   const nar = chainId ? NAR[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
-  const rnlpAddresses = useMemo(() => info.map(({ rnlpAddress }) => rnlpAddress), [info])
+  const jlp4fAddresses = useMemo(() => info.map(({ jlp4fAddress }) => jlp4fAddress), [info])
   const powerAddresses = useMemo(() => info.map(({ powerAddress }) => powerAddress), [info])
   const accountArg = useMemo(() => [account ?? undefined], [account])
 
@@ -133,8 +132,13 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
   const balances = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'balanceOf', accountArg)
   const earnedAmounts = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'earned', accountArg)
   const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
-  const totalPowers = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, '_totalPower')
-  const rnlpBalances = useMultipleContractSingleData(rnlpAddresses, STAKING_REWARDS_INTERFACE, 'balanceOf', accountArg)
+  const totalSkills = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, '_totalSkills')
+  const jlp4fBalances = useMultipleContractSingleData(
+    jlp4fAddresses,
+    STAKING_REWARDS_INTERFACE,
+    'balanceOf',
+    accountArg
+  )
   const userInfos = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'userInfo', accountArg)
   const rules = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'Rule', accountArg)
 
@@ -168,13 +172,13 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
       // these two are dependent on account
       const balanceState = balances[index]
       const earnedAmountState = earnedAmounts[index]
-      const rnlpBalanceState = rnlpBalances[index]
+      const jlp4fBalanceState = jlp4fBalances[index]
       const userInfoState = userInfos[index]
       const ruleState = rules[index]
 
       // these get fetched regardless of account
       const totalSupplyState = totalSupplies[index]
-      const totalPowerState = totalPowers[index]
+      const totalPowerState = totalSkills[index]
       const rewardRateState = rewardRates[index]
       const commonEdgeState = commonEdges[index]
       const periodFinishState = periodFinishes[index]
@@ -183,7 +187,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         // these may be undefined if not logged in
         !balanceState?.loading &&
         !earnedAmountState?.loading &&
-        !rnlpBalanceState?.loading &&
+        !jlp4fBalanceState?.loading &&
         !userInfoState?.loading &&
         !ruleState?.loading &&
         // always need these
@@ -201,7 +205,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         if (
           balanceState?.error ||
           earnedAmountState?.error ||
-          rnlpBalanceState?.error ||
+          jlp4fBalanceState?.error ||
           ruleState?.error ||
           userInfoState?.error ||
           totalSupplyState.error ||
@@ -217,15 +221,15 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         // get the LP token
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
-        const rnlpToken = new Token(chainId, rnlpAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, rnlpAddresses[index], 21, 'NARPOWER', 'NARPOWER')
+        const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NARPOWER', 'NARPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
         const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
         const totalRewardRate = new TokenAmount(nar, JSBI.BigInt(rewardRateState.result?.[0]))
         const totalPower = new TokenAmount(dummyNarpower, JSBI.BigInt(totalPowerState.result?.[0]))
-        const rnlpAmount = new TokenAmount(rnlpToken, JSBI.BigInt(rnlpBalanceState?.result?.[0] ?? 0))
+        const jlp4fAmount = new TokenAmount(jlp4fToken, JSBI.BigInt(jlp4fBalanceState?.result?.[0] ?? 0))
         const narPower = new TokenAmount(dummyNarpower, JSBI.BigInt(userInfoState?.result?.currentPower ?? 0))
         const buffRateTimestamp = userInfoState?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0
         const rule = JSBI.BigInt(ruleState?.result?.[0] ?? 0)
@@ -268,9 +272,9 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
           stakedAmount: stakedAmount,
           totalStakedAmount: totalStakedAmount,
           getHypotheticalRewardRate,
-          rnlpAddress: rnlpAddresses[index],
-          rnlpToken: rnlpToken,
-          rnlpBalance: rnlpAmount,
+          jlp4fAddress: jlp4fAddresses[index],
+          jlp4fToken: jlp4fToken,
+          jlp4fBalance: jlp4fAmount,
           narPair: info[0].tokens,
           narPower: narPower,
           userInfoTimeStamp: buffRateTimestamp,
@@ -290,8 +294,8 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
     rewardRates,
     rewardsAddresses,
     totalSupplies,
-    totalPowers,
-    rnlpBalances,
+    totalSkills,
+    jlp4fBalances,
     userInfos,
     rules,
     nar
@@ -319,7 +323,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
   const nar = chainId ? NAR[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
-  const rnlpAddresses = useMemo(() => info.map(({ rnlpAddress }) => rnlpAddress), [info])
+  const jlp4fAddresses = useMemo(() => info.map(({ jlp4fAddress }) => jlp4fAddress), [info])
   const accountArg = useMemo(() => [account ?? undefined], [account])
 
   // get all the info from the staking rewards contracts
@@ -336,9 +340,9 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
     accountArg
   )
   const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_CAPPED_INTERFACE, 'totalSupply')
-  const totalPowers = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_CAPPED_INTERFACE, '_totalPower')
-  const rnlpBalances = useMultipleContractSingleData(
-    rnlpAddresses,
+  const totalSkills = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_CAPPED_INTERFACE, '_totalSkills')
+  const jlp4fBalances = useMultipleContractSingleData(
+    jlp4fAddresses,
     STAKING_REWARDS_CAPPED_INTERFACE,
     'balanceOf',
     accountArg
@@ -380,13 +384,13 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
       // these two are dependent on account
       const balanceState = balances[index]
       const earnedAmountState = earnedAmounts[index]
-      const rnlpBalanceState = rnlpBalances[index]
+      const jlp4fBalanceState = jlp4fBalances[index]
       const userInfoState = userInfos[index]
       const ruleState = rules[index]
 
       // these get fetched regardless of account
       const totalSupplyState = totalSupplies[index]
-      const totalPowerState = totalPowers[index]
+      const totalPowerState = totalSkills[index]
       const rewardRateState = rewardRates[index]
       const periodFinishState = periodFinishes[index]
 
@@ -394,7 +398,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         // these may be undefined if not logged in
         !balanceState?.loading &&
         !earnedAmountState?.loading &&
-        !rnlpBalanceState?.loading &&
+        !jlp4fBalanceState?.loading &&
         !userInfoState?.loading &&
         !ruleState?.loading &&
         // always need these
@@ -410,7 +414,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         if (
           balanceState?.error ||
           earnedAmountState?.error ||
-          rnlpBalanceState?.error ||
+          jlp4fBalanceState?.error ||
           ruleState?.error ||
           userInfoState?.error ||
           totalSupplyState.error ||
@@ -425,15 +429,15 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         // get the LP token
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
-        const rnlpToken = new Token(chainId, rnlpAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, rnlpAddresses[index], 21, 'NARPOWER', 'NARPOWER')
+        const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NARPOWER', 'NARPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
         const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
         const totalRewardRate = new TokenAmount(nar, JSBI.BigInt(rewardRateState.result?.[0]))
         const totalPower = new TokenAmount(dummyNarpower, JSBI.BigInt(totalPowerState.result?.[0]))
-        const rnlpAmount = new TokenAmount(rnlpToken, JSBI.BigInt(rnlpBalanceState?.result?.[0] ?? 0))
+        const jlp4fAmount = new TokenAmount(jlp4fToken, JSBI.BigInt(jlp4fBalanceState?.result?.[0] ?? 0))
         const narPower = new TokenAmount(dummyNarpower, JSBI.BigInt(userInfoState?.result?.currentPower ?? 0))
         const buffRateTimestamp = userInfoState?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0
         const rule = JSBI.BigInt(ruleState?.result?.[0] ?? 0)
@@ -470,9 +474,9 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
           stakedAmount: stakedAmount,
           totalStakedAmount: totalStakedAmount,
           getHypotheticalRewardRate,
-          rnlpAddress: rnlpAddresses[index],
-          rnlpToken: rnlpToken,
-          rnlpBalance: rnlpAmount,
+          jlp4fAddress: jlp4fAddresses[index],
+          jlp4fToken: jlp4fToken,
+          jlp4fBalance: jlp4fAmount,
           narPair: info[0].tokens,
           narPower: narPower,
           userInfoTimeStamp: buffRateTimestamp,
@@ -492,8 +496,8 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
     rewardRates,
     rewardsAddresses,
     totalSupplies,
-    totalPowers,
-    rnlpBalances,
+    totalSkills,
+    jlp4fBalances,
     userInfos,
     rules,
     nar

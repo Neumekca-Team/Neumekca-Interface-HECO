@@ -96,7 +96,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
     accountArg
   )
   const totalSupplies = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'totalSupply')
-  const totalPowers = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, '_totalPower')
+  const totalSkills = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, '_totalSkills')
   const rBalances = useMultipleContractSingleData(
     rAddresses,
     STAKING_REWARDS_DIVIDEND_INTERFACE,
@@ -109,25 +109,21 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
     'userInfo',
     accountArg
   )
-  const runes1 = useMultipleContractSingleData(
-    poolAddresses,
-    STAKING_REWARDS_DIVIDEND_INTERFACE,
-    'rune',
-    [...accountArg, 1]
-  )
-  const runes2 = useMultipleContractSingleData(
-    poolAddresses,
-    STAKING_REWARDS_DIVIDEND_INTERFACE,
-    'rune',
-    [...accountArg, 2]
-  )
+  const runes1 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'rune', [
+    ...accountArg,
+    1
+  ])
+  const runes2 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'rune', [
+    ...accountArg,
+    2
+  ])
   const rules = useMultipleContractSingleData(
     poolAddresses,
     STAKING_REWARDS_DIVIDEND_INTERFACE,
     '_rule',
     undefined,
     NEVER_RELOAD
-  )  
+  )
 
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
@@ -160,7 +156,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
 
       // these get fetched regardless of account
       const totalSupplyState = totalSupplies[index]
-      const totalPowerState = totalPowers[index]
+      const totalPowerState = totalSkills[index]
       const rewardRateState = rewardRates[index]
       const periodFinishState = periodFinishes[index]
 
@@ -263,7 +259,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
     rewardRates,
     poolAddresses,
     totalSupplies,
-    totalPowers,
+    totalSkills,
     rBalances,
     userInfos,
     rules,
