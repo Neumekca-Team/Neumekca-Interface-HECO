@@ -344,12 +344,10 @@ export default function Swap() {
                       {t('price')}
                     </Text>
                     <TradePrice
-                      inputCurrency={currencies[Field.INPUT]}
-                      outputCurrency={currencies[Field.OUTPUT]}
-                      price={trade?.executionPrice}
-                      showInverted={showInverted}
-                      setShowInverted={setShowInverted}
-                    />
+                        price={trade?.executionPrice}
+                        showInverted={showInverted}
+                        setShowInverted={setShowInverted}
+                      />
                   </RowBetween>
 
                   {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
@@ -376,7 +374,7 @@ export default function Swap() {
               </ButtonPrimary>
             ) : noRoute && userHasSpecifiedInputOutput ? (
               <GreyCard style={{ textAlign: 'center' }}>
-                <TYPE.main mb="4px">{t('insufficientLiquidityForThisTrade')}</TYPE.main>
+                <TYPE.black mb="4px">{t('insufficientLiquidityForThisTrade')}</TYPE.black>
               </GreyCard>
             ) : showApproveFlow ? (
               <RowBetween>

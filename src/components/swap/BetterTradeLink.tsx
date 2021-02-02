@@ -3,17 +3,32 @@ import React, { useContext, useMemo } from 'react'
 import { useLocation } from 'react-router'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import useParsedQueryString from '../../hooks/useParsedQueryString'
-import { DEFAULT_VERSION, Version } from '../../hooks/useToggledVersion'
+import useToggledVersion, { DEFAULT_VERSION, Version } from '../../hooks/useToggledVersion'
 
 import { StyledInternalLink } from '../../theme'
 import { YellowCard } from '../Card'
 import { AutoColumn } from '../Column'
 
-export default function BetterTradeLink({ version }: { version: Version }) {
+function VersionLinkContainer({ children }: { children: React.ReactNode }) {
   const theme = useContext(ThemeContext)
+
+  return (
+    <YellowCard style={{ marginTop: '12px', padding: '0.5rem 0.5rem' }}>
+      <AutoColumn gap="sm" justify="center" style={{ alignItems: 'center', textAlign: 'center' }}>
+        <Text lineHeight="145.23%;" fontSize={14} fontWeight={400} color={theme.text1}>
+          {children}
+        </Text>
+      </AutoColumn>
+    </YellowCard>
+  )
+}
+
+export default function BetterTradeLink({ version }: { version: Version }) {
   const location = useLocation()
   const search = useParsedQueryString()
+  const { t } = useTranslation()
 
   const linkDestination = useMemo(() => {
     return {
@@ -26,15 +41,40 @@ export default function BetterTradeLink({ version }: { version: Version }) {
   }, [location, search, version])
 
   return (
-    <YellowCard style={{ marginTop: '12px', padding: '8px 4px' }}>
-      <AutoColumn gap="sm" justify="center" style={{ alignItems: 'center', textAlign: 'center' }}>
-        <Text lineHeight="145.23%;" fontSize={14} fontWeight={400} color={theme.text1}>
-          There is a better price for this trade on{' '}
-          <StyledInternalLink to={linkDestination}>
-            <b>Uniswap {version.toUpperCase()} ↗</b>
-          </StyledInternalLink>
-        </Text>
-      </AutoColumn>
-    </YellowCard>
+    <VersionLinkContainer>
+      {t('there-is-a-better-price-for-this-trade-on')}{' '}
+      <StyledInternalLink to={linkDestination}>
+        <b>Uniswap {version.toUpperCase()} ↗</b>
+      </StyledInternalLink>
+    </VersionLinkContainer>
+  )
+}
+
+export function DefaultVersionLink() {
+  const location = useLocation()
+  const search = useParsedQueryString()
+  const version = useToggledVersion()
+
+  const { t } = useTranslation()
+
+  const linkDestination = useMemo(() => {
+    return {
+      ...location,
+      search: `?${stringify({
+        ...search,
+        use: DEFAULT_VERSION
+      })}`
+    }
+  }, [location, search])
+
+  return (
+    <VersionLinkContainer>
+      {t('showing')} {version.toUpperCase()} {t('price')}.{' '}
+      <StyledInternalLink to={linkDestination}>
+        <b>
+          {t('switchToGoSwap')} {DEFAULT_VERSION.toUpperCase()} ↗
+        </b>
+      </StyledInternalLink>
+    </VersionLinkContainer>
   )
 }

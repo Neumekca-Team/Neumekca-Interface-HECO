@@ -1,6 +1,7 @@
 import { Trade, TradeType } from '@neumekca/neumekca-sdk'
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { TYPE } from '../../theme'
@@ -11,14 +12,19 @@ import { RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { SectionBreak } from './styleds'
 import SwapRoute from './SwapRoute'
-import { useTranslation } from 'react-i18next'
+import { useActiveWeb3React } from '../../hooks'
+import formatSymbol from '../../utils/formatSymbol'
+
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const theme = useContext(ThemeContext)
+  const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
-  const { t } = useTranslation()
+  const inputSymbol = formatSymbol(trade.inputAmount.currency, chainId)
+  const outputSymbol = formatSymbol(trade.outputAmount.currency, chainId)
 
   return (
     <>
@@ -28,15 +34,17 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
               {isExactIn ? t('minimumReceived') : t('maximumSold')}
             </TYPE.black>
-            <QuestionHelper text={t('yourTXWill3')} />
+            <QuestionHelper
+              text={t(
+                'your-transaction-will-revert-if-there-is-a-large-unfavorable-price-movement-before-it-is-confirmed'
+              )}
+            />
           </RowFixed>
           <RowFixed>
             <TYPE.black color={theme.text1} fontSize={14}>
               {isExactIn
-                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
-                  '-'
-                : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ??
-                  '-'}
+                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${outputSymbol}` ?? '-'
+                : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${inputSymbol}` ?? '-'}
             </TYPE.black>
           </RowFixed>
         </RowBetween>
@@ -45,7 +53,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
               {t('priceImpact')}
             </TYPE.black>
-            <QuestionHelper text={t('theDifference')} />
+            <QuestionHelper text={t('the-difference-between-the-market-price-and-estimated-price-due-to-trade-size')} />
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
@@ -53,12 +61,14 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {t('liquidityProvider')}
+              {t('liquidityProviderFee')}
             </TYPE.black>
-            <QuestionHelper text={t('aPortion')} />
+            <QuestionHelper
+              text={t('a-portion-of-each-trade-0-30-goes-to-liquidity-providers-as-a-protocol-incentive')}
+            />
           </RowFixed>
           <TYPE.black fontSize={14} color={theme.text1}>
-            {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
+            {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${inputSymbol}` : '-'}
           </TYPE.black>
         </RowBetween>
       </AutoColumn>
@@ -91,12 +101,13 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
                   <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
                     {t('route')}
                   </TYPE.black>
-                  <QuestionHelper text={t('routingThrough')} />
+                  <QuestionHelper text={t('routing-through-these-tokens-resulted-in-the-scam-price-for-your-trade')} />
                 </RowFixed>
                 <SwapRoute trade={trade} />
               </AutoColumn>
             </>
           )}
+          
         </>
       )}
     </AutoColumn>

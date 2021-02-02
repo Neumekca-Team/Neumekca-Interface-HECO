@@ -223,7 +223,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
 
             <PriceSection>
               <Container>
-                <TYPE.subHeader marginRight={16}>Price (NAR):</TYPE.subHeader>
+                <TYPE.subHeader marginRight={16}>Price (ZERO):</TYPE.subHeader>
                 <NumericalInput
                   align="right"
                   value={narPrice}
@@ -235,7 +235,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
               <RowBetween>
                 <TYPE.subHeader> </TYPE.subHeader>
                 <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                  Total received: {Number(narPrice) * 0.95} NAR
+                  Total received: {Number(narPrice) * 0.95} ZERO
                 </TYPE.subHeader>
               </RowBetween>
             </PriceSection>

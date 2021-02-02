@@ -77,9 +77,9 @@ export function SaleCard({ nftInfo }: { nftInfo?: NftInfo }) {
           </RowBetween>
 
           <RowBetween>
-            <TYPE.subHeader fontSize={11}>Price (NAR):</TYPE.subHeader>
+            <TYPE.subHeader fontSize={11}>Price (ZERO):</TYPE.subHeader>
             <TYPE.subHeader fontSize={11} fontWeight={700} color={theme.primary1}>
-              {nftInfo?.narPrice?.toFixed(3) ?? '-'} NAR
+              {nftInfo?.narPrice?.toFixed(3) ?? '-'} ZERO
             </TYPE.subHeader>
           </RowBetween>
         </DetailsCard>
@@ -118,9 +118,9 @@ export function UserCard({ nftInfo, isSale }: { nftInfo?: NftInfo; isSale: boole
               </RowBetween>
 
               <RowBetween>
-                <TYPE.subHeader>Price (NAR):</TYPE.subHeader>
+                <TYPE.subHeader>Price (ZERO):</TYPE.subHeader>
                 <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                  {nftInfo?.narPrice?.toFixed(3) ?? '-'} NAR
+                  {nftInfo?.narPrice?.toFixed(3) ?? '-'} ZERO
                 </TYPE.subHeader>
               </RowBetween>
             </>

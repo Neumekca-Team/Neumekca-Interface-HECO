@@ -199,7 +199,7 @@ export default function CappedManage({
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
         <TYPE.mediumHeader style={{ margin: 0 }}>
-          {currencyA?.symbol}-{currencyB?.symbol}
+          {currencyA?.toDisplayableSymbol(chainId)}-{currencyB?.toDisplayableSymbol(chainId)}
           {checkSegment('huge') ? ' HUGE' : checkSegment('common') ? ' COMMON' : ' TINY'}
         </TYPE.mediumHeader>
         <DoubleCurrencyLogo
@@ -312,7 +312,7 @@ export default function CappedManage({
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`JLP tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`JLP tokens are required. Once you've added liquidity to the ${currencyA?.toDisplayableSymbol(chainId)}-${currencyB?.toDisplayableSymbol(chainId)} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary
@@ -322,7 +322,7 @@ export default function CappedManage({
                 as={Link}
                 to={`/page/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
               >
-                {`Add ${currencyA?.symbol}-${currencyB?.symbol} liquidity`}
+                {`Add ${currencyA?.toDisplayableSymbol(chainId)}-${currencyB?.toDisplayableSymbol(chainId)} liquidity`}
               </ButtonPrimary>
             </AutoColumn>
           </CardSection>
@@ -373,7 +373,7 @@ export default function CappedManage({
                     {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
                   </TYPE.black>
                   <TYPE.black>
-                    JLP {currencyA?.symbol}-{currencyB?.symbol}
+                    JLP {currencyA?.toDisplayableSymbol(chainId)}-{currencyB?.toDisplayableSymbol(chainId)}
                   </TYPE.black>
                 </RowBetween>
               </AutoColumn>

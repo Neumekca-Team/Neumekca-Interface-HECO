@@ -313,13 +313,14 @@ export function useUserNfts(): userNftInfo | undefined {
   const { chainId, account } = useActiveWeb3React()
   const contract = useNftContract()
   const factoryContract = useNftFactoryContract()
-
+  console.log(factoryContract)
   const accountArg = useMemo(() => [account ?? undefined], [account])
   const getPriceArg = useMemo(() => [account ?? undefined, 0], [account])
 
   const tokensOfOwnerCall = useSingleCallResult(contract, 'tokensOfOwner', accountArg)
   const gachaPriceCall = useSingleCallResult(factoryContract, 'getPayment', getPriceArg)
-
+  console.log('tokensOfOwnerCall',tokensOfOwnerCall)
+  console.log('gachaPriceCall',gachaPriceCall)
   return useMemo(() => {
     if (!chainId || !account) return undefined
 

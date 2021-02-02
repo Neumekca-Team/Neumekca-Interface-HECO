@@ -147,9 +147,9 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
                   </TYPE.subHeader>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.subHeader>Price (NAR):</TYPE.subHeader>
+                  <TYPE.subHeader>Price (ZERO):</TYPE.subHeader>
                   <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                    {nftInfo?.narPrice?.toFixed(3) ?? '-'} NAR
+                    {nftInfo?.narPrice?.toFixed(3) ?? '-'} ZERO
                   </TYPE.subHeader>
                 </RowBetween>
               </PriceSection>
@@ -162,7 +162,7 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
                 Buy with HT
               </ButtonPrimary>
               <ButtonPrimary disabled={false} onClick={onBuyWithNAR}>
-                Buy with NAR
+                Buy with ZERO
               </ButtonPrimary>
             </RowBetween>
           ) : (

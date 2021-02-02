@@ -590,7 +590,7 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
   const userMaxBuffrates = useMultipleContractSingleData(
     rewardsAddresses,
     STAKING_REWARDS_V2_INTERFACE,
-    'userMaxBuffrate',
+    'userMaxChronos',
     accountArg
   )
   const averageLps = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'averageLp')

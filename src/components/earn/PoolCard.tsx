@@ -130,7 +130,7 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
         <AutoColumn>
           <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={32} overlap={false} />
           <TYPE.black fontWeight={600} fontSize={16} style={{ marginTop: '8px' }}>
-            {currency0.symbol}/{currency1.symbol}
+            {currency0?.toDisplayableSymbol(chainId)}/{currency1?.symbol}
             {poolType === 'normal'
               ? ''
               : stakingInfo.poolId === 0
