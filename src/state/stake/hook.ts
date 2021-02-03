@@ -1,8 +1,8 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { H_USD, H_USDT, H_DAI, NAR, HBTC, BURNED_ADDRESS, DIVIDEND_ADDRESS, DIVIDEND_ADDRESS2 } from '../../constants'
+import { H_USD, H_USDT, H_DAI, ZERO, HBTC, BURNED_ADDRESS, DIVIDEND_ADDRESS, DIVIDEND_ADDRESS2 } from '../../constants'
 import { STAKING_REWARDS_INTERFACE, STAKING_REWARDS_CAPPED_INTERFACE } from '../../constants/abis/staking-rewards'
-import { NARWHAL_POWER_INTERFACE } from '../../constants/abis/narwhal-power'
+import { ZEROWHAL_POWER_INTERFACE } from '../../constants/abis/narwhal-power'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData, useSingleCallResult } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
@@ -25,7 +25,7 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.HT_MAINNET]: [
     // New pools
     {
-      tokens: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]],
+      tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x1D227F7e283D653a60F94d2350CAB7a49bB85C6f',
       jlp4fAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
       powerAddress: '0x1D791EaA684A21De92618Dedea7BF373e2486956',
@@ -65,7 +65,7 @@ export const STAKING_REWARDS_CAPPED_INFO: {
 } = {
   [ChainId.HT_MAINNET]: [
     {
-      tokens: [HBTC, NAR[ChainId.HT_MAINNET]],
+      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x3DFB186e8CE513f321232098Dd551e22886C1051',
       jlp4fAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
       poolId: 0
@@ -121,7 +121,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
     [chainId, poolIdToFilterBy]
   )
 
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const jlp4fAddresses = useMemo(() => info.map(({ jlp4fAddress }) => jlp4fAddress), [info])
@@ -152,7 +152,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
   )
   const commonEdges = useMultipleContractSingleData(
     powerAddresses,
-    NARWHAL_POWER_INTERFACE,
+    ZEROWHAL_POWER_INTERFACE,
     '_narwhalsSegment',
     [2],
     NEVER_RELOAD
@@ -222,7 +222,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NARPOWER', 'NARPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -320,7 +320,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
     [chainId, poolIdToFilterBy]
   )
 
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const jlp4fAddresses = useMemo(() => info.map(({ jlp4fAddress }) => jlp4fAddress), [info])
@@ -430,7 +430,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NARPOWER', 'NARPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -574,7 +574,7 @@ export interface NarSupplyInfo {
 // calculate totalSupply
 export function useNarSupplyInfo(): NarSupplyInfo | undefined {
   const { chainId } = useActiveWeb3React()
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
   const contract = useContract()
 
   const totalSupplyCall = useSingleCallResult(contract, 'totalSupply')

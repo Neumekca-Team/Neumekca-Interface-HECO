@@ -1,6 +1,6 @@
 import { ChainId, JSBI, Token, TokenAmount } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { NAR, GEM } from '../../constants'
+import { ZERO, SNOW } from '../../constants'
 import { STAKING_REWARDS_DIVIDEND_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
@@ -15,24 +15,24 @@ export const STAKING_REWARDS_DIVIDEND_INFO: {
 } = {
   [ChainId.BSC_MAINNET]: [
     {
-      stakeToken: NAR[ChainId.BSC_MAINNET],
-      representativeToken: GEM[ChainId.BSC_MAINNET],
+      stakeToken: ZERO[ChainId.BSC_MAINNET],
+      representativeToken: SNOW[ChainId.BSC_MAINNET],
       poolAddress: '0xf7a36c87c3A8909949638120f23CD721bF572032',
       poolId: 0
     }
   ],
   [ChainId.BSC_TESTNET]: [
     {
-      stakeToken: NAR[ChainId.BSC_TESTNET],
-      representativeToken: GEM[ChainId.BSC_TESTNET],
+      stakeToken: ZERO[ChainId.BSC_TESTNET],
+      representativeToken: SNOW[ChainId.BSC_TESTNET],
       poolAddress: '0x6D32E17f7510fDB85415bB9469bD39F54CC2Db5d',
       poolId: 0
     }
   ],
   [ChainId.HT_TESTNET]: [
     {
-      stakeToken: NAR[ChainId.HT_TESTNET],
-      representativeToken: GEM[ChainId.HT_TESTNET],
+      stakeToken: ZERO[ChainId.HT_TESTNET],
+      representativeToken: SNOW[ChainId.HT_TESTNET],
       poolAddress: '0xF18e0A2F39d9f29Ad192aaE1a719ae3aCF8AB5D3',
       poolId: 0
     }
@@ -76,7 +76,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
     [chainId, poolIdToFilterBy]
   )
 
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
 
   const poolAddresses = useMemo(() => info.map(({ poolAddress }) => poolAddress), [info])
   const rAddresses = useMemo(() => info.map(({ representativeToken }) => representativeToken.address), [info])
@@ -197,7 +197,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
         }
 
         const rToken = info[index].representativeToken
-        const dummyNarpower = new Token(chainId, rToken.address, 21, 'NARPOWER', 'NARPOWER')
+        const dummyNarpower = new Token(chainId, rToken.address, 21, 'ZEROPOWER', 'ZEROPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(nar, JSBI.BigInt(balanceState?.result?.[0] ?? 0))

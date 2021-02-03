@@ -1,13 +1,13 @@
 import { Contract } from '@ethersproject/contracts'
 import { ChainId, WETH } from '@neumekca/neumekca-sdk'
-import { abi as INarwhalswapPairABI } from '../constants/abis/IJuncturePair.json'
+import { abi as INarwhalswapPairABI } from '../constants/abis/IhecoswapPair.json'
 import { useMemo } from 'react'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
 } from '../constants/abis/argent-wallet-detector'
-import { NAR, PRESALE_ADDRESS } from '../constants'
-import NAR_ABI from '../constants/abis/nar.json'
+import { ZERO, PRESALE_ADDRESS } from '../constants'
+import ZERO_ABI from '../constants/abis/nar.json'
 import STAKING_REWARDS_ABI from '../constants/abis/staking_rewards.json'
 import STAKING_DIVIDEND_ABI from '../constants/abis/staking_dividend.json'
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
@@ -27,7 +27,7 @@ import {
   NFT_BAZAAR_ADDRESSES
 } from '../constants/abis/nft'
 import { STACKING_TICKETS_ABI, STACKING_TICKETS_ABI_V2 } from '../constants/abis/staking-tickets'
-import { STACKING_GEMS_ABI } from '../constants/abis/staking-gems'
+import { STACKING_SNOW_ABI } from '../constants/abis/staking-gems'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
 
@@ -102,7 +102,7 @@ export function usePresaleContractCallBack(): Contract | null {
 
 export function useNarContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId ? NAR[chainId].address : undefined, NAR_ABI, true)
+  return useContract(chainId ? ZERO[chainId].address : undefined, ZERO_ABI, true)
 }
 
 export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {
@@ -122,7 +122,7 @@ export function useTicketStakingContractV2(stakingAddress?: string, withSignerIf
 }
 
 export function useGemStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(stakingAddress, STACKING_GEMS_ABI, withSignerIfPossible)
+  return useContract(stakingAddress, STACKING_SNOW_ABI, withSignerIfPossible)
 }
 
 export function useNftFactoryContract(withSignerIfPossible?: boolean): Contract | null {

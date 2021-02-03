@@ -2,8 +2,8 @@ import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@
 import { useMemo } from 'react'
 import {
   H_DAI,
-  NAR,
-  NAR_HT,
+  ZERO,
+  ZERO_HT,
   H_USDT,
   HBTC,
   BURNED_ADDRESS,
@@ -16,7 +16,7 @@ import {
   STAKING_REWARDS_CAPPED_INTERFACE,
   STAKING_REWARDS_V2_INTERFACE
 } from '../../constants/abis/staking-rewards'
-import { NARWHAL_POWER_INTERFACE } from '../../constants/abis/narwhal-power'
+import { ZEROWHAL_POWER_INTERFACE } from '../../constants/abis/narwhal-power'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData, useSingleCallResult } from '../multicall/hooks'
@@ -40,7 +40,7 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.HT_MAINNET]: [
     // New pools
     {
-      tokens: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]],
+      tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x1D227F7e283D653a60F94d2350CAB7a49bB85C6f',
       jlp4fAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
       powerAddress: '0x1D791EaA684A21De92618Dedea7BF373e2486956',
@@ -80,19 +80,19 @@ export const STAKING_REWARDS_CAPPED_INFO: {
 } = {
   [ChainId.HT_MAINNET]: [
     {
-      tokens: [HBTC, NAR[ChainId.HT_MAINNET]],
+      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x3DFB186e8CE513f321232098Dd551e22886C1051',
       jlp4fAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
       poolId: 0
     },
     {
-      tokens: [HBTC, NAR[ChainId.HT_MAINNET]],
+      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
       jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
       poolId: 1
     },
     {
-      tokens: [HBTC, NAR[ChainId.HT_MAINNET]],
+      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
       jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
       poolId: 2
@@ -111,7 +111,7 @@ export const STAKING_REWARDS_V2_INFO: {
 } = {
   [ChainId.HT_MAINNET]: [
     {
-      tokens: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]],
+      tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0xed93ccFA7FB5ebd037d1EfEe362583E28A9b3CE5',
       jlp4fAddress: '0x282EA4e76Fd9C812A1B4974716DD9C396a2Be202',
       poolId: 0,
@@ -169,7 +169,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
     [chainId, poolIdToFilterBy]
   )
 
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const jlp4fAddresses = useMemo(() => info.map(({ jlp4fAddress }) => jlp4fAddress), [info])
@@ -195,7 +195,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
   )
   const commonEdges = useMultipleContractSingleData(
     powerAddresses,
-    NARWHAL_POWER_INTERFACE,
+    ZEROWHAL_POWER_INTERFACE,
     '_narwhalsSegment',
     [2],
     NEVER_RELOAD
@@ -265,7 +265,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NARPOWER', 'NARPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -318,7 +318,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
           jlp4fAddress: jlp4fAddresses[index],
           jlp4fToken: jlp4fToken,
           jlp4fBalance: jlp4fAmount,
-          narPair: NAR_HT[chainId],
+          narPair: ZERO_HT[chainId],
           narPower: narPower,
           userInfoTimeStamp: buffRateTimestamp,
           userMaxBuffRate: userMaxBuffRate,
@@ -363,7 +363,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
     [chainId, poolIdToFilterBy]
   )
 
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const jlp4fAddresses = useMemo(() => info.map(({ jlp4fAddress }) => jlp4fAddress), [info])
@@ -468,7 +468,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NARPOWER', 'NARPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -515,7 +515,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
           jlp4fAddress: jlp4fAddresses[index],
           jlp4fToken: jlp4fToken,
           jlp4fBalance: jlp4fAmount,
-          narPair: NAR_HT[chainId],
+          narPair: ZERO_HT[chainId],
           narPower: narPower,
           userInfoTimeStamp: buffRateTimestamp,
           userMaxBuffRate: userMaxBuffRate,
@@ -560,7 +560,7 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
     [chainId, poolIdToFilterBy]
   )
 
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
   const jlp4fAddresses = useMemo(() => info.map(({ jlp4fAddress }) => jlp4fAddress), [info])
@@ -667,7 +667,7 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NARPOWER', 'NARPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -714,7 +714,7 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
           jlp4fAddress: jlp4fAddresses[index],
           jlp4fToken: jlp4fToken,
           jlp4fBalance: jlp4fAmount,
-          narPair: NAR_HT[chainId],
+          narPair: ZERO_HT[chainId],
           narPower: narPower,
           userInfoTimeStamp: buffRateTimestamp,
           userMaxBuffRate: userMaxBuffRate,
@@ -811,7 +811,7 @@ export interface NarSupplyInfo {
 // calculate totalSupply
 export function useNarSupplyInfo(): NarSupplyInfo | undefined {
   const { chainId } = useActiveWeb3React()
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
   const contract = useNarContract()
 
   const totalSupplyCall = useSingleCallResult(contract, 'totalSupply')

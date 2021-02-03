@@ -1,13 +1,9 @@
 import { ChainId, JSBI, Token, TokenAmount, WETH } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { GOLD, GOLD_WETH, GEM, NAR, THUGS_NAR, THUGS, BLIQ_WETH, BLIQ, BURNED_ADDRESS } from '../../constants'
+import { LEON, LEON_WETH, SNOW, ZERO, THUGS_ZERO, THUGS, BLIQ_WETH, BLIQ, BURNED_ADDRESS } from '../../constants'
 import { STACKING_TICKETS_INTERFACE } from '../../constants/abis/staking-tickets'
 import { useActiveWeb3React } from '../../hooks'
-import {
-  useMultipleContractSingleData,
-  useSingleCallResult,
-  useSingleContractMultipleData
-} from '../multicall/hooks'
+import { useMultipleContractSingleData, useSingleCallResult, useSingleContractMultipleData } from '../multicall/hooks'
 import {
   useNftContract,
   useNftFactoryContract,
@@ -32,9 +28,9 @@ export const STAKING_TICKETS_INFO: {
 } = {
   [ChainId.BSC_MAINNET]: [
     {
-      stakeToken: GEM[ChainId.BSC_MAINNET],
+      stakeToken: SNOW[ChainId.BSC_MAINNET],
       pairTokens: [],
-      earnToken: GOLD[ChainId.BSC_MAINNET],
+      earnToken: LEON[ChainId.BSC_MAINNET],
       poolAddress: '0xDDe9e8314afD828c73539692895dd96d55CdA7c8',
       poolId: 0,
       isActive: false,
@@ -43,9 +39,9 @@ export const STAKING_TICKETS_INFO: {
   ],
   [ChainId.BSC_TESTNET]: [
     {
-      stakeToken: GEM[ChainId.BSC_TESTNET],
+      stakeToken: SNOW[ChainId.BSC_TESTNET],
       pairTokens: [],
-      earnToken: GOLD[ChainId.BSC_TESTNET],
+      earnToken: LEON[ChainId.BSC_TESTNET],
       poolAddress: '0x9Fd8D743439c318bA2039f2813630d28bee772b8',
       poolId: 0,
       isActive: true,
@@ -68,9 +64,9 @@ export const STAKING_TICKETS_INFO_V2: {
 } = {
   [ChainId.BSC_MAINNET]: [
     {
-      stakeToken: GOLD_WETH,
-      earnToken: GOLD[ChainId.BSC_MAINNET],
-      pairTokens: [GOLD[ChainId.BSC_MAINNET], WETH[ChainId.BSC_MAINNET]],
+      stakeToken: LEON_WETH,
+      earnToken: LEON[ChainId.BSC_MAINNET],
+      pairTokens: [LEON[ChainId.BSC_MAINNET], WETH[ChainId.BSC_MAINNET]],
       poolAddress: '0x77C10A04B7d3adEBE4F235D69b5c1f20Cbfd2E57',
       poolId: 0,
       isActive: true,
@@ -78,9 +74,9 @@ export const STAKING_TICKETS_INFO_V2: {
       startTime: 0
     },
     {
-      stakeToken: GEM[ChainId.BSC_MAINNET],
+      stakeToken: SNOW[ChainId.BSC_MAINNET],
       pairTokens: [],
-      earnToken: GOLD[ChainId.BSC_MAINNET],
+      earnToken: LEON[ChainId.BSC_MAINNET],
       poolAddress: '0x77C10A04B7d3adEBE4F235D69b5c1f20Cbfd2E57',
       poolId: 1,
       isActive: true,
@@ -88,9 +84,9 @@ export const STAKING_TICKETS_INFO_V2: {
       startTime: 0
     },
     {
-      stakeToken: THUGS_NAR,
-      earnToken: GOLD[ChainId.BSC_MAINNET],
-      pairTokens: [THUGS, NAR[ChainId.BSC_MAINNET]],
+      stakeToken: THUGS_ZERO,
+      earnToken: LEON[ChainId.BSC_MAINNET],
+      pairTokens: [THUGS, ZERO[ChainId.BSC_MAINNET]],
       poolAddress: '0x77C10A04B7d3adEBE4F235D69b5c1f20Cbfd2E57',
       poolId: 2,
       isActive: true,
@@ -99,7 +95,7 @@ export const STAKING_TICKETS_INFO_V2: {
     },
     {
       stakeToken: BLIQ_WETH,
-      earnToken: GOLD[ChainId.BSC_MAINNET],
+      earnToken: LEON[ChainId.BSC_MAINNET],
       pairTokens: [BLIQ, WETH[ChainId.BSC_MAINNET]],
       poolAddress: '0x77C10A04B7d3adEBE4F235D69b5c1f20Cbfd2E57',
       poolId: 3,
@@ -227,7 +223,10 @@ export function useTicketStakingInfoV2(poolIdToFilterBy?: number | null): Ticket
 
   const poolAddress = info[0]?.poolAddress
   const stakeTokenAddresses = useMemo(() => info.map(({ stakeToken }) => stakeToken.address), [info])
-  const accountArg = useMemo(() => info.map(({ poolId }) => [poolId, account ?? (chainId ? BURNED_ADDRESS[chainId] : undefined) ]), [info])
+  const accountArg = useMemo(
+    () => info.map(({ poolId }) => [poolId, account ?? (chainId ? BURNED_ADDRESS[chainId] : undefined)]),
+    [info]
+  )
 
   const stakingContract = useTicketStakingContractV2(poolAddress ?? undefined)
 
@@ -291,21 +290,22 @@ export interface NftInfo {
   description: string
   token_image: string
   external_url: string
-  types: Number
-  rank: Number
+  types: number
+  rank: number
   rank_text: string
-  powers: Number
+  powers: number
   effect: string
-  created_time: Number
+  created_time: number
   author: string
-  block: Number
+  block: number
   bnbPrice?: TokenAmount
   narPrice?: TokenAmount
   isOwner?: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/class-name-casing
 export interface userNftInfo {
-  myNfts: Number[]
+  myNfts: number[]
   gachaPrice: TokenAmount
 }
 
@@ -319,8 +319,8 @@ export function useUserNfts(): userNftInfo | undefined {
 
   const tokensOfOwnerCall = useSingleCallResult(contract, 'tokensOfOwner', accountArg)
   const gachaPriceCall = useSingleCallResult(factoryContract, 'getPayment', getPriceArg)
-  console.log('tokensOfOwnerCall',tokensOfOwnerCall)
-  console.log('gachaPriceCall',gachaPriceCall)
+  console.log('tokensOfOwnerCall', tokensOfOwnerCall)
+  console.log('gachaPriceCall', gachaPriceCall)
   return useMemo(() => {
     if (!chainId || !account) return undefined
 
@@ -329,12 +329,12 @@ export function useUserNfts(): userNftInfo | undefined {
 
     if (tokensOfOwnerState && !tokensOfOwnerState.loading && gachaPriceState && !gachaPriceState.loading) {
       if (tokensOfOwnerState.error || gachaPriceState.error) {
-        console.error('Failed to load nft info')
+        console.error('Failed to load NFT info')
         return undefined
       }
 
-      const nfts: Number[] = tokensOfOwnerState?.result?.[0]
-      const gachaPrice = new TokenAmount(GOLD[chainId], JSBI.BigInt(gachaPriceState?.result?.[0] ?? 0))
+      const nfts: number[] = tokensOfOwnerState?.result?.[0]
+      const gachaPrice = new TokenAmount(LEON[chainId], JSBI.BigInt(gachaPriceState?.result?.[0] ?? 0))
 
       return {
         myNfts: nfts,
@@ -345,8 +345,9 @@ export function useUserNfts(): userNftInfo | undefined {
   }, [chainId, tokensOfOwnerCall])
 }
 
+// eslint-disable-next-line @typescript-eslint/class-name-casing
 export interface onSaleNftInfo {
-  tokenId: Number
+  tokenId: number
   bnbPrice: TokenAmount
   narPrice: TokenAmount
 }
@@ -368,8 +369,8 @@ export function useOnSaleNfts(): onSaleNftInfo[] {
         return []
       }
 
-      const dummy = NAR[chainId]
-      const asksTuple: Number[][] = getAsksState?.result?.[0]
+      const dummy = ZERO[chainId]
+      const asksTuple: number[][] = getAsksState?.result?.[0]
 
       return asksTuple.reduce<onSaleNftInfo[]>((asks, ask) => {
         asks.push({
@@ -404,8 +405,8 @@ export function useUserOnSaleNfts(): onSaleNftInfo[] {
         return []
       }
 
-      const dummy = NAR[chainId]
-      const asksTuple: Number[][] = getAsksByUserState?.result?.[0]
+      const dummy = ZERO[chainId]
+      const asksTuple: number[][] = getAsksByUserState?.result?.[0]
 
       return asksTuple.reduce<onSaleNftInfo[]>((asks, ask) => {
         asks.push({

@@ -46,7 +46,7 @@ export default function ReinvestModal({ isOpen, onDismiss, stakingInfo }: Stakin
         .reInvest({ gasLimit: 850000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Reinvest accumulated NAR rewards`
+            summary: `Reinvest accumulated ZERO rewards`
           })
           setHash(response.hash)
         })
@@ -78,7 +78,7 @@ export default function ReinvestModal({ isOpen, onDismiss, stakingInfo }: Stakin
               <TYPE.body fontWeight={600} fontSize={36}>
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
-              <TYPE.body>Pending NAR</TYPE.body>
+              <TYPE.body>Pending ZERO</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
@@ -92,7 +92,7 @@ export default function ReinvestModal({ isOpen, onDismiss, stakingInfo }: Stakin
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Reinvesting {stakingInfo?.earnedAmount?.toSignificant(6)} NAR</TYPE.body>
+            <TYPE.body fontSize={20}>Reinvesting {stakingInfo?.earnedAmount?.toSignificant(6)} ZERO</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -100,7 +100,7 @@ export default function ReinvestModal({ isOpen, onDismiss, stakingInfo }: Stakin
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Reinvested NAR!</TYPE.body>
+            <TYPE.body fontSize={20}>Reinvested ZERO!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

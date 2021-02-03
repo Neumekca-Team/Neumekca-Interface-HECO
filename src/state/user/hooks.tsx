@@ -199,7 +199,7 @@ export function useTokenWarningDismissal(chainId?: number, token?: Currency): [b
  * @param tokenB the other token
  */
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
-  return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB), 18, 'JLP', 'Juncture LP Token')
+  return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB), 18, 'JLP', 'hecoswap LP Token')
 }
 
 /**

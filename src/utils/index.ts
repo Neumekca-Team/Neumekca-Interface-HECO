@@ -3,7 +3,7 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { abi as IJunctureRouter02ABI } from '../constants/contracts/IJunctureRouter02.json'
+import { abi as IheconswapRouterABI } from '../constants/contracts/IhecoswapRouter.json'
 import { ROUTER_ADDRESS } from '../constants'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@neumekca/neumekca-sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
@@ -49,14 +49,14 @@ export function getEtherscanLink(chainId: ChainId, data: string, type: 'transact
 }
 
 export function getAnalysisLink(chainId: ChainId): string {
-  switch(chainId){
-    case 56 : case 97 :
-      return `https://${ANALYSIS_PREFIXES[chainId]}bscswap.info`;
-      case 256: 
-        return `http://${ANALYSIS_PREFIXES[chainId]}huobichain.com`;
-        case 128: 
-        return `https://${ANALYSIS_PREFIXES[chainId]}huobichain.com`;
-      
+  switch (chainId) {
+    case 56:
+    case 97:
+      return `https://${ANALYSIS_PREFIXES[chainId]}bscswap.info`
+    case 256:
+      return `http://${ANALYSIS_PREFIXES[chainId]}huobichain.com`
+    case 128:
+      return `https://${ANALYSIS_PREFIXES[chainId]}huobichain.com`
   }
   return `https://${ANALYSIS_PREFIXES[chainId]}bscswap.info`
 }
@@ -110,9 +110,8 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 }
 
 // account is optional
-export function getRouterContract(_: number, library: Web3Provider, account?: string, chainId? : any): Contract {
-
-  return getContract( ROUTER_ADDRESS[chainId as ChainId] , IJunctureRouter02ABI, library, account)
+export function getRouterContract(_: number, library: Web3Provider, account?: string, chainId?: any): Contract {
+  return getContract(ROUTER_ADDRESS[chainId as ChainId], IheconswapRouterABI, library, account)
 }
 
 export function escapeRegExp(string: string): string {

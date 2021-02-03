@@ -25,8 +25,8 @@ import CountUp from 'react-countup'
 import usePrevious from '../../hooks/usePrevious'
 import { NftInfo } from '../../state/nft/hooks'
 
-import GEMToken from '../../assets/images/gem.png'
-import NARToken from '../../assets/images/logo.png'
+import SNOWToken from '../../assets/images/gem.png'
+import ZEROToken from '../../assets/images/logo.png'
 
 const PageWrapper = styled(AutoColumn)`
 
@@ -71,7 +71,7 @@ const PoolData = styled(DataCard)`
   z-index: 1;
 `
 
-const GEMImage = styled.img`
+const SNOWImage = styled.img`
   width: 24px;
   margin-right: 8px;
 `
@@ -116,7 +116,7 @@ const RuneImage = styled.img<{ dim: any }>`
 
 interface showStakingRuneProps {
   isOpen: boolean
-  type?: Number
+  type?: number
 }
 
 interface showUnstakingRuneProps {
@@ -231,7 +231,7 @@ export default function Dividend() {
         <SubPressedCard style={{ padding: 16 }}>
           <AutoColumn>
             <AutoRow marginBottom={16}>
-              <TokenImage src={NARToken} />
+              <TokenImage src={ZEROToken} />
               <TYPE.body fontSize={36} fontWeight={500}>
                 Staking ZERO tokens
               </TYPE.body>
@@ -246,7 +246,7 @@ export default function Dividend() {
 
       <RowBetween style={{ gap: '24px' }}>
         <AutoRow>
-          <GEMImage src={GEMToken} />
+          <SNOWImage src={SNOWToken} />
           <TYPE.mediumHeader style={{ margin: 0, color: 'white' }}>Dividend Pool</TYPE.mediumHeader>
         </AutoRow>
         <TYPE.subHeader style={{ margin: 0, color: 'white' }}>

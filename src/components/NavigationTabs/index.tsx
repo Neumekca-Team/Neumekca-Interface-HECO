@@ -365,7 +365,7 @@ export function SelectPoolTabs({ active }: { active: string }) {
   )
 }
 
-export function SelectGEMTabs({ active }: { active: string }) {
+export function SelectSNOWTabs({ active }: { active: string }) {
   return (
     <Tabs style={{}}>
       <StyledNavLink to={'/snow'} isActive={() => active === 'snow'}>

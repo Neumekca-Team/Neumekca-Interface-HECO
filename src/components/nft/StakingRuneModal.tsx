@@ -56,7 +56,7 @@ interface StakingRuneModalProps {
   isOpen: boolean
   onDismiss: () => void
   stakingInfo: DividendStakingInfo
-  runeType?: Number
+  runeType?: number
 }
 
 export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeType }: StakingRuneModalProps) {

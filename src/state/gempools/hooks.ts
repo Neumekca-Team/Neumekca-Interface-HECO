@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Token, TokenAmount } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { GOLD, GEM, BLIQ } from '../../constants'
-import { STACKING_GEMS_INTERFACE } from '../../constants/abis/staking-gems'
+import { LEON, SNOW, BLIQ } from '../../constants'
+import { STACKING_SNOW_INTERFACE } from '../../constants/abis/staking-gems'
 import { useActiveWeb3React } from '../../hooks'
 import { useMultipleContractSingleData, useSingleContractMultipleData } from '../multicall/hooks'
 import { useTokenContract } from '../../hooks/useContract'
@@ -10,7 +10,7 @@ import { useBlockNumber } from '../application/hooks'
 export const REWARDS_DURATION_DAYS = 60
 
 // TODO add staking rewards addresses here
-export const STAKING_GEMS_INFO: {
+export const STAKING_SNOW_INFO: {
   [chainId in ChainId]?: {
     stakeToken: Token
     earnToken: Token
@@ -23,7 +23,7 @@ export const STAKING_GEMS_INFO: {
 } = {
   [ChainId.BSC_MAINNET]: [
     {
-      stakeToken: GEM[ChainId.BSC_MAINNET],
+      stakeToken: SNOW[ChainId.BSC_MAINNET],
       earnToken: BLIQ,
       poolAddress: '0x26C2585b198E381663B2C8207aD04F3571ea3177',
       poolId: 0,
@@ -34,8 +34,8 @@ export const STAKING_GEMS_INFO: {
   ],
   [ChainId.BSC_TESTNET]: [
     {
-      stakeToken: GEM[ChainId.BSC_TESTNET],
-      earnToken: GOLD[ChainId.BSC_TESTNET],
+      stakeToken: SNOW[ChainId.BSC_TESTNET],
+      earnToken: LEON[ChainId.BSC_TESTNET],
       poolAddress: '0xe749B8264586E9bF3b9a6235CD34c35f11B686b7',
       poolId: 0,
       isActive: true,
@@ -65,7 +65,7 @@ export function useGemStakingInfo(poolIdToFilterBy?: number | null): GemStakingI
   const info = useMemo(
     () =>
       chainId
-        ? STAKING_GEMS_INFO[chainId]?.filter(stakingRewardInfo =>
+        ? STAKING_SNOW_INFO[chainId]?.filter(stakingRewardInfo =>
             poolIdToFilterBy === undefined
               ? true
               : poolIdToFilterBy === null
@@ -86,16 +86,16 @@ export function useGemStakingInfo(poolIdToFilterBy?: number | null): GemStakingI
   const earnedTokenContracts = useTokenContract(earnedTokenAddress ?? undefined)
 
   // get all the info from the staking rewards contracts
-  const userInfos = useMultipleContractSingleData(poolAddresses, STACKING_GEMS_INTERFACE, 'userInfo', accountArg)
+  const userInfos = useMultipleContractSingleData(poolAddresses, STACKING_SNOW_INTERFACE, 'userInfo', accountArg)
   const earnedAmounts = useMultipleContractSingleData(
     poolAddresses,
-    STACKING_GEMS_INTERFACE,
+    STACKING_SNOW_INTERFACE,
     'pendingReward',
     accountArg
   )
   const totalSupplies = useSingleContractMultipleData(stakeTokenContracts, 'balanceOf', poolAddresseArgs)
-  const endBlocks = useMultipleContractSingleData(poolAddresses, STACKING_GEMS_INTERFACE, 'endBlock')
-  const rewardPerBlocks = useMultipleContractSingleData(poolAddresses, STACKING_GEMS_INTERFACE, 'rewardPerBlock')
+  const endBlocks = useMultipleContractSingleData(poolAddresses, STACKING_SNOW_INTERFACE, 'endBlock')
+  const rewardPerBlocks = useMultipleContractSingleData(poolAddresses, STACKING_SNOW_INTERFACE, 'rewardPerBlock')
 
   return useMemo(() => {
     if (!chainId || !latestBlockNumber) return []

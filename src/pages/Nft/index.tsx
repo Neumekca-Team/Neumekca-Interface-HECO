@@ -70,12 +70,12 @@ enum Menus {
 }
 
 interface INftCollection {
-  id: Number
+  id: number
   name: string
   description: string
   token_image: string
-  types: Number
-  rank: Number
+  types: number
+  rank: number
   rank_text: string
   effect: string
 }

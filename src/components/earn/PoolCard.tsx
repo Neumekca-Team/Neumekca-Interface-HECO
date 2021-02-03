@@ -15,7 +15,7 @@ import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { usePair } from '../../data/Reserves'
 import useBUSDPrice from '../../utils/useBUSDPrice'
-import { NAR } from '../../constants'
+import { ZERO } from '../../constants'
 import { useActiveWeb3React } from '../../hooks'
 
 const Wrapper = styled.div`
@@ -65,7 +65,7 @@ const APYSection = styled(AutoColumn)`
 export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: StakingInfo; poolType: string }) {
   const { account, chainId } = useActiveWeb3React()
 
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
   const [, narPair] = usePair(...stakingInfo.narPair)
 
   const token0 = stakingInfo.tokens[0]

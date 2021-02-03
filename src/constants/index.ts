@@ -6,7 +6,7 @@ import { injected } from '../connectors'
 //export const ROUTER_ADDRESS = '0xE85C6ab56A3422E7bAfd71e81Eb7d0f290646078'
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.HT_MAINNET]: '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
+  [ChainId.HT_MAINNET]: '0xb3647907da24993e8f0F8B55AfeA95BFC742719d',
   [ChainId.HT_TESTNET]: '0xca8e585a44375fab1bf6ad50887a770d06f0e32e',
   [ChainId.BSC_MAINNET]: '0xB88040A237F8556Cf63E305a06238409B3CAE7dC',
   [ChainId.BSC_TESTNET]: '0xB88040A237F8556Cf63E305a06238409B3CAE7dC'
@@ -48,7 +48,7 @@ export const PRESALE_ADDRESS: { [chainId in ChainId]: Token } = {
   )
 }
 
-export const NAR: { [chainId in ChainId]: Token } = {
+export const ZERO: { [chainId in ChainId]: Token } = {
   [ChainId.BSC_MAINNET]: new Token(
     ChainId.BSC_MAINNET,
     '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D',
@@ -79,15 +79,15 @@ export const NAR: { [chainId in ChainId]: Token } = {
   )
 }
 
-export const NAR_HT: { [chainId in ChainId]: [Token, Token] } = {
-  [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET], NAR[ChainId.BSC_MAINNET]],
-  [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET], NAR[ChainId.BSC_TESTNET]],
-  [ChainId.HT_TESTNET]: [WETH[ChainId.HT_TESTNET], NAR[ChainId.HT_TESTNET]],
-  [ChainId.HT_MAINNET]: [WETH[ChainId.HT_MAINNET], NAR[ChainId.HT_MAINNET]]
+export const ZERO_HT: { [chainId in ChainId]: [Token, Token] } = {
+  [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET], ZERO[ChainId.BSC_MAINNET]],
+  [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET], ZERO[ChainId.BSC_TESTNET]],
+  [ChainId.HT_TESTNET]: [WETH[ChainId.HT_TESTNET], ZERO[ChainId.HT_TESTNET]],
+  [ChainId.HT_MAINNET]: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]]
 }
 
-//export const GOLD_WETH = new Token(ChainId.BSC_MAINNET, '0x903903A2aa2A222360D8f3c4A7205b933Da60e95', 18, 'GOLD-HT JLP', 'GOLD-HT JLP')
-export const GOLD_WETH = new Token(
+//export const LEON_WETH = new Token(ChainId.BSC_MAINNET, '0x903903A2aa2A222360D8f3c4A7205b933Da60e95', 18, 'LEON-HT JLP', 'LEON-HT JLP')
+export const LEON_WETH = new Token(
   ChainId.HT_TESTNET,
   '0x879D20AA3f8F70DEB73a5C13Fe68F62661D039C0',
   18,
@@ -95,7 +95,7 @@ export const GOLD_WETH = new Token(
   'LEON-HT JLP'
 )
 
-export const GOLD: { [chainId in ChainId]: Token } = {
+export const LEON: { [chainId in ChainId]: Token } = {
   [ChainId.BSC_MAINNET]: new Token(
     ChainId.BSC_MAINNET,
     '0x8f4087Cb09E0F378f4278a314C94A636665dE24b',
@@ -126,7 +126,7 @@ export const GOLD: { [chainId in ChainId]: Token } = {
   )
 }
 
-export const GEM: { [chainId in ChainId]: Token } = {
+export const SNOW: { [chainId in ChainId]: Token } = {
   [ChainId.BSC_MAINNET]: new Token(
     ChainId.BSC_MAINNET,
     '0x4BbB275012EBE258556B8debE5C07bE98e8d3859',
@@ -173,15 +173,7 @@ export const T_BTCB = new Token(
   'Bitcoin'
 )
 
-export const HBTC = new Token(
-  ChainId.HT_MAINNET,
-  '0x0540d5be4e44236e82ac68099a4adb275292f396',
-  18,
-  'HBTC',
-  'Bitcoin'
-)
-
-
+export const HBTC = new Token(ChainId.HT_MAINNET, '0x0540d5be4e44236e82ac68099a4adb275292f396', 18, 'HBTC', 'Bitcoin')
 
 export const ETHB_WETH = new Token(
   ChainId.BSC_MAINNET,
@@ -199,13 +191,7 @@ export const B_DAI = new Token(
   'DAI',
   'Dai Token'
 )
-export const H_DAI = new Token(
-  ChainId.HT_MAINNET,
-  '0xaa0e090f0634473c11729ec83db90f33fecd3b67',
-  18,
-  'DAI',
-  'Dai Token'
-)
+export const H_DAI = new Token(ChainId.HT_MAINNET, '0xaa0e090f0634473c11729ec83db90f33fecd3b67', 18, 'DAI', 'Dai Token')
 
 export const T_DAI = new Token(
   ChainId.BSC_TESTNET,
@@ -261,8 +247,6 @@ export const H_USDT = new Token(
   'Tether USD'
 )
 
-
-
 export const H_USD: { [chainId in ChainId]: Token } = {
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
@@ -308,7 +292,7 @@ export const HT_USDT = new Token(
   'Tether USD'
 )
 
-export const THUGS_NAR = new Token(
+export const THUGS_ZERO = new Token(
   ChainId.BSC_MAINNET,
   '0xB648ecF23Bb8fe854c6267d6fb046f2d483251EA',
   18,

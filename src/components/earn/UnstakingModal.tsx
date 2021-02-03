@@ -70,7 +70,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
           .emergencyWithdraw({ gasLimit: 850000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
-              summary: `For unstake capped pool you need to unstack all JLP and click harvest to get NAR`
+              summary: `For unstake capped pool you need to unstack all JLP and click harvest to get ZERO`
             })
             setHash(response.hash)
           })
@@ -137,8 +137,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
           />
           <TYPE.subHeader style={{ textAlign: 'center' }}>
             {isEmergencyWithdraw
-              ? 'For unstake capped pool you need to unstack all JLP and click harvest to get NAR'
-              : 'When you unstake, your NAR is harvested and your liquidity is removed from the mining pool.'}
+              ? 'For unstake capped pool you need to unstack all JLP and click harvest to get ZERO'
+              : 'When you unstake, your ZERO is harvested and your liquidity is removed from the mining pool.'}
           </TYPE.subHeader>
           <RowBetween>
             <ButtonConfirmed
@@ -164,7 +164,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
         <LoadingView onDismiss={wrappedOndismiss}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.body fontSize={20}>Unstaking {stakingInfo?.stakedAmount?.toSignificant(4)} JLP</TYPE.body>
-            <TYPE.body fontSize={20}>Harvesting {stakingInfo?.earnedAmount?.toSignificant(4)} NAR</TYPE.body>
+            <TYPE.body fontSize={20}>Harvesting {stakingInfo?.earnedAmount?.toSignificant(4)} ZERO</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -173,7 +173,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo, isEmerg
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             <TYPE.body fontSize={20}>Unstaked JLP!</TYPE.body>
-            <TYPE.body fontSize={20}>Harvested NAR!</TYPE.body>
+            <TYPE.body fontSize={20}>Harvested ZERO!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

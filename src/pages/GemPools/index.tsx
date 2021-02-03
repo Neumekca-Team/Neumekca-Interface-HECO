@@ -8,10 +8,10 @@ import PoolCard from '../../components/gempools/PoolCard'
 import { FlatCard, SubPressedCard } from '../../components/Card'
 import Loader from '../../components/Loader'
 
-import { useGemStakingInfo, STAKING_GEMS_INFO } from '../../state/gempools/hooks'
+import { useGemStakingInfo, STAKING_SNOW_INFO } from '../../state/gempools/hooks'
 import { useActiveWeb3React } from '../../hooks'
 
-import GEMToken from '../../assets/images/gem.png'
+import SNOWToken from '../../assets/images/gem.png'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
@@ -37,7 +37,7 @@ export default function GemPools() {
   const { chainId } = useActiveWeb3React()
 
   const stakingInfos = useGemStakingInfo()
-  const stakingGemsExist = Boolean(typeof chainId === 'number' && (STAKING_GEMS_INFO[chainId]?.length ?? 0) > 0)
+  const stakingGemsExist = Boolean(typeof chainId === 'number' && (STAKING_SNOW_INFO[chainId]?.length ?? 0) > 0)
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -45,7 +45,7 @@ export default function GemPools() {
         <SubPressedCard style={{ padding: 16 }}>
           <AutoColumn>
             <AutoRow marginBottom={16}>
-              <TokenImage src={GEMToken} />
+              <TokenImage src={SNOWToken} />
               <TYPE.body fontSize={36} fontWeight={500}>
                 SNOW Pools
               </TYPE.body>

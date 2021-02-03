@@ -76,7 +76,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userToken
           .stake(`0x${parsedAmount.raw.toString(16)}`, { gasLimit: 450000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
-              summary: `Stake NAR`
+              summary: `Stake ZERO`
             })
             setHash(response.hash)
           })
@@ -154,8 +154,8 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userToken
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.largeHeader>Depositing NAR</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>{parsedAmount?.toSignificant(4)} NAR</TYPE.body>
+            <TYPE.largeHeader>Depositing ZERO</TYPE.largeHeader>
+            <TYPE.body fontSize={20}>{parsedAmount?.toSignificant(4)} ZERO</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -163,7 +163,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userToken
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Deposited {parsedAmount?.toSignificant(4)} NAR</TYPE.body>
+            <TYPE.body fontSize={20}>Deposited {parsedAmount?.toSignificant(4)} ZERO</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

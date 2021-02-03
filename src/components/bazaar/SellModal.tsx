@@ -64,7 +64,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
   const theme = useContext(ThemeContext)
 
   const [bnbPrice, setBNBPrice] = useState(nftInfo.bnbPrice?.toSignificant(24) ?? '')
-  const [narPrice, setNARPrice] = useState(nftInfo.narPrice?.toSignificant(24) ?? '')
+  const [narPrice, setZEROPrice] = useState(nftInfo.narPrice?.toSignificant(24) ?? '')
 
   // state for pending and submitted txn views
   const addTransaction = useTransactionAdder()
@@ -177,8 +177,8 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
     setBNBPrice(typedValue)
   }, [])
 
-  const onNARInput = useCallback((typedValue: string) => {
-    setNARPrice(typedValue)
+  const onZEROInput = useCallback((typedValue: string) => {
+    setZEROPrice(typedValue)
   }, [])
 
   // mark when a user has submitted an approval, reset onTokenSelection for input field
@@ -228,7 +228,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
                   align="right"
                   value={narPrice}
                   onUserInput={val => {
-                    onNARInput(val)
+                    onZEROInput(val)
                   }}
                 />
               </Container>

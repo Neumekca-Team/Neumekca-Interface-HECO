@@ -10,7 +10,7 @@ import PlaceHolder from '../../assets/images/nft_placeholder.png'
 import { Dots } from '../../components/swap/styleds'
 
 import { JSBI } from '@neumekca/neumekca-sdk'
-import { NAR } from '../../constants'
+import { ZERO } from '../../constants'
 import { NftInfo } from '../../state/nft/hooks'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
@@ -56,7 +56,7 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
   const { account, chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
-  const parsedAmount = tryParseAmount('1', chainId && NAR[chainId])
+  const parsedAmount = tryParseAmount('1', chainId && ZERO[chainId])
 
   // state for pending and submitted txn views
   const addTransaction = useTransactionAdder()
@@ -98,7 +98,7 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
     }
   }
 
-  async function onBuyWithNAR() {
+  async function onBuyWithZERO() {
     if (bazaarContract && deadline) {
       setAttempting(true)
       bazaarContract
@@ -161,7 +161,7 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
               <ButtonPrimary mr="0.5rem" disabled={false} onClick={onBuyWithBNB}>
                 Buy with HT
               </ButtonPrimary>
-              <ButtonPrimary disabled={false} onClick={onBuyWithNAR}>
+              <ButtonPrimary disabled={false} onClick={onBuyWithZERO}>
                 Buy with ZERO
               </ButtonPrimary>
             </RowBetween>

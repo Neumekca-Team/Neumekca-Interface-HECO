@@ -5,7 +5,7 @@ import { TYPE, ExternalLink } from '../../theme'
 import { RowBetween } from '../../components/Row'
 import { DataCard } from '../../components/earn/styled'
 import { useNarSupplyInfo } from '../../state/stake/hooks'
-import { NAR } from '../../constants'
+import { ZERO } from '../../constants'
 import { useActiveWeb3React } from '../../hooks'
 import useBUSDPrice from '../../utils/useBUSDPrice'
 import usePrevious from '../../hooks/usePrevious'
@@ -33,7 +33,7 @@ const NarData = styled(DataCard)`
 
 export default function NarInfoSection() {
   const { chainId } = useActiveWeb3React()
-  const nar = chainId ? NAR[chainId] : undefined
+  const nar = chainId ? ZERO[chainId] : undefined
   const narPrice = useBUSDPrice(nar)
   const narSupplyInfo = useNarSupplyInfo()
 

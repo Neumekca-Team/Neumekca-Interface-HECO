@@ -82,7 +82,7 @@ export default function UpdateBuffRateModal({ isOpen, onDismiss, stakingInfo }: 
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            CHRONOS INJECTED can increases by 49% per day. Keep update everyday for powerful your NARPOWER!!
+            CHRONOS INJECTED can increases by 49% per day. Keep update everyday for powerful your ZEROPOWER!!
           </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onUpdateBuffRate}>
             {error ?? 'Update CHRONOS INJECTED'}

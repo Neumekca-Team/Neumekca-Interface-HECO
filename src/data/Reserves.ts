@@ -1,13 +1,13 @@
 import { TokenAmount, Pair, Currency } from '@neumekca/neumekca-sdk'
 import { useMemo } from 'react'
-import { abi as IJuncturePairABI } from '../constants/abis/IJuncturePair.json'
+import { abi as IhecoswapPairABI } from '../constants/abis/IhecoswapPair.json'
 import { Interface } from '@ethersproject/abi'
 import { useActiveWeb3React } from '../hooks'
 
 import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
-const PAIR_INTERFACE = new Interface(IJuncturePairABI)
+const PAIR_INTERFACE = new Interface(IhecoswapPairABI)
 
 export enum PairState {
   LOADING,

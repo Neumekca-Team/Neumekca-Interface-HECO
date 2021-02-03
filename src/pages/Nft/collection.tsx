@@ -61,12 +61,12 @@ const CardWrapper = styled(Box)`
 // `
 
 interface INftCollection {
-  id: Number
+  id: number
   name: string
   description: string
   token_image: string
-  types: Number
-  rank: Number
+  types: number
+  rank: number
   rank_text: string
   effect: string
 }
@@ -98,8 +98,6 @@ export default function Collection() {
   const [nftCollection, setNftCollection] = useState<NftInfo[]>()
 
   useEffect(() => {
- 
-   
     const fetchCollection = async () => {
       const res = await axios.get<INftCollection[]>(NFT_BASE_URL[chainId])
       const runeAvailable: NftInfo[] = res.data
@@ -108,10 +106,7 @@ export default function Collection() {
       setNftCollection(runeAvailable)
     }
 
-   
-
     fetchCollection()
-
   }, [nftCollection])
 
   return (

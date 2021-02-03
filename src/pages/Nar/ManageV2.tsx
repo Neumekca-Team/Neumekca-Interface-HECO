@@ -225,10 +225,10 @@ export default function ManageV2({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Your NARPOWER</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your ZEROPOWER</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
-              {' NARPOWER'}
+              {' ZEROPOWER'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -325,7 +325,7 @@ export default function ManageV2({
             <AutoColumn gap="sm">
               <RowBetween>
                 <Row width="100%">
-                  <TYPE.black>Your pending NAR</TYPE.black>
+                  <TYPE.black>Your pending ZERO</TYPE.black>
                 </Row>
                 {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                   <AutoRow justify="flex-end">
@@ -387,8 +387,8 @@ export default function ManageV2({
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ✨
           </span>
-          Estimated Harvest is a close benchmark of how much NAR you should receive per week prior to any burns. True
-          harvest relies on your NARPOWER and CHRONOS INJECTED, learn more{' '}
+          Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
+          harvest relies on your ZEROPOWER and CHRONOS INJECTED, learn more{' '}
           <a href="https://docs.narwhalswap.org/liquidity-mining" target="_blank">
             here
           </a>

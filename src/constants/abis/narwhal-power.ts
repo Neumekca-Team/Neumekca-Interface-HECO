@@ -1,6 +1,6 @@
 import { Interface } from '@ethersproject/abi'
-import NARWHAL_POWER_ABI from './narwhal_power.json'
+import ZEROWHAL_POWER_ABI from './narwhal_power.json'
 
-const NARWHAL_POWER_INTERFACE = new Interface(NARWHAL_POWER_ABI)
+const ZEROWHAL_POWER_INTERFACE = new Interface(ZEROWHAL_POWER_ABI)
 
-export { NARWHAL_POWER_INTERFACE }
+export { ZEROWHAL_POWER_INTERFACE }

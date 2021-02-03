@@ -7,7 +7,7 @@ import { TYPE } from '../../theme'
 import PoolCard, { MockPoolCard } from '../../components/gold/PoolCard'
 import { FlatCard, SubPressedCard } from '../../components/Card'
 import Loader from '../../components/Loader'
-import GOLDToken from '../../assets/images/gold.png'
+import LEONToken from '../../assets/images/gold.png'
 
 import {
   useTicketStakingInfo,
@@ -33,7 +33,7 @@ const PreloadWrapper = styled(Box)`
   color:white;
 `
 
-const GOLDImage = styled.img`
+const LEONImage = styled.img`
   width: 32px;
   margin-right: 8px;
 `
@@ -55,7 +55,7 @@ export default function Gold() {
         <SubPressedCard style={{ padding: 16 }}>
           <AutoColumn>
             <AutoRow marginBottom={16}>
-              <GOLDImage src={GOLDToken} />
+              <LEONImage src={LEONToken} />
               <TYPE.body fontSize={36} fontWeight={500}>
                 LEON
               </TYPE.body>
