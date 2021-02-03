@@ -1,0 +1,21 @@
+{
+  "abi": [],
+  "evm": {
+    "bytecode": {
+      "linkReferences": {},
+      "object": "60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220a7c037379f792afb1d33c5d28c16d290a9f0f6734753feb05ab2b5da2a9cca9764736f6c634300060c0033",
+      "opcodes": "PUSH1 0x56 PUSH1 0x23 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH1 0x0 BYTE PUSH1 0x73 EQ PUSH1 0x16 JUMPI INVALID JUMPDEST ADDRESS PUSH1 0x0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xA7 0xC0 CALLDATACOPY CALLDATACOPY SWAP16 PUSH26 0x2AFB1D33C5D28C16D290A9F0F6734753FEB05AB2B5DA2A9CCA97 PUSH5 0x736F6C6343 STOP MOD 0xC STOP CALLER ",
+      "sourceMap": "100:4045:58:-:0;;;;;;;;;;;;;;;;;;;;;;;;;"
+    },
+    "deployedBytecode": {
+      "immutableReferences": {},
+      "linkReferences": {},
+      "object": "73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220a7c037379f792afb1d33c5d28c16d290a9f0f6734753feb05ab2b5da2a9cca9764736f6c634300060c0033",
+      "opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xA7 0xC0 CALLDATACOPY CALLDATACOPY SWAP16 PUSH26 0x2AFB1D33C5D28C16D290A9F0F6734753FEB05AB2B5DA2A9CCA97 PUSH5 0x736F6C6343 STOP MOD 0xC STOP CALLER ",
+      "sourceMap": "100:4045:58:-:0;;;;;;;;"
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/libraries/JunctureLibrary.sol\":\"JunctureLibrary\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interfaces/IJuncturePair.sol\":{\"keccak256\":\"0x3966fe197b3e1e64b68dd974bb3f64ccc0849723d5e0c4e72779ee5a17a392c3\",\"urls\":[\"bzz-raw://1c9afcc5a0d8fe42a445ea738d36462eebabfd0605c20744d5acebf8097951d7\",\"dweb:/ipfs/QmSoAbkk24giWmYeuRFaEtbM44yqQfDjsVqMCVQVkaxMhr\"]},\"contracts/libraries/JunctureLibrary.sol\":{\"keccak256\":\"0xbb7c17eead4b17d6559d80c2a0f31d0bb43677932b98132fcd4509ad67fa85f7\",\"urls\":[\"bzz-raw://7e5567516212b8f9a54fa1f33036178289857e46b6b67a8258a42c98f0858454\",\"dweb:/ipfs/QmWph7koFEWH3us5bU3FXXHtHLd4svpTYT5Krc53GxHLmp\"]},\"contracts/libraries/SafeMathJuncture.sol\":{\"keccak256\":\"0xafd0230f9b5af82cf20dd165dd0ac8ab8103a0fd76b420c684c6307f0a588d8d\",\"urls\":[\"bzz-raw://b043c61a4e8e9457bfe10fcbbce87b3daabccc5da5e654bf968f691be8e20ee2\",\"dweb:/ipfs/QmQvMTXehDmRE14ZK9Egd4ZfTwyyBrbGaCRkw496ig6o3f\"]}},\"version\":1}",
+  "interface": [],
+  "bytecode": "60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220a7c037379f792afb1d33c5d28c16d290a9f0f6734753feb05ab2b5da2a9cca9764736f6c634300060c0033"
+}

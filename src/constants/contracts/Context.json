@@ -1,0 +1,21 @@
+{
+  "abi": [],
+  "evm": {
+    "bytecode": {
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    },
+    "deployedBytecode": {
+      "immutableReferences": {},
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/libraries/Context.sol\":\"Context\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/libraries/Context.sol\":{\"keccak256\":\"0x5d6b89d085ff8904793af67dcd276412e8bc8a839618ae8401f537e83d406af9\",\"urls\":[\"bzz-raw://8933e6bbdeed4d279d7a35dd048c8afca0487faa908d727047055de277802383\",\"dweb:/ipfs/QmTpXsRenJzn8D7E6uPVPLCU7CXnCrwpp5KXuo3G647wzh\"]}},\"version\":1}",
+  "interface": [],
+  "bytecode": ""
+}

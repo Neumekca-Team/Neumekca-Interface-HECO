@@ -1,0 +1,21 @@
+{
+  "abi": [],
+  "evm": {
+    "bytecode": {
+      "linkReferences": {},
+      "object": "60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212200e51d1cf7fb6f34652142cbbc475c0a2ffb59cb9e748774076673b022ee392f964736f6c634300060c0033",
+      "opcodes": "PUSH1 0x56 PUSH1 0x23 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH1 0x0 BYTE PUSH1 0x73 EQ PUSH1 0x16 JUMPI INVALID JUMPDEST ADDRESS PUSH1 0x0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xE MLOAD 0xD1 0xCF PUSH32 0xB6F34652142CBBC475C0A2FFB59CB9E748774076673B022EE392F964736F6C63 NUMBER STOP MOD 0xC STOP CALLER ",
+      "sourceMap": "24:2957:55:-:0;;;;;;;;;;;;;;;;;;;;;;;;;"
+    },
+    "deployedBytecode": {
+      "immutableReferences": {},
+      "linkReferences": {},
+      "object": "73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212200e51d1cf7fb6f34652142cbbc475c0a2ffb59cb9e748774076673b022ee392f964736f6c634300060c0033",
+      "opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xE MLOAD 0xD1 0xCF PUSH32 0xB6F34652142CBBC475C0A2FFB59CB9E748774076673B022EE392F964736F6C63 NUMBER STOP MOD 0xC STOP CALLER ",
+      "sourceMap": "24:2957:55:-:0;;;;;;;;"
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/libraries/EnumerableSet.sol\":\"EnumerableSet\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/libraries/EnumerableSet.sol\":{\"keccak256\":\"0xc629d3ae3caa7e3707e4a61da67200c950bc760cb82b8af16a2b83b233e8f5cb\",\"urls\":[\"bzz-raw://61d5bf9239e26f65ebb7eb498acaefde6cf345a74e787dc8938a81e81670220d\",\"dweb:/ipfs/QmdikEFSoK7hYwWHJJx4eF2UBmfcBcLYLVYY9fNVPTpiex\"]}},\"version\":1}",
+  "interface": [],
+  "bytecode": "60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212200e51d1cf7fb6f34652142cbbc475c0a2ffb59cb9e748774076673b022ee392f964736f6c634300060c0033"
+}

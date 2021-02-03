@@ -1,0 +1,71 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNarCard",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "types",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "powers",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    },
+    "deployedBytecode": {
+      "immutableReferences": {},
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"getNarCard\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"types\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"powers\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/farming/StakingRewardSmall.sol\":\"INarCardFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/farming/StakingRewardSmall.sol\":{\"keccak256\":\"0xe64e76073ed996c50c9cce7edb2c7b05d2ea2f98a97f17b68fa1815d3aeb7bc7\",\"urls\":[\"bzz-raw://48322960ffb76799d75511af8a1fe0728d099d35c9e094242e6576fa907e3a06\",\"dweb:/ipfs/QmRuP2uS7tdACq6My4Nz18ndFiWcmbnFVgMzMxBVPwUCiP\"]}},\"version\":1}",
+  "interface": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNarCard",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "types",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "powers",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": ""
+}

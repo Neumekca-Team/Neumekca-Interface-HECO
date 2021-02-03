@@ -1,0 +1,165 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "lastUpdateTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rewardPerTokenStored",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "initReward",
+          "type": "uint256"
+        }
+      ],
+      "name": "setInitValue",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addressUser",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "userRewardPerTokenPaidOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rewardsOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentChronosOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentPowerOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timeStampOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountOld",
+          "type": "uint256"
+        }
+      ],
+      "name": "setUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    },
+    "deployedBytecode": {
+      "immutableReferences": {},
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"lastUpdateTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rewardPerTokenStored\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"initReward\",\"type\":\"uint256\"}],\"name\":\"setInitValue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addressUser\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"userRewardPerTokenPaidOld\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rewardsOld\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currentChronosOld\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currentPowerOld\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timeStampOld\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amountOld\",\"type\":\"uint256\"}],\"name\":\"setUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IDiv3.sol\":\"IDiv3\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interfaces/IDiv3.sol\":{\"keccak256\":\"0x547c8ecf774ba181ee808348162035f6695ed9237497ea747411582de9413c2d\",\"urls\":[\"bzz-raw://9dd404bb35a37b1192ae92cdb4b456b5b982a11836086b4feab4d10e471db4cb\",\"dweb:/ipfs/QmQfaZGbCSDJgEmC2k2sLWPviHU6gZMt3t85WxyYnnu69X\"]}},\"version\":1}",
+  "interface": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "lastUpdateTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rewardPerTokenStored",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "initReward",
+          "type": "uint256"
+        }
+      ],
+      "name": "setInitValue",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addressUser",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "userRewardPerTokenPaidOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rewardsOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentChronosOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentPowerOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timeStampOld",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountOld",
+          "type": "uint256"
+        }
+      ],
+      "name": "setUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": ""
+}

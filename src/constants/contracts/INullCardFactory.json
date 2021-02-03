@@ -1,0 +1,71 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNullCard",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "types",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "skills",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    },
+    "deployedBytecode": {
+      "immutableReferences": {},
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"getNullCard\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"types\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"skills\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/INullCardFactory.sol\":\"INullCardFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interfaces/INullCardFactory.sol\":{\"keccak256\":\"0xccc4a24c6573d79490f2719fb87e998a6cb275e5f0e16aeefe00452910108c36\",\"urls\":[\"bzz-raw://693e631127e38e800d30dc387c01549580ac1a9c723ed0addf2d02dd7935b246\",\"dweb:/ipfs/QmPUrN6nxiYpTRrLz2EgnNAWAdy3y5T9eSv9KYjbu2w6Bo\"]}},\"version\":1}",
+  "interface": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNullCard",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "types",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "skills",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": ""
+}
