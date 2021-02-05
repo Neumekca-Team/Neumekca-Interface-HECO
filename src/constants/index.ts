@@ -524,8 +524,8 @@ export const DEFAULT_TOKEN_LIST_URL = 'https://api-neumekca.herokuapp.com/hecoch
 
 // base URI for NFT
 export const NFT_BASE_URL: { [chainId in ChainId]: string } = {
-  [ChainId.BSC_MAINNET]: 'https://api-neumekca.herokuapp.com/null/',
-  [ChainId.BSC_TESTNET]: 'https://api-neumekca.herokuapp.com/null/',
-  [ChainId.HT_TESTNET]: 'https://api-neumekca.herokuapp.com/null/',
-  [ChainId.HT_MAINNET]: 'https://api-neumekca.herokuapp.com/null/'
+  [ChainId.BSC_MAINNET]: 'https://api-neumekca.herokuapp.com/',
+  [ChainId.BSC_TESTNET]: 'https://api-neumekca.herokuapp.com/',
+  [ChainId.HT_TESTNET]: 'https://api-neumekca.herokuapp.com/',
+  [ChainId.HT_MAINNET]: 'https://api-neumekca.herokuapp.com/'
 }

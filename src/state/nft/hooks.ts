@@ -319,8 +319,6 @@ export function useUserNfts(): userNftInfo | undefined {
 
   const tokensOfOwnerCall = useSingleCallResult(contract, 'tokensOfOwner', accountArg)
   const gachaPriceCall = useSingleCallResult(factoryContract, 'getPayment', getPriceArg)
-  console.log('tokensOfOwnerCall', tokensOfOwnerCall)
-  console.log('gachaPriceCall', gachaPriceCall)
   return useMemo(() => {
     if (!chainId || !account) return undefined
 

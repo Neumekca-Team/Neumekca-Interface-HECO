@@ -125,7 +125,7 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
 
     const fetchAvailable = async () => {
       const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
+        `${NFT_BASE_URL[chainId]}/null-card/${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
       )
       setNftInfos(res.data.map(e => e))
     }

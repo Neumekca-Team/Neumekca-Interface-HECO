@@ -9,10 +9,18 @@ import NFTCard from '../../components/nft/NFTCard'
 import ComingSoon from '../../components/ComingSoon'
 import Loader from '../../components/Loader'
 import { ClickableText } from '../Pool/styleds'
+import { TransactionResponse } from '@ethersproject/providers'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useUserNfts, NftInfo } from '../../state/nft/hooks'
 import { NFT_BASE_URL } from '../../constants'
+import {
+  useNftContract,
+  useNftFactoryContract,
+  useNftBazaarContract,
+  useTicketStakingContractV2
+} from '../../hooks/useContract'
+import { lstatSync } from 'fs'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
@@ -100,20 +108,51 @@ const iNftCollectionToNftInfo = (nft: INftCollection): NftInfo => {
 }
 
 export default function Nft() {
-  const { chainId } = useActiveWeb3React()
-  const userNfts = useUserNfts()
+  const { chainId, account } = useActiveWeb3React()
+  //const userNfts = [useUserNfts()]
+  const contract = useNftContract()
   const [nftInfos, setNftInfos] = useState<NftInfo[]>()
+  const [length, setLength] = useState<Number>(0)
+  const [lengthRes, setLengthRes] = useState<Number>(0)
+  const [lengthUrl, setLengthURL] = useState<Number>(0)
+  const [userNfts, setNftUrl] = useState<any[]>()
+  contract.tokensOfOwner(account).then((response: any[]) => {
+    var lst = [];
+    response.map(function (item, i) {
+      if (i == length) {
+        setLengthRes(response.length);
+      }
+      if (i >= lengthRes) {
+        lst.push(item);
+        setNftUrl(lst);
+      }
+
+    })
+  })
+    .catch((error: any) => {
+      //setAttempting(false)
+      console.log(error)
+    })
 
   useEffect(() => {
     if (!userNfts || userNfts == undefined || !chainId) return
     const fetchAvailable = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
-      )
-      setNftInfos(res.data.map(e => e))
+      var lst = [];
+      console.log('lenght', length)
+      await Promise.all(
+        userNfts.map(async (item, i) => {
+          if (i == userNfts.length) {
+            setLengthURL(userNfts.length);
+          }
+          if (i >= lengthUrl) {
+            const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}/null-card/${item}`)
+            lst.push(res.data);
+          }
+        }));
+      setNftInfos(lst);
     }
 
-    if (userNfts.myNfts.length !== 0) {
+    if (userNfts.length !== 0) {
       fetchAvailable()
     } else {
       setNftInfos([])
@@ -124,21 +163,21 @@ export default function Nft() {
     <PageWrapper gap="lg" justify="center">
       {
         (nftInfos ? (
-          nftInfos !== undefined && nftInfos.length !== 0  ? (
+          nftInfos !== undefined && nftInfos.length !== 0 ? (
             <CardWrapper>
               {nftInfos.map(nftInfo => {
                 return <NFTCard key={nftInfo.token_id} nftInfo={nftInfo} />
               })}
             </CardWrapper>
           ) : (
-            <AutoColumn justify="center" gap="md">
-              <TYPE.main marginTop={64}>No NFT in your collection</TYPE.main>
-             
-            </AutoColumn>
-          )
+              <AutoColumn justify="center" gap="md">
+                <TYPE.main marginTop={64}>No NFT in your collection</TYPE.main>
+
+              </AutoColumn>
+            )
         ) : (
-          <Loader style={{ margin: 'auto' }} />
-        ))}
+            <Loader style={{ margin: 'auto' }} />
+          ))}
     </PageWrapper>
   )
 }
