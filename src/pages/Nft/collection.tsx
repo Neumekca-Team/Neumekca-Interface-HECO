@@ -99,7 +99,7 @@ export default function Collection() {
 
   useEffect(() => {
     const fetchCollection = async () => {
-      const res = await axios.get<INftCollection[]>(NFT_BASE_URL[chainId]+'/collection')
+      const res = await axios.get<INftCollection[]>(NFT_BASE_URL[chainId]+'collection')
       const runeAvailable: NftInfo[] = res.data
         .filter(e => e.types === 2 || e.types === 1 || e.types === 3)
         .map(e => iNftCollectionToNftInfo(e))

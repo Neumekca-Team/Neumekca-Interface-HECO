@@ -145,7 +145,7 @@ export default function Nft() {
             setLengthURL(userNfts.length);
           }
           if (i >= lengthUrl) {
-            const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}/null-card/${item}`)
+            const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
             lst.push(res.data);
           }
         }));
