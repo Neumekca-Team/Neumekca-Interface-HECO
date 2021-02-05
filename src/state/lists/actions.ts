@@ -21,7 +21,7 @@ export async function getTokenList(listUrl: string): Promise<TokenList> {
   for (const url of urls) {
     let response
     try {
-      response = await fetch('https://api-neumekca.herokuapp.com/tokenlist/')
+      response = await fetch('https://nft.neumekca.city/hecochain/')
       if (!response.ok) continue
     } catch (error) {
       console.error(`failed to fetch list ${listUrl} at uri ${url}`)

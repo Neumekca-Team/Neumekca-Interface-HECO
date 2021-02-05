@@ -520,12 +520,12 @@ export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16))
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
 
 // the Uniswap Default token list lives here
-export const DEFAULT_TOKEN_LIST_URL = 'https://api-neumekca.herokuapp.com/hecochain/'
+export const DEFAULT_TOKEN_LIST_URL = 'https://nft.neumekca.city/hecochain/'
 
 // base URI for NFT
 export const NFT_BASE_URL: { [chainId in ChainId]: string } = {
-  [ChainId.BSC_MAINNET]: 'https://api-neumekca.herokuapp.com/',
-  [ChainId.BSC_TESTNET]: 'https://api-neumekca.herokuapp.com/',
-  [ChainId.HT_TESTNET]: 'https://api-neumekca.herokuapp.com/',
-  [ChainId.HT_MAINNET]: 'https://api-neumekca.herokuapp.com/'
+  [ChainId.BSC_MAINNET]: 'https://nft.neumekca.city/',
+  [ChainId.BSC_TESTNET]: 'https://nft.neumekca.city/',
+  [ChainId.HT_TESTNET]: 'https://nft.neumekca.city/',
+  [ChainId.HT_MAINNET]: 'https://nft.neumekca.city/'
 }

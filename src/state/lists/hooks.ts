@@ -59,7 +59,7 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
 
 
 export const getTokenList = async () => {
-  const res = await axios.get<TokenList>('https://api-neumekca.herokuapp.com/tokenlist/')
+  const res = await axios.get<TokenList>('https:/nft.neumekca.city/hecochain/')
   const tokenList: TokenList = res.data;
   localStorage.setItem('myData',JSON.stringify(tokenList));
 }
