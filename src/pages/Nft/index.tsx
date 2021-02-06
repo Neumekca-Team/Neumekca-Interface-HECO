@@ -111,22 +111,29 @@ export default function Nft() {
   const { chainId, account } = useActiveWeb3React()
   //const userNfts = [useUserNfts()]
   const contract = useNftContract()
+  const [lengthRes, setLengthRes] = useState<Number>(0) 
   const [nftInfos, setNftInfos] = useState<NftInfo[]>()
   const [userNfts, setNftUrl] = useState<any[]>()
-  contract.tokensOfOwner(account).then((response: any[]) => {
-    var lst = [];
-    response.map(function (item, i) {
-      lst.push(item);
-      if (i == response.length - 1) { 
-        setNftUrl(lst);
-      }
+  if(lengthRes == 0){
+    contract.tokensOfOwner(account).then((response: any[]) => {
+      var lst = [];
+      response.map(function (item, i) {
+        if(i == 0){
+          setLengthRes(response.length)
+        }
+        lst.push(item);
+        if (i == response.length - 1) { 
+          setNftUrl(lst);
+        }
+      })
+      
     })
-    
-  })
-    .catch((error: any) => {
-      //setAttempting(false)
-      console.log(error)
-    })
+      .catch((error: any) => {
+        //setAttempting(false)
+        console.log(error)
+      })
+  }
+ 
 
   useEffect(() => {
     if (!userNfts || userNfts == undefined || !chainId) return
@@ -136,15 +143,12 @@ export default function Nft() {
         userNfts.map(async (item, i) => {
           const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
             lst.push(res.data);
-          if (i == userNfts.length - 1) { 
-            
-           
-          }
         }));
         setNftInfos(lst);
     }
 
     if (userNfts.length !== 0) {
+      console.log(userNfts);
       fetchAvailable()
     } else {
       setNftInfos([])
