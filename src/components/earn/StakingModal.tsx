@@ -44,7 +44,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
   const { account, chainId, library } = useActiveWeb3React()
   console.log('a')
   console.log(isOpen)
-  console.log(stakingInfo)
+  console.log('userLiquidityUnstaked',userLiquidityUnstaked)
   // track and parse user input
   const [typedValue, setTypedValue] = useState('')
   const { parsedAmount, error } = useDerivedStakeInfo(typedValue, stakingInfo.stakedAmount.token, userLiquidityUnstaked)

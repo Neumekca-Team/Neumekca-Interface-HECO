@@ -107,7 +107,7 @@ const GaugeCard = styled.div<{ bg: 1 | 2 | 3 }>`
 
 const RuneSlot = styled.div`
   width: 72px;
-  height: 72px;
+  height: 105px;
   padding: 0px;
   margin-right: 16px;
   box-shadow: 2px 2px 4px ${({ theme }) => theme.shadowColor1}, -2px -2px 4px ${({ theme }) => theme.shadowColor2};
@@ -126,7 +126,7 @@ const RuneSlot = styled.div`
 
 const RuneImage = styled.img<{ dim: any }>`
   width: 100%;
-  opacity: ${({ dim }) => (dim ? 0.4 : 1)};
+
 `
 
 interface showStakingRuneProps {
@@ -186,7 +186,6 @@ export default function ManageV2({
 
   const handleDepositClick = useCallback(() => {
     if (account) {
-      console.log('7')
       setShowStakingModal(true)
     } else {
       toggleWalletModal()
@@ -301,97 +300,8 @@ export default function ManageV2({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Your ZEROPOWER</TYPE.body>
-            <TYPE.body fontSize={24} fontWeight={500}>
-              {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
-              {' ZEROPOWER'}
-            </TYPE.body>
-          </AutoColumn>
-        </PoolData>
-      </DataRow>
-
-      {showAddLiquidityButton && (
-        <VoteCard>
-          <CardBGImage />
-          <CardNoise />
-          <CardSection>
-            <AutoColumn gap="md">
-              <RowBetween>
-                <TYPE.white fontWeight={600}>Step 1. Get HLP Liquidity tokens</TYPE.white>
-              </RowBetween>
-              <RowBetween style={{ marginBottom: '1rem' }}>
-                <TYPE.white fontSize={14}>
-                  {`HLP tokens are required. Once you've added liquidity to the ${currencyA?.toDisplayableSymbol(
-                    chainId
-                  )}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
-                </TYPE.white>
-              </RowBetween>
-              <ButtonPrimary
-                padding="8px"
-                borderRadius="8px"
-                width={'fit-content'}
-                as={Link}
-                to={`/page/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
-              >
-                {`Add ${currencyA?.toDisplayableSymbol(chainId)}-${currencyB?.symbol} liquidity`}
-              </ButtonPrimary>
-            </AutoColumn>
-          </CardSection>
-          <CardBGImage />
-          <CardNoise />
-        </VoteCard>
-      )}
-
-      {stakingInfo && (
-        <>
-          <StakingModal
-            isOpen={showStakingModal}
-            onDismiss={() => setShowStakingModal(false)}
-            stakingInfo={stakingInfo}
-            userLiquidityUnstaked={userLiquidityUnstaked}
-          />
-          <UnstakingModal
-            isOpen={showUnstakingModal}
-            onDismiss={() => setShowUnstakingModal(false)}
-            stakingInfo={stakingInfo}
-            isEmergencyWithdraw={false}
-          />
-          <ClaimRewardModal
-            isOpen={showClaimRewardModal}
-            onDismiss={() => setShowClaimRewardModal(false)}
-            stakingInfo={stakingInfo}
-          />
-          <UpdateBuffRateModal
-            isOpen={showUpdateBuffRateModal}
-            onDismiss={() => setShowUpdateBuffRateModal(false)}
-            stakingInfo={stakingInfo}
-          />
-          <StakingRuneModal
-            isOpen={showStakingRuneModal.isOpen}
-            onDismiss={() => setShowStakingRuneModal({ isOpen: false, type: showStakingRuneModal.type })}
-            stakingInfo={stakingInfo}
-            runeType={showStakingRuneModal.type}
-          />
-          <UnstakingRuneModal
-            isOpen={showUnstakingRuneModal.isOpen}
-            onDismiss={() => setShowUnstakingRuneModal({ isOpen: false, nftInfo: showUnstakingRuneModal.nftInfo })}
-            onStakeNew={() => setShowStakingRuneModal({ isOpen: true, type: showUnstakingRuneModal.nftInfo?.types })}
-            stakingInfo={stakingInfo}
-            nftInfo={showUnstakingRuneModal.nftInfo}
-          />
-          <ReinvestModal
-            isOpen={showReinvestModal}
-            onDismiss={() => setShowReinvestModal(false)}
-            stakingInfo={stakingInfo}
-          />
-        </>
-      )}
-
-      <DataRow style={{ gap: '24px' }}>
-        <PoolData>
-          <AutoColumn gap="sm">
-            <AutoRow>
-              <RuneSlot
+                  <AutoRow>
+                  <RuneSlot
                 onClick={() =>
                   stakingInfo?.rune1 !== 0
                     ? setShowUnstakingRuneModal({
@@ -460,10 +370,101 @@ export default function ManageV2({
                   </AutoColumn>
                 )}
               </RuneSlot>
-            </AutoRow>
+           
+                  </AutoRow>
+
+          </AutoColumn>
+         
+      
+     
+        </PoolData>
+        <PoolData style={{height: '140px'}}>
+        <AutoColumn gap="sm">
+            <TYPE.body style={{ margin: 0 }}>Your ZEROPOWER</TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
+              {' ZEROPOWER'}
+            </TYPE.body>
           </AutoColumn>
         </PoolData>
       </DataRow>
+
+      {showAddLiquidityButton && (
+        <VoteCard>
+          <CardBGImage />
+          <CardNoise />
+          <CardSection>
+            <AutoColumn gap="md">
+              <RowBetween>
+                <TYPE.white fontWeight={600}>Step 1. Get HLP Liquidity tokens</TYPE.white>
+              </RowBetween>
+              <RowBetween style={{ marginBottom: '1rem' }}>
+                <TYPE.white fontSize={14}>
+                  {`HLP tokens are required. Once you've added liquidity to the ${currencyA?.toDisplayableSymbol(
+                    chainId
+                  )}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                </TYPE.white>
+              </RowBetween>
+              <a
+              className='btn btn-primary'
+                target = '_blank'
+                href='https://ht.mdex.com/#/add/0x9ec4c0f72f068731f439351193d2060b7dc684b5/HT'
+              >
+                {`Add ${currencyA?.toDisplayableSymbol(chainId)}-${currencyB?.symbol} liquidity`}
+              </a>
+            </AutoColumn>
+          </CardSection>
+          <CardBGImage />
+          <CardNoise />
+        </VoteCard>
+      )}
+
+      {stakingInfo && (
+        <>
+          <StakingModal
+            isOpen={showStakingModal}
+            onDismiss={() => setShowStakingModal(false)}
+            stakingInfo={stakingInfo}
+            userLiquidityUnstaked={userLiquidityUnstaked}
+          />
+          <UnstakingModal
+            isOpen={showUnstakingModal}
+            onDismiss={() => setShowUnstakingModal(false)}
+            stakingInfo={stakingInfo}
+            isEmergencyWithdraw={false}
+          />
+          <ClaimRewardModal
+            isOpen={showClaimRewardModal}
+            onDismiss={() => setShowClaimRewardModal(false)}
+            stakingInfo={stakingInfo}
+          />
+          <UpdateBuffRateModal
+            isOpen={showUpdateBuffRateModal}
+            onDismiss={() => setShowUpdateBuffRateModal(false)}
+            stakingInfo={stakingInfo}
+          />
+          <StakingRuneModal
+            isOpen={showStakingRuneModal.isOpen}
+            onDismiss={() => setShowStakingRuneModal({ isOpen: false, type: showStakingRuneModal.type })}
+            stakingInfo={stakingInfo}
+            runeType={showStakingRuneModal.type}
+          />
+          <UnstakingRuneModal
+            isOpen={showUnstakingRuneModal.isOpen}
+            onDismiss={() => setShowUnstakingRuneModal({ isOpen: false, nftInfo: showUnstakingRuneModal.nftInfo })}
+            onStakeNew={() => setShowStakingRuneModal({ isOpen: true, type: showUnstakingRuneModal.nftInfo?.types })}
+            stakingInfo={stakingInfo}
+            nftInfo={showUnstakingRuneModal.nftInfo}
+          />
+          <ReinvestModal
+            isOpen={showReinvestModal}
+            onDismiss={() => setShowReinvestModal(false)}
+            stakingInfo={stakingInfo}
+          />
+        </>
+      )}
+
+
 
       <PositionInfo gap="lg" justify="center" dim={showAddLiquidityButton}>
         <BottomSection gap="lg" justify="center">
@@ -486,12 +487,13 @@ export default function ManageV2({
               </AutoColumn>
             </CardSection>
           </StyledDataCard>
-          <StyledBottomCard
+          <StyledBottomCard style={{margin : '5px 0px 0px 0px'}}
             dim={!(stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw))}
           >
+     
             {/* <CardBGImage desaturate />
             <CardNoise /> */}
-            <AutoColumn gap="sm">
+            <AutoColumn gap="sm" >
               <RowBetween>
                 <Row width="100%">
                   <TYPE.black>Your pending ZERO</TYPE.black>

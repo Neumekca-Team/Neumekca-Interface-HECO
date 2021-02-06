@@ -14,6 +14,7 @@ import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useTranslation } from 'react-i18next'
 
+
 const InputRow = styled.div<{ selected: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
@@ -154,9 +155,10 @@ export default function CurrencyInputPanel({
   customBalanceAmount
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
-
+  console.log('customBalanceAmount',customBalanceAmount)
   const [modalOpen, setModalOpen] = useState(false)
   const { account, chainId } = useActiveWeb3React()
+  console.log('currency',currency)
   const selectedCurrencyBalance = useCurrencyBalance(account, currency)
   const theme = useContext(ThemeContext)
 
