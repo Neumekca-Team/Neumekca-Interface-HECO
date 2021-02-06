@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState,useEffect } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
@@ -24,11 +24,12 @@ import ReinvestModal from '../../components/earn/ReinvestModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import CountUp from 'react-countup'
-
+import axios from 'axios'
 import { currencyId } from '../../utils/currencyId'
 import usePrevious from '../../hooks/usePrevious'
 // import useUSDCPrice from '../../utils/useUSDCPrice'
 import { BIG_INT_ZERO } from '../../constants'
+import { NFT_BASE_URL } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
@@ -117,10 +118,11 @@ const RuneSlot = styled.div`
 
   animation: shadow-red 5s infinite;
   @keyframes shadow-red {
-    50% {box-shadow: 10px 20px 30px red;}
+    50% {
+      box-shadow: 10px 20px 30px red;
+    }
   }
 `
-
 
 const RuneImage = styled.img<{ dim: any }>`
   width: 100%;
@@ -182,7 +184,6 @@ export default function ManageV2({
 
   const toggleWalletModal = useWalletModalToggle()
 
-
   const handleDepositClick = useCallback(() => {
     if (account) {
       console.log('7')
@@ -191,6 +192,37 @@ export default function ManageV2({
       toggleWalletModal()
     }
   }, [account, toggleWalletModal])
+
+  useEffect(() => {
+    if (!stakingInfo || !chainId) return
+
+    const requests =
+      stakingInfo.rune1 !== 0 && stakingInfo.rune2 !== 0
+        ? [stakingInfo.rune1, stakingInfo.rune2]
+        : stakingInfo.rune1 !== 0
+          ? [stakingInfo.rune1]
+          : stakingInfo.rune2 !== 0
+            ? [stakingInfo.rune2]
+            : []
+
+    const fetchMyNft = async () => {
+      var lst = []
+      await Promise.all(
+          requests.map(async (item, i) => {
+            const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
+            lst.push(res.data)
+          })
+          
+        )
+        setWoreRuneInfos(lst)
+    }
+
+    if (requests.length !== 0) {
+      fetchMyNft()
+    } else {
+      setWoreRuneInfos([])
+    }
+  }, [stakingInfo])
 
   return (
     <PageWrapper gap="lg" justify="center">
@@ -289,7 +321,9 @@ export default function ManageV2({
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`HLP tokens are required. Once you've added liquidity to the ${currencyA?.toDisplayableSymbol(chainId)}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`HLP tokens are required. Once you've added liquidity to the ${currencyA?.toDisplayableSymbol(
+                    chainId
+                  )}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary
@@ -327,7 +361,7 @@ export default function ManageV2({
             onDismiss={() => setShowClaimRewardModal(false)}
             stakingInfo={stakingInfo}
           />
-           <UpdateBuffRateModal
+          <UpdateBuffRateModal
             isOpen={showUpdateBuffRateModal}
             onDismiss={() => setShowUpdateBuffRateModal(false)}
             stakingInfo={stakingInfo}
@@ -350,89 +384,86 @@ export default function ManageV2({
             onDismiss={() => setShowReinvestModal(false)}
             stakingInfo={stakingInfo}
           />
-          
         </>
       )}
 
-  <DataRow style={{ gap: '24px' }}>
-          <PoolData>
-            <AutoColumn gap="sm">
-              <AutoRow>
-                <RuneSlot
-                  onClick={() =>
-                    stakingInfo?.rune1 !== 0
-                      ? setShowUnstakingRuneModal({
+      <DataRow style={{ gap: '24px' }}>
+        <PoolData>
+          <AutoColumn gap="sm">
+            <AutoRow>
+              <RuneSlot
+                onClick={() =>
+                  stakingInfo?.rune1 !== 0
+                    ? setShowUnstakingRuneModal({
                         isOpen: true,
                         nftInfo: woreRuneInfos?.filter(e => e.types === 1)[0]
                       })
-                      : setShowStakingRuneModal({ isOpen: true, type: 1 })
-                  }
-                >
-                  {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
-                    <RuneImage
-                      src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
-                      dim={Date.now() - stakingInfo.rune1TimeStamp < 86400000}
-                    />
-                  ) : (
-                      <AutoColumn justify="center">
-                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
-                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
-                        <TYPE.white fontSize={12}>INIT</TYPE.white>
-                        
-                      </AutoColumn>
-                    )}
-                </RuneSlot>
-                <RuneSlot
-                  onClick={() =>
-                    stakingInfo?.rune2 !== 0
-                      ? setShowUnstakingRuneModal({
+                    : setShowStakingRuneModal({ isOpen: true, type: 1 })
+                }
+              >
+                {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
+                  <RuneImage
+                    src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
+                    dim={Date.now() - stakingInfo.rune1TimeStamp < 86400000}
+                  />
+                ) : (
+                  <AutoColumn justify="center">
+                    <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                    <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                    <TYPE.white fontSize={12}>INIT</TYPE.white>
+                  </AutoColumn>
+                )}
+              </RuneSlot>
+              <RuneSlot
+                onClick={() =>
+                  stakingInfo?.rune2 !== 0
+                    ? setShowUnstakingRuneModal({
                         isOpen: true,
                         nftInfo: woreRuneInfos?.filter(e => e.types === 2)[0]
                       })
-                      : setShowStakingRuneModal({ isOpen: true, type: 2 })
-                  }
-                >
-                  {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
-                    <RuneImage
-                      src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                      dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
-                    />
-                  ) : (
-                      <AutoColumn justify="center">
-                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
-                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
-                        <TYPE.white fontSize={12}>STEP</TYPE.white>
-                      </AutoColumn>
-                    )}
-                </RuneSlot>
-                <RuneSlot
-                  onClick={() =>
-                    stakingInfo?.rune2 !== 0
-                      ? setShowUnstakingRuneModal({
+                    : setShowStakingRuneModal({ isOpen: true, type: 2 })
+                }
+              >
+                {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
+                  <RuneImage
+                    src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
+                    dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
+                  />
+                ) : (
+                  <AutoColumn justify="center">
+                    <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                    <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                    <TYPE.white fontSize={12}>STEP</TYPE.white>
+                  </AutoColumn>
+                )}
+              </RuneSlot>
+              <RuneSlot
+                onClick={() =>
+                  stakingInfo?.rune3 !== 0
+                    ? setShowUnstakingRuneModal({
                         isOpen: true,
                         nftInfo: woreRuneInfos?.filter(e => e.types === 3)[0]
                       })
-                      : setShowStakingRuneModal({ isOpen: true, type: 2 })
-                  }
-                >
-                  {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
-                    <RuneImage
-                      src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                      dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
-                    />
-                  ) : (
-                      <AutoColumn justify="center">
-                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
-                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
-                        <TYPE.white fontSize={12}>MAX</TYPE.white>
-                      </AutoColumn>
-                    )}
-                </RuneSlot>
-              </AutoRow>
-            </AutoColumn>
-          </PoolData>
-        </DataRow>
-
+                    : setShowStakingRuneModal({ isOpen: true, type: 3 })
+                }
+              >
+                {woreRuneInfos && stakingInfo?.rune3 !== 0 ? (
+                  <RuneImage
+                    src={woreRuneInfos.filter(e => e.types === 3)[0]?.token_image ?? undefined}
+                    dim={Date.now() - stakingInfo.rune3TimeStamp < 86400000}
+                  />
+                ) : (
+                  <AutoColumn justify="center">
+                    <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                    <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                    <TYPE.white fontSize={12}>MAX</TYPE.white>
+                  </AutoColumn>
+                )}
+              </RuneSlot>
+            </AutoRow>
+          </AutoColumn>
+        </PoolData>
+      </DataRow>
 
       <PositionInfo gap="lg" justify="center" dim={showAddLiquidityButton}>
         <BottomSection gap="lg" justify="center">

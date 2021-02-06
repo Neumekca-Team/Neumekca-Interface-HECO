@@ -91,10 +91,10 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
       setAttempting(true)
       if (approval === ApprovalState.APPROVED) {
         stakingContract
-          .setRune(`0x${JSBI.BigInt(nftSelected.token_id).toString(16)}`, { gasLimit: 450000 })
+          .setNcard(`0x${JSBI.BigInt(nftSelected.token_id).toString(16)}`, { gasLimit: 450000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
-              summary: `wearing RUNE`
+              summary: `wearing Card`
             })
             setHash(response.hash)
           })
@@ -109,7 +109,7 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
     }
 
     if (!nftSelected) {
-      alert('Please select a Rune to wearing')
+      alert('Please select a Card to wearing')
     }
   }
 
@@ -142,7 +142,7 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <RowBetween>
-            <TYPE.mediumHeader>Wearing RUNE</TYPE.mediumHeader>
+            <TYPE.mediumHeader>Wearing CARD</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOnDismiss} />
           </RowBetween>
 
@@ -190,7 +190,7 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.largeHeader>Wearing RUNE</TYPE.largeHeader>
+            <TYPE.largeHeader>Wearing CARD</TYPE.largeHeader>
           </AutoColumn>
         </LoadingView>
       )}

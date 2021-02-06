@@ -19,6 +19,9 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { LoadingView, SubmittedView } from '../ModalViews'
 import { useActiveWeb3React } from '../../hooks'
+import {
+  useNftContract
+} from '../../hooks/useContract'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -60,9 +63,9 @@ interface StakingRuneModalProps {
 }
 
 export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeType }: StakingRuneModalProps) {
-  const { chainId } = useActiveWeb3React()
-  const [userNfts, setNftUrl] = useState<any[]>()
-
+  const { chainId,account } = useActiveWeb3React()
+  
+  const contract = useNftContract()
   // state for pending and submitted txn views
   const addTransaction = useTransactionAdder()
   const [attempting, setAttempting] = useState<boolean>(false)
@@ -81,7 +84,9 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
 
+  const [lengthRes, setLengthRes] = useState<Number>(0) 
   const [nftInfos, setNftInfos] = useState<NftInfo[]>()
+  const [userNfts, setNftUrl] = useState<any[]>()
   const [nftSelected, setNftSelected] = useState<NftInfo>()
 
   const stakingContract = useFarmStakingRewardContract(stakingInfo.stakingRewardAddress)
@@ -91,10 +96,10 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
       setAttempting(true)
       if (approval === ApprovalState.APPROVED) {
         stakingContract
-          .setRune(`0x${JSBI.BigInt(nftSelected.token_id).toString(16)}`, { gasLimit: 450000 })
+          .setNcard(`0x${JSBI.BigInt(nftSelected.id).toString(16)}`, { gasLimit: 450000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
-              summary: `wearing RUNE`
+              summary: `wearing Card`
             })
             setHash(response.hash)
           })
@@ -109,7 +114,7 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
     }
 
     if (!nftSelected) {
-      alert('Please select a Rune to wearing')
+      alert('Please select a Card to wearing')
     }
   }
 
@@ -120,24 +125,44 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
     }
   }, [approval, approvalSubmitted])
 
+  if(lengthRes == 0){
+    contract.tokensOfOwner(account).then((response: any[]) => {
+      var lst = [];
+      response.map(function (item, i) {
+        if(i == 0){
+          setLengthRes(response.length)
+        }
+        lst.push(item);
+        if (i == response.length - 1) { 
+          setNftUrl(lst);
+        }
+      })
+      
+    })
+      .catch((error: any) => {
+        //setAttempting(false)
+        console.log(error)
+      })
+  }
+
   useEffect(() => {
-    if (!chainId) return
+    if (!userNfts || userNfts == undefined || !chainId) return
 
     const fetchAvailable = async () => {
-      var lst = [];
+      var lst = []
       await Promise.all(
         userNfts.map(async (item, i) => {
           const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
-            lst.push(res.data);
-        }));
-        setNftInfos(lst);
+          lst.push(res.data)
+        })
+      )
+      setNftInfos(lst)
     }
-    
-    if (userNfts.length == 0) {
-      console.log('userNfts 0',  userNfts)
+
+    if (userNfts.length !== 0) {
       fetchAvailable()
-    }else{
-      console.log('userNfts 1',  userNfts)
+    } else {
+      setNftInfos([])
     }
   }, [userNfts, chainId])
 
@@ -146,22 +171,22 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <RowBetween>
-            <TYPE.mediumHeader>Wearing RUNE</TYPE.mediumHeader>
+            <TYPE.mediumHeader>Wearing CARD</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOnDismiss} />
           </RowBetween>
 
           <Box style={{ overflow: 'auto', paddingTop: 4 }}>
-            {userNfts
-              ?.filter(nftInfo => nftInfo.types === runeType)
+            { (nftInfos && nftInfos.length != 0 ? nftInfos?.filter(nftInfo => nftInfo.types === runeType)
               .map(nftInfo => {
                 return (
-                  <GridCard key={nftInfo.token_id} onClick={() => setNftSelected(nftInfo)}>
-                    <GridCardContent isSelect={nftInfo.token_id === nftSelected?.token_id}>
+                  <GridCard key={nftInfo.id} onClick={() => setNftSelected(nftInfo)}>
+                    <GridCardContent isSelect={nftInfo.id === nftSelected?.id}>
                       <NFTImage src={nftInfo.token_image} />
                     </GridCardContent>
                   </GridCard>
                 )
-              })}
+              }) : <></>
+              )}
           </Box>
 
           {nftSelected && (
@@ -194,7 +219,7 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.largeHeader>Wearing RUNE</TYPE.largeHeader>
+            <TYPE.largeHeader>Wearing CARD</TYPE.largeHeader>
           </AutoColumn>
         </LoadingView>
       )}

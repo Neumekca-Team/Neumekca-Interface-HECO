@@ -234,17 +234,17 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
     NEVER_RELOAD
   )
 
-  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     1
   ])
 
-  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     2
   ])
 
-  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     3
   ])
@@ -467,17 +467,17 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
     NEVER_RELOAD
   )
 
-  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     1
   ])
 
-  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     2
   ])
 
-  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     3
   ])
@@ -686,17 +686,17 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
     NEVER_RELOAD
   )
 
-  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     1
   ])
 
-  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     2
   ])
 
-  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     3
   ])
