@@ -3,14 +3,15 @@ import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
 import { Link } from 'react-router-dom'
-
+import { NftInfo } from '../../state/nft/hooks'
 import { JSBI } from '@neumekca/neumekca-sdk'
 import { RouteComponentProps } from 'react-router-dom'
 import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { useCurrency } from '../../hooks/Tokens'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { TYPE } from '../../theme'
-
+import StakingRuneModal from '../../components/nft/StakingFarmRuneModal'
+import UnstakingRuneModal from '../../components/nft/UnstakingFarmRuneModal'
 import Row, { RowBetween, RowEvenly, RowAround, AutoRow } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
@@ -103,6 +104,39 @@ const GaugeCard = styled.div<{ bg: 1 | 2 | 3 }>`
   background: ${({ theme, bg }) => (bg === 1 ? theme.primary3 : bg === 2 ? theme.primary4 : theme.primary5)};
 `
 
+const RuneSlot = styled.div`
+  width: 72px;
+  height: 72px;
+  padding: 0px;
+  margin-right: 16px;
+  box-shadow: 2px 2px 4px ${({ theme }) => theme.shadowColor1}, -2px -2px 4px ${({ theme }) => theme.shadowColor2};
+  border: 1px solid ${({ theme }) => theme.bg2};
+  :hover {
+    cursor: pointer;
+  }
+
+  animation: shadow-red 5s infinite;
+  @keyframes shadow-red {
+    50% {box-shadow: 10px 20px 30px red;}
+  }
+`
+
+
+const RuneImage = styled.img<{ dim: any }>`
+  width: 100%;
+  opacity: ${({ dim }) => (dim ? 0.4 : 1)};
+`
+
+interface showStakingRuneProps {
+  isOpen: boolean
+  type?: number
+}
+
+interface showUnstakingRuneProps {
+  isOpen: boolean
+  nftInfo?: NftInfo
+}
+
 export default function ManageV2({
   match: {
     params: { poolId, currencyIdA, currencyIdB }
@@ -112,9 +146,9 @@ export default function ManageV2({
 
   // get currencies and pair
   const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
-
+  console.log(poolId)
   const stakingInfo = useStakingInfoV2(Number(poolId))?.[0]
-
+  console.log(stakingInfo)
   // detect existing unstaked LP position to show add button if none found
   const userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
   const showAddLiquidityButton = Boolean(stakingInfo?.stakedAmount?.equalTo('0') && userLiquidityUnstaked?.equalTo('0'))
@@ -134,14 +168,24 @@ export default function ManageV2({
 
   const userBuffRate = stakingInfo?.narPower?.divide(stakingInfo?.stakedAmount ?? JSBI.BigInt(1))
   const userBuffDecimal = userBuffRate?.multiply(JSBI.BigInt(10 ** 3))
-
+  const [woreRuneInfos, setWoreRuneInfos] = useState<NftInfo[]>()
+  const [showStakingRuneModal, setShowStakingRuneModal] = useState<showStakingRuneProps>({
+    isOpen: false,
+    type: 1
+  })
+  const [showUnstakingRuneModal, setShowUnstakingRuneModal] = useState<showUnstakingRuneProps>({
+    isOpen: false,
+    nftInfo: undefined
+  })
   const isMaxBuffRate =
     userBuffDecimal?.greaterThan(stakingInfo?.userMaxBuffRate) || userBuffDecimal?.equalTo(stakingInfo?.userMaxBuffRate)
 
   const toggleWalletModal = useWalletModalToggle()
 
+
   const handleDepositClick = useCallback(() => {
     if (account) {
+      console.log('7')
       setShowStakingModal(true)
     } else {
       toggleWalletModal()
@@ -152,7 +196,7 @@ export default function ManageV2({
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
         <TYPE.mediumHeader style={{ margin: 0 }}>
-          {currencyA?.symbol}-{currencyB?.symbol} Liquidity Mining
+          {currencyA?.toDisplayableSymbol(chainId)}-{currencyB?.symbol} Liquidity Mining
         </TYPE.mediumHeader>
         <DoubleCurrencyLogo
           currency0={currencyA ?? undefined}
@@ -206,18 +250,18 @@ export default function ManageV2({
 
       <GaugeWrapper>
         <RowAround>
-          <GaugeCard bg={3}>MAXBUFF 15</GaugeCard>
-          <GaugeCard bg={2}>MAXBUFF 15 to 3</GaugeCard>
-          <GaugeCard bg={1}>MAXBUFF 3</GaugeCard>
+          <GaugeCard bg={3}>MAX CHRONOS 179</GaugeCard>
+          <GaugeCard bg={2}>MAX CHRONOS 179 to 31</GaugeCard>
+          <GaugeCard bg={1}>MAX CHRONOS 31</GaugeCard>
         </RowAround>
         <RowEvenly>
           <TYPE.body style={{ marginLeft: 32 }}>
             {stakingInfo?.commonMin?.toFixed(2) ?? '-'}
-            {'JLP'}
+            {'HLP'}
           </TYPE.body>
           <TYPE.body style={{ marginRight: 32 }}>
             {stakingInfo?.commonMax?.toFixed(2) ?? '-'}
-            {'JLP'}
+            {'HLP'}
           </TYPE.body>
         </RowEvenly>
       </GaugeWrapper>
@@ -241,11 +285,11 @@ export default function ManageV2({
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>Step 1. Get JLP Liquidity tokens</TYPE.white>
+                <TYPE.white fontWeight={600}>Step 1. Get HLP Liquidity tokens</TYPE.white>
               </RowBetween>
               <RowBetween style={{ marginBottom: '1rem' }}>
                 <TYPE.white fontSize={14}>
-                  {`JLP tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
+                  {`HLP tokens are required. Once you've added liquidity to the ${currencyA?.toDisplayableSymbol(chainId)}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
               <ButtonPrimary
@@ -255,7 +299,7 @@ export default function ManageV2({
                 as={Link}
                 to={`/page/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
               >
-                {`Add ${currencyA?.symbol}-${currencyB?.symbol} liquidity`}
+                {`Add ${currencyA?.toDisplayableSymbol(chainId)}-${currencyB?.symbol} liquidity`}
               </ButtonPrimary>
             </AutoColumn>
           </CardSection>
@@ -283,18 +327,112 @@ export default function ManageV2({
             onDismiss={() => setShowClaimRewardModal(false)}
             stakingInfo={stakingInfo}
           />
-          <UpdateBuffRateModal
+           <UpdateBuffRateModal
             isOpen={showUpdateBuffRateModal}
             onDismiss={() => setShowUpdateBuffRateModal(false)}
             stakingInfo={stakingInfo}
+          />
+          <StakingRuneModal
+            isOpen={showStakingRuneModal.isOpen}
+            onDismiss={() => setShowStakingRuneModal({ isOpen: false, type: showStakingRuneModal.type })}
+            stakingInfo={stakingInfo}
+            runeType={showStakingRuneModal.type}
+          />
+          <UnstakingRuneModal
+            isOpen={showUnstakingRuneModal.isOpen}
+            onDismiss={() => setShowUnstakingRuneModal({ isOpen: false, nftInfo: showUnstakingRuneModal.nftInfo })}
+            onStakeNew={() => setShowStakingRuneModal({ isOpen: true, type: showUnstakingRuneModal.nftInfo?.types })}
+            stakingInfo={stakingInfo}
+            nftInfo={showUnstakingRuneModal.nftInfo}
           />
           <ReinvestModal
             isOpen={showReinvestModal}
             onDismiss={() => setShowReinvestModal(false)}
             stakingInfo={stakingInfo}
           />
+          
         </>
       )}
+
+  <DataRow style={{ gap: '24px' }}>
+          <PoolData>
+            <AutoColumn gap="sm">
+              <AutoRow>
+                <RuneSlot
+                  onClick={() =>
+                    stakingInfo?.rune1 !== 0
+                      ? setShowUnstakingRuneModal({
+                        isOpen: true,
+                        nftInfo: woreRuneInfos?.filter(e => e.types === 1)[0]
+                      })
+                      : setShowStakingRuneModal({ isOpen: true, type: 1 })
+                  }
+                >
+                  {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
+                    <RuneImage
+                      src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
+                      dim={Date.now() - stakingInfo.rune1TimeStamp < 86400000}
+                    />
+                  ) : (
+                      <AutoColumn justify="center">
+                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                        <TYPE.white fontSize={12}>INIT</TYPE.white>
+                        
+                      </AutoColumn>
+                    )}
+                </RuneSlot>
+                <RuneSlot
+                  onClick={() =>
+                    stakingInfo?.rune2 !== 0
+                      ? setShowUnstakingRuneModal({
+                        isOpen: true,
+                        nftInfo: woreRuneInfos?.filter(e => e.types === 2)[0]
+                      })
+                      : setShowStakingRuneModal({ isOpen: true, type: 2 })
+                  }
+                >
+                  {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
+                    <RuneImage
+                      src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
+                      dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
+                    />
+                  ) : (
+                      <AutoColumn justify="center">
+                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                        <TYPE.white fontSize={12}>STEP</TYPE.white>
+                      </AutoColumn>
+                    )}
+                </RuneSlot>
+                <RuneSlot
+                  onClick={() =>
+                    stakingInfo?.rune2 !== 0
+                      ? setShowUnstakingRuneModal({
+                        isOpen: true,
+                        nftInfo: woreRuneInfos?.filter(e => e.types === 3)[0]
+                      })
+                      : setShowStakingRuneModal({ isOpen: true, type: 2 })
+                  }
+                >
+                  {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
+                    <RuneImage
+                      src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
+                      dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
+                    />
+                  ) : (
+                      <AutoColumn justify="center">
+                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                        <TYPE.white fontSize={12}>MAX</TYPE.white>
+                      </AutoColumn>
+                    )}
+                </RuneSlot>
+              </AutoRow>
+            </AutoColumn>
+          </PoolData>
+        </DataRow>
+
 
       <PositionInfo gap="lg" justify="center" dim={showAddLiquidityButton}>
         <BottomSection gap="lg" justify="center">
@@ -311,7 +449,7 @@ export default function ManageV2({
                     {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
                   </TYPE.black>
                   <TYPE.black>
-                    JLP {currencyA?.symbol}-{currencyB?.symbol}
+                    HSwap LP Token {currencyA?.toDisplayableSymbol(chainId)}-{currencyB?.symbol}
                   </TYPE.black>
                 </RowBetween>
               </AutoColumn>
@@ -378,7 +516,7 @@ export default function ManageV2({
             ⭐️
           </span>
           CHRONOS INJECTED depends on the staked days. It starts at 14 when staking and increases by 49% per day until
-          the MAXIMUM CHRONOS INJECTED. And reset to 14 when harvesting ZERO tokens or unstacking JLP tokens. Learn more{' '}
+          the MAXIMUM CHRONOS INJECTED. And reset to 14 when harvesting ZERO tokens or unstacking HLP tokens. Learn more{' '}
           <a href="https://neumekca.city/docs/" target="_blank">
             here
           </a>
@@ -403,7 +541,7 @@ export default function ManageV2({
               marginBottom="8px"
               onClick={handleDepositClick}
             >
-              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake JLP Tokens'}
+              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Stake' : 'Stake HLP Tokens'}
             </ButtonPrimary>
 
             {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
@@ -422,7 +560,7 @@ export default function ManageV2({
           </DataRow>
         )}
         {!userLiquidityUnstaked ? null : userLiquidityUnstaked.equalTo('0') ? null : (
-          <TYPE.main>{userLiquidityUnstaked.toSignificant(6)} JLP tokens available</TYPE.main>
+          <TYPE.main>{userLiquidityUnstaked.toSignificant(6)} HLP tokens available</TYPE.main>
         )}
       </PositionInfo>
     </PageWrapper>

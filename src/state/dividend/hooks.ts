@@ -55,6 +55,8 @@ export interface DividendStakingInfo {
   rune1TimeStamp: number
   rune2: number
   rune2TimeStamp: number
+  rune3: number
+  rune3TimeStamp: number
   poolId: number
 }
 
@@ -117,6 +119,10 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
     ...accountArg,
     2
   ])
+  const runes3 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'rune', [
+    ...accountArg,
+    3
+  ])
   const rules = useMultipleContractSingleData(
     poolAddresses,
     STAKING_REWARDS_DIVIDEND_INTERFACE,
@@ -153,6 +159,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
       const ruleState = rules[index]
       const runeState1 = runes1[index]
       const runeState2 = runes2[index]
+      const runeState3 = runes3[index]
 
       // these get fetched regardless of account
       const totalSupplyState = totalSupplies[index]
@@ -246,6 +253,9 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
           rune1TimeStamp: runeState1?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
           rune2: runeState2?.result?.tokenIndex?.toNumber(),
           rune2TimeStamp: runeState2?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
+
+          rune3: runeState3?.result?.tokenIndex?.toNumber(),
+          rune3TimeStamp: runeState3?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
           poolId: info[index].poolId
         })
       }

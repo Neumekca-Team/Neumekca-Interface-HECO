@@ -25,6 +25,7 @@ import Swap from './Swap'
 // import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 
 import Nar from './Nar'
+import ManageV2 from './Nar/ManageV2'
 import Nft from './Nft'
 import Gachapon from './Nft/gachapon'
 import Collection from './Nft/collection'
@@ -83,6 +84,7 @@ export default function App() {
                   <Route exact strict path="/migrate/v1" component={MigrateV1} />
                   <Route exact strict path="/migrate/v1/:address" component={MigrateV1Exchange} />
                   <Route exact strict path="/farms" component={Nar} />
+                  <Route exact strict path="/page/ZERO/:poolId/:currencyIdA/:currencyIdB" component={ManageV2} />
                   <Route exact strict path="/farms/:poolId/:currencyIdA/:currencyIdB" component={Manage} />
                   <Route exact strict path="/capped" component={Capped} />
                   <Route exact strict path="/capped/:poolId/:currencyIdA/:currencyIdB" component={CappedManage} />

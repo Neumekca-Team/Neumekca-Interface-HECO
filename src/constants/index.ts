@@ -65,7 +65,7 @@ export const ZERO: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.HT_TESTNET]: new Token(
     ChainId.HT_TESTNET,
-    '0xa2eddE98B2dFEEE49e846821F6ce0dDAe69A9b5D',
+    '0xf0C17EeeaE6055A1EefEaA8e3788a7db3240DbfC',
     18,
     'ZERO',
     'ZERO Token'
@@ -119,7 +119,7 @@ export const LEON: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.HT_TESTNET]: new Token(
     ChainId.HT_TESTNET,
-    '0x38117Ac37078c5b46Aa109164f1C64A58C158a58',
+    '0xE823E5C778336AA7577e88C53809Fda876b6f575',
     18,
     'LEON',
     'ZERO Ticket Token'
@@ -150,7 +150,7 @@ export const SNOW: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.HT_TESTNET]: new Token(
     ChainId.HT_TESTNET,
-    '0xA0984B32fdD3E5ebACE798f984c9EA1880dd2f44',
+    '0xC9F1d1050b06704Fbb39f7d1f228CE92593Db4B8',
     18,
     'SNOW',
     'ZERO Dividend Token'
@@ -256,8 +256,8 @@ export const H_USD: { [chainId in ChainId]: Token } = {
     'HUSD Token'
   ),
   [ChainId.HT_TESTNET]: new Token(
-    ChainId.HT_MAINNET,
-    '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
+    ChainId.HT_TESTNET,
+    '0x8Dd66eefEF4B503EB556b1f50880Cc04416B916B',
     18,
     'HUSD',
     'HUSD Token'

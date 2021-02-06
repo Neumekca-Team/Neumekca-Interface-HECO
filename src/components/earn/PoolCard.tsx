@@ -70,7 +70,7 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
 
   const token0 = stakingInfo.tokens[0]
   const token1 = stakingInfo.tokens[1]
-
+  console.log(stakingInfo)
   const currency0 = unwrappedToken(token0)
   const currency1 = unwrappedToken(token1)
 
@@ -134,10 +134,10 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
             {poolType === 'normal'
               ? ''
               : stakingInfo.poolId === 0
-              ? ' HUGE'
+              ? ' ANPHA'
               : stakingInfo.poolId === 1
-              ? ' COMMON'
-              : ' TINY'}
+              ? ' GAMMA'
+              : ' BETA'}
           </TYPE.black>
         </AutoColumn>
 

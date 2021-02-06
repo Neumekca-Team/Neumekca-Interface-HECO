@@ -39,13 +39,14 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.HT_MAINNET]: [
     // New pools
-    {
-      tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0x1D227F7e283D653a60F94d2350CAB7a49bB85C6f',
-      jlp4fAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
-      powerAddress: '0x1D791EaA684A21De92618Dedea7BF373e2486956',
-      poolId: 0
-    },
+    // {
+    //   tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
+    //   stakingRewardAddress: '0x1D227F7e283D653a60F94d2350CAB7a49bB85C6f',
+    //   jlp4fAddress: '0x6451571Cb5bEe9Fd575ad98506E96f3d09C66F91',
+    //   powerAddress: '0x1D791EaA684A21De92618Dedea7BF373e2486956',
+    //   poolId: 0
+    // },
+    
     {
       tokens: [WETH[ChainId.HT_MAINNET], H_USD[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x6dA9Ee0c0571b63e38950D1e12e835D5343f601B',
@@ -83,12 +84,6 @@ export const STAKING_REWARDS_CAPPED_INFO: {
       tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
       stakingRewardAddress: '0x3DFB186e8CE513f321232098Dd551e22886C1051',
       jlp4fAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
-      poolId: 0
-    },
-    {
-      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
-      jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
       poolId: 1
     },
     {
@@ -96,6 +91,12 @@ export const STAKING_REWARDS_CAPPED_INFO: {
       stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
       jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
       poolId: 2
+    },
+    {
+      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
+      stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
+      jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
+      poolId: 3
     }
   ]
 }
@@ -110,13 +111,31 @@ export const STAKING_REWARDS_V2_INFO: {
   }[]
 } = {
   [ChainId.HT_MAINNET]: [
-    {
+    // {
+    //   tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
+    //   stakingRewardAddress: '0xed93ccFA7FB5ebd037d1EfEe362583E28A9b3CE5',
+    //   jlp4fAddress: '0x282EA4e76Fd9C812A1B4974716DD9C396a2Be202',
+    //   poolId: 0,
+    //   startTime: 1612137600
+    // }
+     {
       tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0xed93ccFA7FB5ebd037d1EfEe362583E28A9b3CE5',
+      stakingRewardAddress: '0xD14bB95723db72D5802cEf8598fb19f51EB3AfA5',
       jlp4fAddress: '0x282EA4e76Fd9C812A1B4974716DD9C396a2Be202',
       poolId: 0,
       startTime: 1612137600
     }
+   
+  ],
+  [ChainId.HT_TESTNET]: [
+    {
+      tokens: [WETH[ChainId.HT_TESTNET], ZERO[ChainId.HT_TESTNET]],
+      stakingRewardAddress: '0xf9528286d67b3C75241EC28Fd7f5cBf8a0F4e1Ac',
+      jlp4fAddress: '0x99b2Beec3fbFee380470742E98244889FAf77994',
+      poolId: 0,
+      startTime: 1612137600
+    }
+   
   ]
 }
 
@@ -149,6 +168,13 @@ export interface StakingInfo {
 
   startTime?: number
   poolId: number
+
+  rune1: number
+  rune1TimeStamp: number
+  rune2: number
+  rune2TimeStamp: number
+  rune3: number
+  rune3TimeStamp: number
 }
 
 // gets the staking info from the network for the active chain id
@@ -208,6 +234,22 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
     NEVER_RELOAD
   )
 
+  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    1
+  ])
+
+  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    2
+  ])
+
+  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    3
+  ])
+
+  
   return useMemo(() => {
     if (!chainId || !nar) return []
 
@@ -225,6 +267,9 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
       const rewardRateState = rewardRates[index]
       const commonEdgeState = commonEdges[index]
       const periodFinishState = periodFinishes[index]
+      const runeState1 = runes1[index]
+      const runeState2 = runes2[index]
+      const runeState3 = runes3[index]
 
       if (
         // these may be undefined if not logged in
@@ -324,7 +369,14 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
           userMaxBuffRate: userMaxBuffRate,
           commonMin: commonMinAmount,
           commonMax: commonMaxAmount,
-          poolId: info[index].poolId
+          poolId: info[index].poolId,
+          rune1: runeState1?.result?.tokenIndex?.toNumber(),
+          rune1TimeStamp: runeState1?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
+          rune2: runeState2?.result?.tokenIndex?.toNumber(),
+          rune2TimeStamp: runeState2?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
+
+          rune3: runeState3?.result?.tokenIndex?.toNumber(),
+          rune3TimeStamp: runeState3?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
         })
       }
       return memo
@@ -415,6 +467,21 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
     NEVER_RELOAD
   )
 
+  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    1
+  ])
+
+  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    2
+  ])
+
+  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    3
+  ])
+
   return useMemo(() => {
     if (!chainId || !nar) return []
 
@@ -431,6 +498,9 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
       const totalPowerState = totalSkills[index]
       const rewardRateState = rewardRates[index]
       const periodFinishState = periodFinishes[index]
+      const runeState1 = runes1[index]
+      const runeState2 = runes2[index]
+      const runeState3 = runes3[index]
 
       if (
         // these may be undefined if not logged in
@@ -521,7 +591,14 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
           userMaxBuffRate: userMaxBuffRate,
           commonMin: commonMinAmount,
           commonMax: commonMaxAmount,
-          poolId: info[index].poolId
+          poolId: info[index].poolId,
+          rune1: runeState1?.result?.tokenIndex?.toNumber(),
+          rune1TimeStamp: runeState1?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
+          rune2: runeState2?.result?.tokenIndex?.toNumber(),
+          rune2TimeStamp: runeState2?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
+
+          rune3: runeState3?.result?.tokenIndex?.toNumber(),
+          rune3TimeStamp: runeState3?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
         })
       }
       return memo
@@ -609,6 +686,21 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
     NEVER_RELOAD
   )
 
+  const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    1
+  ])
+
+  const runes2 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    2
+  ])
+
+  const runes3 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'getNcardRate', [
+    ...accountArg,
+    3
+  ])
+
   return useMemo(() => {
     if (!chainId || !nar) return []
 
@@ -626,6 +718,9 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
       const rewardRateState = rewardRates[index]
       const periodFinishState = periodFinishes[index]
       const averageLpState = averageLps[index]
+      const runeState1 = runes1[index]
+      const runeState2 = runes2[index]
+      const runeState3 = runes3[index]
 
       if (
         // these may be undefined if not logged in
@@ -721,7 +816,14 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
           commonMin: commonMinAmount,
           commonMax: commonMaxAmount,
           startTime: info[index].startTime,
-          poolId: info[index].poolId
+          poolId: info[index].poolId,
+          rune1: runeState1?.result?.tokenIndex?.toNumber(),
+          rune1TimeStamp: runeState1?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
+          rune2: runeState2?.result?.tokenIndex?.toNumber(),
+          rune2TimeStamp: runeState2?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
+
+          rune3: runeState3?.result?.tokenIndex?.toNumber(),
+          rune3TimeStamp: runeState3?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0,
         })
       }
       return memo

@@ -54,7 +54,7 @@ export default function Nar() {
         <h3 className='text-color-white' style={{color:'white'}}>Neumékca City Farms</h3>
         </DataRow>
 
-        <TYPE.white>Huge Pools</TYPE.white>
+        <TYPE.white>ZERO Pools</TYPE.white>
         <PoolSection>
           {stakingRewardsV2Exist && stakingV2Infos?.length === 0 ? (
             <Loader style={{ margin: 'auto' }} />
@@ -64,21 +64,6 @@ export default function Nar() {
             </AutoColumn>
           ) : (
             stakingV2Infos?.map(stakingInfo => {
-              return <PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} poolType={'v2'} />
-            })
-          )}
-        </PoolSection>
-
-        <TYPE.white>Default Pools</TYPE.white>
-        <PoolSection>
-          {stakingRewardsExist && stakingInfos?.length === 0 ? (
-            <Loader style={{ margin: 'auto' }} />
-          ) : !stakingRewardsExist ? (
-            <AutoColumn justify="center" gap="md">
-              <TYPE.main>No active rewards</TYPE.main>
-            </AutoColumn>
-          ) : (
-            stakingInfos?.map(stakingInfo => {
               return <PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} poolType={'normal'} />
             })
           )}
