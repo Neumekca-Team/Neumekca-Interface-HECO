@@ -73,7 +73,7 @@ const PoolData = styled(DataCard)`
 `
 
 const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #ed5fcf 0%, #000000 100%);
   overflow: hidden;
 `
 
@@ -257,7 +257,7 @@ export default function ManageV2({
               {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) &&
                 stakingInfo?.userInfoTimeStamp &&
                 (!isMaxBuffRate ? (
-                  <Countdown date={stakingInfo.userInfoTimeStamp + 86400000}>
+                  <Countdown date={stakingInfo.userInfoTimeStamp + 28800000}>
                     <ButtonPrimary
                       padding="2px 0"
                       borderRadius="0px"
@@ -314,7 +314,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
-                    dim={Date.now() - stakingInfo.rune1TimeStamp < 86400000}
+                    dim={Date.now() - stakingInfo.rune1TimeStamp < 28800000}
                   />
                 ) : (
                   <AutoColumn justify="center">
@@ -337,7 +337,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                    dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
+                    dim={Date.now() - stakingInfo.rune2TimeStamp < 28800000}
                   />
                 ) : (
                   <AutoColumn justify="center">
@@ -360,7 +360,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune3 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 3)[0]?.token_image ?? undefined}
-                    dim={Date.now() - stakingInfo.rune3TimeStamp < 86400000}
+                    dim={Date.now() - stakingInfo.rune3TimeStamp < 28800000}
                   />
                 ) : (
                   <AutoColumn justify="center">

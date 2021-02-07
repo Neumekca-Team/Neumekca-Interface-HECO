@@ -148,6 +148,7 @@ export interface StakingInfo {
   totalRewardRate: TokenAmount
   rewardRate: TokenAmount
   periodFinish: Date | undefined
+  startDate: Date | undefined
   getHypotheticalRewardRate: (
     stakedAmount: TokenAmount,
     totalStakedAmount: TokenAmount,
@@ -249,6 +250,8 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
     3
   ])
 
+  const startDate = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, '_startTime')
+
   
   return useMemo(() => {
     if (!chainId || !nar) return []
@@ -267,6 +270,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
       const rewardRateState = rewardRates[index]
       const commonEdgeState = commonEdges[index]
       const periodFinishState = periodFinishes[index]
+      const startDateState = startDate[index]
       const runeState1 = runes1[index]
       const runeState2 = runes2[index]
       const runeState3 = runes3[index]
@@ -349,11 +353,13 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         const userMaxBuffRate = JSBI.BigInt(maxBuffRate[Number(rule)])
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
-
+        const startDateMs = startDateState.result?.[0]?.mul(1000)?.toNumber()
+        
         memo.push({
           stakingRewardAddress: rewardsAddress,
           tokens: info[index].tokens,
           periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
+          startDate: startDateMs > 0 ? new Date(startDateMs) : undefined,
           earnedAmount: new TokenAmount(nar, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
           rewardRate: individualRewardRate,
           totalRewardRate: totalRewardRate,
@@ -482,6 +488,8 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
     3
   ])
 
+  const startDate = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, '_startTime')
+
   return useMemo(() => {
     if (!chainId || !nar) return []
 
@@ -501,7 +509,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
       const runeState1 = runes1[index]
       const runeState2 = runes2[index]
       const runeState3 = runes3[index]
-
+      const startDateState = startDate[index]
       if (
         // these may be undefined if not logged in
         !balanceState?.loading &&
@@ -571,11 +579,13 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         const userMaxBuffRate = JSBI.BigInt(maxBuffRate[Number(rule)])
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
+        const startDateMs = startDateState.result?.[0]?.mul(1000)?.toNumber()
 
         memo.push({
           stakingRewardAddress: rewardsAddress,
           tokens: info[index].tokens,
           periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
+          startDate: startDateMs > 0 ? new Date(startDateMs) : undefined,
           earnedAmount: new TokenAmount(nar, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
           rewardRate: individualRewardRate,
           totalRewardRate: totalRewardRate,
@@ -686,6 +696,8 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
     NEVER_RELOAD
   )
 
+  const startDate = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, '_startTime')
+
   const runes1 = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_V2_INTERFACE, 'ncard', [
     ...accountArg,
     1
@@ -717,6 +729,7 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
       const totalPowerState = totalSkills[index]
       const rewardRateState = rewardRates[index]
       const periodFinishState = periodFinishes[index]
+      const startDateState = startDate[index]
       const averageLpState = averageLps[index]
       const runeState1 = runes1[index]
       const runeState2 = runes2[index]
@@ -795,11 +808,13 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
         const individualRewardRate = getHypotheticalRewardRate(narPower, totalPower, totalRewardRate)
 
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
-
+        const startDateMs = startDateState.result?.[0]?.mul(1000)?.toNumber()
+        
         memo.push({
           stakingRewardAddress: rewardsAddress,
           tokens: info[index].tokens,
           periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,
+          startDate: startDateMs > 0 ? new Date(startDateMs) : undefined,
           earnedAmount: new TokenAmount(nar, JSBI.BigInt(earnedAmountState?.result?.[0] ?? 0)),
           rewardRate: individualRewardRate,
           totalRewardRate: totalRewardRate,

@@ -302,7 +302,7 @@ export default function Dividend() {
               {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) &&
                 stakingInfo?.userInfoTimeStamp &&
                 (!isMaxBuffRate ? (
-                  <Countdown date={stakingInfo.userInfoTimeStamp + 86400000}>
+                  <Countdown date={stakingInfo.userInfoTimeStamp + 28800000}>
                     <ButtonPrimary
                       padding="2px 0"
                       borderRadius="0px"
@@ -458,7 +458,7 @@ export default function Dividend() {
                   {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
                     <RuneImage
                       src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
-                      dim={Date.now() - stakingInfo.rune1TimeStamp < 86400000}
+                      dim={Date.now() - stakingInfo.rune1TimeStamp < 28800000}
                     />
                   ) : (
                       <AutoColumn justify="center">
@@ -482,7 +482,7 @@ export default function Dividend() {
                   {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
                     <RuneImage
                       src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                      dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
+                      dim={Date.now() - stakingInfo.rune2TimeStamp < 28800000}
                     />
                   ) : (
                       <AutoColumn justify="center">
@@ -505,7 +505,7 @@ export default function Dividend() {
                   {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
                     <RuneImage
                       src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                      dim={Date.now() - stakingInfo.rune2TimeStamp < 86400000}
+                      dim={Date.now() - stakingInfo.rune2TimeStamp < 28800000}
                     />
                   ) : (
                       <AutoColumn justify="center">

@@ -106,15 +106,15 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
       WETH,
       JSBI.greaterThan(valueOfTotalStakedAmountInWETH.raw, JSBI.BigInt(0))
         ? JSBI.multiply(
-            JSBI.divide(
-              JSBI.multiply(
-                JSBI.multiply(stakingInfo.totalRewardRate.raw, JSBI.BigInt(60 * 60 * 24 * 365)),
-                JSBI.divide(narPair.reserveOf(WETH).raw, JSBI.BigInt(narPair.reserveOf(nar).toFixed(0)))
-              ),
-              valueOfTotalStakedAmountInWETH.raw
+          JSBI.divide(
+            JSBI.multiply(
+              JSBI.multiply(stakingInfo.totalRewardRate.raw, JSBI.BigInt(60 * 60 * 24 * 365)),
+              JSBI.divide(narPair.reserveOf(WETH).raw, JSBI.BigInt(narPair.reserveOf(nar).toFixed(0)))
             ),
-            JSBI.BigInt(100)
-          )
+            valueOfTotalStakedAmountInWETH.raw
+          ),
+          JSBI.BigInt(100)
+        )
         : JSBI.BigInt(0)
     )
   }
@@ -123,7 +123,8 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
   const USDPrice = useBUSDPrice(WETH)
   const valueOfTotalStakedAmountInBUSD =
     valueOfTotalStakedAmountInWETH && USDPrice?.quote(valueOfTotalStakedAmountInWETH)
-
+  const dateStart = new Date(1612742400 * 1000);
+  console.log(dateStart);
   return (
     <Wrapper>
       <TopSection>
@@ -134,10 +135,10 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
             {poolType === 'normal'
               ? ''
               : stakingInfo.poolId === 0
-              ? ' ANPHA'
-              : stakingInfo.poolId === 1
-              ? ' GAMMA'
-              : ' BETA'}
+                ? ' ANPHA'
+                : stakingInfo.poolId === 1
+                  ? ' GAMMA'
+                  : ' BETA'}
           </TYPE.black>
         </AutoColumn>
 
@@ -170,7 +171,14 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
         </RowBetween>
       </StatContainer>
 
-      <StyledInternalLink
+      <ButtonPrimary padding="8px" borderRadius="8px" disabled>
+        <b>
+          <Countdown date={dateStart} />
+        </b>
+      </ButtonPrimary>
+
+
+      {/* <StyledInternalLink
         style={{ width: '100%' }}
         to={
           poolType === 'normal'
@@ -178,10 +186,16 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
             : `/page/capped/${stakingInfo.poolId}/${currencyId(currency0)}/${currencyId(currency1)}`
         }
       >
-        <ButtonPrimary padding="8px" borderRadius="8px">
-          {isStaking ? 'Manage' : 'Stake'}
-        </ButtonPrimary>
+        
+          <ButtonPrimary padding="8px" borderRadius="8px" disabled>
+  
+             {isStaking ? 'Manage' : 'Stake'} 
+ 
+          </ButtonPrimary>
+
+        
       </StyledInternalLink>
+     */}
     </Wrapper>
   )
 }

@@ -71,7 +71,7 @@ const PoolData = styled(DataCard)`
 `
 
 const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #ed5fcf 0%, #000000 100%);
   overflow: hidden;
 `
 
@@ -240,7 +240,7 @@ export default function CappedManage({
               {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) &&
                 stakingInfo?.userInfoTimeStamp &&
                 (!isMaxBuffRate ? (
-                  <Countdown date={stakingInfo.userInfoTimeStamp + 86400000}>
+                  <Countdown date={stakingInfo.userInfoTimeStamp + 28800000}>
                     <ButtonPrimary
                       padding="2px 0"
                       borderRadius="0px"

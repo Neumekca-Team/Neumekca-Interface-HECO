@@ -66,7 +66,7 @@ export default function UnstakingRuneModal({
         .removeRune(`0x${JSBI.BigInt(nftInfo.token_id).toString(16)}`, { gasLimit: 450000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `remove RUNE`
+            summary: `remove Ncard`
           })
           setHash(response.hash)
         })
@@ -82,7 +82,7 @@ export default function UnstakingRuneModal({
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <RowBetween>
-            <TYPE.mediumHeader>Remove RUNE</TYPE.mediumHeader>
+            <TYPE.mediumHeader>Remove Ncard</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOnDismiss} />
           </RowBetween>
 
@@ -91,21 +91,21 @@ export default function UnstakingRuneModal({
               <NFTImage src={nftInfo.token_image} />
               <DetailsCard>
                 {nftInfo && (
-                  <TYPE.main fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
+                  <TYPE.black fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
                     {nftInfo.description}
-                  </TYPE.main>
+                  </TYPE.black>
                 )}
-                <TYPE.subHeader>Name: {nftInfo.name}</TYPE.subHeader>
-                <TYPE.subHeader>Rank: {nftInfo.rank_text}</TYPE.subHeader>
-                <TYPE.subHeader>Effect: {nftInfo.effect}</TYPE.subHeader>
-                <TYPE.subHeader>
+                <TYPE.black>Name: {nftInfo.name}</TYPE.black>
+                <TYPE.black>Rank: {nftInfo.rank_text}</TYPE.black>
+                <TYPE.black>Effect: {nftInfo.effect}</TYPE.black>
+                <TYPE.black>
                   Ready in:{' '}
                   <Countdown
-                    date={(nftInfo.types === 1 ? stakingInfo?.rune1TimeStamp : stakingInfo?.rune2TimeStamp) + 86400000}
+                    date={(nftInfo.types === 1 ? stakingInfo?.rune1TimeStamp : stakingInfo?.rune2TimeStamp) + 28800000}
                   >
                     <span>Ready to use</span>
                   </Countdown>
-                </TYPE.subHeader>
+                </TYPE.black>
               </DetailsCard>
             </ModalContent>
           )}
@@ -129,7 +129,7 @@ export default function UnstakingRuneModal({
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.largeHeader>Remove RUNE</TYPE.largeHeader>
+            <TYPE.largeHeader>Remove Ncard</TYPE.largeHeader>
           </AutoColumn>
         </LoadingView>
       )}

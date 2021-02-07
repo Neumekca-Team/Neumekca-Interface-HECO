@@ -191,12 +191,12 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
 
           {nftSelected && (
             <DetailsCard>
-              <TYPE.main fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
+              <TYPE.black fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
                 {nftSelected.description}
-              </TYPE.main>
-              <TYPE.subHeader>Name: {nftSelected.name}</TYPE.subHeader>
-              <TYPE.subHeader>Rank: {nftSelected.rank_text}</TYPE.subHeader>
-              <TYPE.subHeader>Effect: {nftSelected.effect}</TYPE.subHeader>
+              </TYPE.black>
+              <TYPE.black>Name: {nftSelected.name}</TYPE.black>
+              <TYPE.black>Rank: {nftSelected.rank_text}</TYPE.black>
+              <TYPE.black>Effect: {nftSelected.effect}</TYPE.black>
             </DetailsCard>
           )}
 

@@ -374,3 +374,62 @@ body{
         background: none !important;
     }
   }
+
+
+  .YMxKx {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 0px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cmleTe {
+    display: grid;
+    grid-auto-rows: auto;
+}
+
+.fynedV {
+    width: 32px;
+    height: 32px;
+    border-radius: 100px;
+}
+
+.gXpmrw {
+    position: absolute;
+    left: 32px;
+}
+
+.fUsWFK {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 100px;
+}
+
+.eLiSzy {
+    display: grid;
+    grid-auto-rows: auto;
+    row-gap: 8px;
+    font-size: 14px;
+}
+
+.bLaTJO {
+    display: grid;
+    grid-template-columns: 210px 1fr 120px;
+    gap: 0px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    padding: 1.2rem;
+    background: rgb(238, 240, 245);
+    box-shadow: rgb(202 204 208) 4px 4px 8px, rgb(255 255 255) -4px -4px 8px;
+}
+
+.sc-lhVmIH{
+    margin-left: 15px;
+}
+
+.sc-gqjmRU h2{
+    font-weight: 700;
+}
