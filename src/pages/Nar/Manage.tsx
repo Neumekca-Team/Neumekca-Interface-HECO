@@ -221,10 +221,10 @@ export default function Manage({
       <DataRow style={{ gap: '24px' }}>
         <PoolData>
           <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Your ZEROPOWER</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your NULL SKILLS</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
-              {' ZEROPOWER'}
+              {' NULL SKILLS'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -368,7 +368,7 @@ export default function Manage({
             ✨
           </span>
           Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
-          harvest relies on your ZEROPOWER and CHRONOS INJECTED, learn more{' '}
+          harvest relies on your NULL SKILLS and CHRONOS INJECTED, learn more{' '}
           <a href="https://neumekca.city/docs/" target="_blank">
             here
           </a>

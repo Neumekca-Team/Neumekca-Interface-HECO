@@ -63,7 +63,7 @@ export default function UnstakingRuneModal({
     setAttempting(true)
     if (stakingContract && nftInfo) {
       stakingContract
-        .removeRune(`0x${JSBI.BigInt(nftInfo.token_id).toString(16)}`, { gasLimit: 450000 })
+        .removeNcard(`0x${JSBI.BigInt(nftInfo.id).toString(16)}`, { gasLimit: 450000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
             summary: `remove Ncard`

@@ -63,8 +63,8 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
   const { chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
-  const [bnbPrice, setBNBPrice] = useState(nftInfo.bnbPrice?.toSignificant(24) ?? '')
-  const [narPrice, setZEROPrice] = useState(nftInfo.narPrice?.toSignificant(24) ?? '')
+  const [htPrice, sethtPrice] = useState(nftInfo.htPrice?.toSignificant(24) ?? '')
+  const [zeroPrice, setZEROPrice] = useState(nftInfo.zeroPrice?.toSignificant(24) ?? '')
 
   // state for pending and submitted txn views
   const addTransaction = useTransactionAdder()
@@ -86,16 +86,16 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
   const bazaarContract = useNftBazaarContract()
 
   async function onSell() {
-    if (bazaarContract && deadline && bnbPrice && narPrice) {
+    if (bazaarContract && deadline && htPrice && zeroPrice) {
       setAttempting(true)
       const dummyToken = new Token(chainId, NFT_BAZAAR_ADDRESSES[chainId], 18)
-      const bnbAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(bnbPrice) * 1 * 10 ** 18))
-      const narAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(narPrice) * 1 * 10 ** 18))
+      const bnbAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(htPrice) * 1 * 10 ** 18))
+      const narAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(zeroPrice) * 1 * 10 ** 18))
 
       if (approval === ApprovalState.APPROVED) {
         bazaarContract
           .readyToSellToken(
-            `0x${JSBI.BigInt(nftInfo.token_id).toString(16)}`,
+            `0x${JSBI.BigInt(nftInfo.id).toString(16)}`,
             `0x${bnbAmount.raw.toString(16)}`,
             `0x${narAmount.raw.toString(16)}`,
             { gasLimit: 750000 }
@@ -116,21 +116,21 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
       }
     }
 
-    if (!bnbPrice || !narPrice) {
+    if (!htPrice || !zeroPrice) {
       alert('Please fill the price')
     }
   }
 
   async function onSetPrice() {
-    if (bazaarContract && deadline && bnbPrice && narPrice) {
+    if (bazaarContract && deadline && htPrice && zeroPrice) {
       setAttempting(true)
       const dummyToken = new Token(chainId, NFT_BAZAAR_ADDRESSES[chainId], 18)
-      const bnbAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(bnbPrice) * 1 * 10 ** 18))
-      const narAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(narPrice) * 1 * 10 ** 18))
+      const bnbAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(htPrice) * 1 * 10 ** 18))
+      const narAmount = new TokenAmount(dummyToken, JSBI.BigInt(Number(zeroPrice) * 1 * 10 ** 18))
 
       bazaarContract
         .setCurrentPrice(
-          `0x${JSBI.BigInt(nftInfo.token_id).toString(16)}`,
+          `0x${JSBI.BigInt(nftInfo.id).toString(16)}`,
           `0x${bnbAmount.raw.toString(16)}`,
           `0x${narAmount.raw.toString(16)}`,
           { gasLimit: 750000 }
@@ -147,7 +147,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
         })
     }
 
-    if (!bnbPrice || !narPrice) {
+    if (!htPrice || !zeroPrice) {
       alert('Please fill the price')
     }
   }
@@ -156,7 +156,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
     if (bazaarContract) {
       setAttempting(true)
       bazaarContract
-        .cancelSellToken(`0x${JSBI.BigInt(nftInfo.token_id).toString(16)}`, { gasLimit: 450000 })
+        .cancelSellToken(`0x${JSBI.BigInt(nftInfo.id).toString(16)}`, { gasLimit: 450000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
             summary: `Cancel selling NFT`
@@ -170,11 +170,11 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
     }
   }
 
-  const isSale = Boolean(!nftInfo.bnbPrice || !nftInfo.narPrice)
+  const isSale = Boolean(!nftInfo.htPrice || !nftInfo.zeroPrice)
 
   // wrapped onUserInput to clear signatures
   const onBNBInput = useCallback((typedValue: string) => {
-    setBNBPrice(typedValue)
+    sethtPrice(typedValue)
   }, [])
 
   const onZEROInput = useCallback((typedValue: string) => {
@@ -196,18 +196,18 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
             <RuneWrapper>
               <NFTImage src={nftInfo ? nftInfo.token_image : PlaceHolder} />
               <DetailsCard>
-                <TYPE.subHeader>Name: {nftInfo ? nftInfo.name : '-'}</TYPE.subHeader>
-                <TYPE.subHeader>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.subHeader>
-                <TYPE.subHeader>Effect: {nftInfo ? nftInfo.effect : '-'}</TYPE.subHeader>
+                <TYPE.black>Name: {nftInfo ? nftInfo.name : '-'}</TYPE.black>
+                <TYPE.black>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.black>
+                <TYPE.black>Effect: {nftInfo ? nftInfo.effect : '-'}</TYPE.black>
               </DetailsCard>
             </RuneWrapper>
 
             <PriceSection>
               <Container>
-                <TYPE.subHeader marginRight={16}>Price (HT):</TYPE.subHeader>
+                <TYPE.black marginRight={16}>Price (HT):</TYPE.black>
                 <NumericalInput
                   align="right"
-                  value={bnbPrice}
+                  value={htPrice}
                   onUserInput={val => {
                     onBNBInput(val)
                   }}
@@ -216,7 +216,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
               <RowBetween>
                 <TYPE.subHeader> </TYPE.subHeader>
                 <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                  Total received: {Number(bnbPrice) * 0.85} HT
+                  Total received: {Number(htPrice) * 0.85} HT
                 </TYPE.subHeader>
               </RowBetween>
             </PriceSection>
@@ -226,7 +226,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
                 <TYPE.subHeader marginRight={16}>Price (ZERO):</TYPE.subHeader>
                 <NumericalInput
                   align="right"
-                  value={narPrice}
+                  value={zeroPrice}
                   onUserInput={val => {
                     onZEROInput(val)
                   }}
@@ -235,7 +235,7 @@ export default function SellModal({ isOpen, onDismiss, nftInfo }: StakingRuneMod
               <RowBetween>
                 <TYPE.subHeader> </TYPE.subHeader>
                 <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                  Total received: {Number(narPrice) * 0.95} ZERO
+                  Total received: {Number(zeroPrice) * 0.95} ZERO
                 </TYPE.subHeader>
               </RowBetween>
             </PriceSection>

@@ -47,27 +47,27 @@ export const STAKING_REWARDS_INFO: {
     //   poolId: 0
     // },
     
-    {
-      tokens: [WETH[ChainId.HT_MAINNET], H_USD[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0x6dA9Ee0c0571b63e38950D1e12e835D5343f601B',
-      jlp4fAddress: '0x1f7D08d96d2520BD9196cb857e40d2A99e31de1A',
-      powerAddress: '0xa1992a9777c3C11c466F44a4b9c7530719a22ea2',
-      poolId: 1
-    },
-    {
-      tokens: [WETH[ChainId.HT_MAINNET], H_USDT],
-      stakingRewardAddress: '0xCF889a0902859662C17dC895abb7AF49EE28A013',
-      jlp4fAddress: '0xc0b5306224298f39E6ce9Cb9fD2acb6d03A2CC04',
-      powerAddress: '0xb9C9E7Cc58DA9B727916d7dfD6bf7001C5f26210',
-      poolId: 2
-    },
-    {
-      tokens: [WETH[ChainId.HT_MAINNET], H_DAI],
-      stakingRewardAddress: '0xb6c9B20253a4BDC65d1FDC6F4aE04f57f6523915',
-      jlp4fAddress: '0x6400442ad9B93aC56d18C272C977efE1e50273c1',
-      powerAddress: '0x5777Ae2Ac8a042dc99dC41888C5b70f198A1e159',
-      poolId: 3
-    }
+    // {
+    //   tokens: [WETH[ChainId.HT_MAINNET], H_USD[ChainId.HT_MAINNET]],
+    //   stakingRewardAddress: '0x6dA9Ee0c0571b63e38950D1e12e835D5343f601B',
+    //   jlp4fAddress: '0x1f7D08d96d2520BD9196cb857e40d2A99e31de1A',
+    //   powerAddress: '0xa1992a9777c3C11c466F44a4b9c7530719a22ea2',
+    //   poolId: 1
+    // },
+    // {
+    //   tokens: [WETH[ChainId.HT_MAINNET], H_USDT],
+    //   stakingRewardAddress: '0xCF889a0902859662C17dC895abb7AF49EE28A013',
+    //   jlp4fAddress: '0xc0b5306224298f39E6ce9Cb9fD2acb6d03A2CC04',
+    //   powerAddress: '0xb9C9E7Cc58DA9B727916d7dfD6bf7001C5f26210',
+    //   poolId: 2
+    // },
+    // {
+    //   tokens: [WETH[ChainId.HT_MAINNET], H_DAI],
+    //   stakingRewardAddress: '0xb6c9B20253a4BDC65d1FDC6F4aE04f57f6523915',
+    //   jlp4fAddress: '0x6400442ad9B93aC56d18C272C977efE1e50273c1',
+    //   powerAddress: '0x5777Ae2Ac8a042dc99dC41888C5b70f198A1e159',
+    //   poolId: 3
+    // }
   ]
 }
 
@@ -80,24 +80,24 @@ export const STAKING_REWARDS_CAPPED_INFO: {
   }[]
 } = {
   [ChainId.HT_MAINNET]: [
-    {
-      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0x3DFB186e8CE513f321232098Dd551e22886C1051',
-      jlp4fAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
-      poolId: 1
-    },
-    {
-      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
-      jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
-      poolId: 2
-    },
-    {
-      tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
-      jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
-      poolId: 3
-    }
+    // {
+    //   tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
+    //   stakingRewardAddress: '0x3DFB186e8CE513f321232098Dd551e22886C1051',
+    //   jlp4fAddress: '0x205D52f845d0e79B5928EAa431eb09f9E234593e',
+    //   poolId: 1
+    // },
+    // {
+    //   tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
+    //   stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
+    //   jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
+    //   poolId: 2
+    // },
+    // {
+    //   tokens: [HBTC, ZERO[ChainId.HT_MAINNET]],
+    //   stakingRewardAddress: '0x529dD123bcdA4ebe9D4acD69a52A65B880630b8A',
+    //   jlp4fAddress: '0x8F54187ff7678317329268aC7C2A7b67471A7f4e',
+    //   poolId: 3
+    // }
   ]
 }
 
@@ -120,10 +120,10 @@ export const STAKING_REWARDS_V2_INFO: {
     // }
      {
       tokens: [WETH[ChainId.HT_MAINNET], ZERO[ChainId.HT_MAINNET]],
-      stakingRewardAddress: '0xD14bB95723db72D5802cEf8598fb19f51EB3AfA5',
-      jlp4fAddress: '0x282EA4e76Fd9C812A1B4974716DD9C396a2Be202',
+      stakingRewardAddress: '0x89Deb871F0cb056dFE4C2Fb901c8FADe29F8b940',
+      jlp4fAddress: '0x37585E149Ad7CE0f40D5A8BFf9e1b68f007877C2',
       poolId: 0,
-      startTime: 1612137600
+      startTime: 1612742400
     }
    
   ],
@@ -314,7 +314,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NULL SKILLS', 'NULL SKILLS')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -546,7 +546,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NULL SKILLS', 'NULL SKILLS')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -775,7 +775,7 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NULL SKILLS', 'NULL SKILLS')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))

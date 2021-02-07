@@ -20,7 +20,7 @@ import {
   useNftBazaarContract,
   useTicketStakingContractV2
 } from '../../hooks/useContract'
-import { lstatSync } from 'fs'
+
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
@@ -148,7 +148,6 @@ export default function Nft() {
     }
 
     if (userNfts.length !== 0) {
-      console.log(userNfts);
       fetchAvailable()
     } else {
       setNftInfos([])

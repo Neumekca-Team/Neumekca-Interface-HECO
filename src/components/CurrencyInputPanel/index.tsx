@@ -155,10 +155,10 @@ export default function CurrencyInputPanel({
   customBalanceAmount
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
-  console.log('customBalanceAmount',customBalanceAmount)
+
   const [modalOpen, setModalOpen] = useState(false)
   const { account, chainId } = useActiveWeb3React()
-  console.log('currency',currency)
+
   const selectedCurrencyBalance = useCurrencyBalance(account, currency)
   const theme = useContext(ThemeContext)
 

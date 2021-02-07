@@ -48,7 +48,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
     }
 
     const ethPairETHAmount = ethPair?.reserveOf(WETH[chainId])
-    console.log('WETH[chainId]',WETH[chainId])
+  
     const ethPairETHBUSDValue: JSBI =
       ethPairETHAmount && usdcEthPair ? usdcEthPair.priceOf(WETH[chainId]).quote(ethPairETHAmount).raw : JSBI.BigInt(0)
 

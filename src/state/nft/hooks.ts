@@ -231,7 +231,7 @@ export function useTicketStakingInfoV2(poolIdToFilterBy?: number | null): Ticket
   const stakingContract = useTicketStakingContractV2(poolAddress ?? undefined)
 
   const userInfos = useSingleContractMultipleData(stakingContract, 'userInfo', accountArg)
-  const earnedAmounts = useSingleContractMultipleData(stakingContract, 'pendinNart', accountArg)
+  const earnedAmounts = useSingleContractMultipleData(stakingContract, 'pendingZero', accountArg)
   const totalSupplies = useMultipleContractSingleData(stakeTokenAddresses, ERC20_INTERFACE, 'balanceOf', [poolAddress])
 
   return useMemo(() => {
@@ -298,8 +298,8 @@ export interface NftInfo {
   created_time: number
   author: string
   block: number
-  bnbPrice?: TokenAmount
-  narPrice?: TokenAmount
+  htPrice?: TokenAmount
+  zeroPrice?: TokenAmount
   isOwner?: boolean
 }
 
@@ -313,7 +313,7 @@ export function useUserNfts(): userNftInfo | undefined {
   const { chainId, account } = useActiveWeb3React()
   const contract = useNftContract()
   const factoryContract = useNftFactoryContract()
-  console.log(factoryContract)
+
   const accountArg = useMemo(() => [account ?? undefined], [account])
   const getPriceArg = useMemo(() => [account ?? undefined, 0], [account])
 
@@ -346,8 +346,8 @@ export function useUserNfts(): userNftInfo | undefined {
 // eslint-disable-next-line @typescript-eslint/class-name-casing
 export interface onSaleNftInfo {
   tokenId: number
-  bnbPrice: TokenAmount
-  narPrice: TokenAmount
+  htPrice: TokenAmount
+  zeroPrice: TokenAmount
 }
 
 export function useOnSaleNfts(): onSaleNftInfo[] {
@@ -373,10 +373,10 @@ export function useOnSaleNfts(): onSaleNftInfo[] {
       return asksTuple.reduce<onSaleNftInfo[]>((asks, ask) => {
         asks.push({
           tokenId: ask[0],
-          bnbPrice: new TokenAmount(dummy, JSBI.BigInt(ask[1] ?? 0)),
-          narPrice: new TokenAmount(dummy, JSBI.BigInt(ask[2] ?? 0))
+          htPrice: new TokenAmount(dummy, JSBI.BigInt(ask[1] ?? 0)),
+          zeroPrice: new TokenAmount(dummy, JSBI.BigInt(ask[2] ?? 0))
         })
-
+        
         return asks
       }, [])
     }
@@ -409,8 +409,8 @@ export function useUserOnSaleNfts(): onSaleNftInfo[] {
       return asksTuple.reduce<onSaleNftInfo[]>((asks, ask) => {
         asks.push({
           tokenId: ask[0],
-          bnbPrice: new TokenAmount(dummy, JSBI.BigInt(ask[1] ?? 0)),
-          narPrice: new TokenAmount(dummy, JSBI.BigInt(ask[2] ?? 0))
+          htPrice: new TokenAmount(dummy, JSBI.BigInt(ask[1] ?? 0)),
+          zeroPrice: new TokenAmount(dummy, JSBI.BigInt(ask[2] ?? 0))
         })
 
         return asks

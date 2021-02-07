@@ -81,8 +81,8 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
     if (bazaarContract) {
       setAttempting(true)
       bazaarContract
-        .buyTokenByBnb(`0x${JSBI.BigInt(nftInfo.token_id).toString(16)}`, {
-          value: `0x${nftInfo.bnbPrice?.raw.toString(16)}`,
+        .buyTokenByHT(`0x${JSBI.BigInt(nftInfo.id).toString(16)}`, {
+          value: `0x${nftInfo.htPrice?.raw.toString(16)}`,
           gasLimit: 750000
         })
         .then((response: TransactionResponse) => {
@@ -102,7 +102,7 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
     if (bazaarContract && deadline) {
       setAttempting(true)
       bazaarContract
-        .buyTokenByNar(`0x${JSBI.BigInt(nftInfo.token_id).toString(16)}`, { gasLimit: 750000 })
+        .buyTokenByZero(`0x${JSBI.BigInt(nftInfo.id).toString(16)}`, { gasLimit: 750000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
             summary: `Buy NFT`
@@ -131,26 +131,26 @@ export default function BuyModal({ isOpen, onDismiss, nftInfo }: StakingRuneModa
             <NFTImage src={nftInfo ? nftInfo.token_image : PlaceHolder} />
             <DetailsCard>
               {nftInfo && (
-                <TYPE.main fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
+                <TYPE.black fontSize={14} fontStyle="italic" marginBottom={16} textAlign="center">
                   {nftInfo.description}
-                </TYPE.main>
+                </TYPE.black>
               )}
-              <TYPE.subHeader>Name: {nftInfo ? nftInfo.name : '-'}</TYPE.subHeader>
-              <TYPE.subHeader>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.subHeader>
-              <TYPE.subHeader>Effect: {nftInfo ? nftInfo.effect : '-'}</TYPE.subHeader>
+              <TYPE.black>Name: {nftInfo ? nftInfo.name : '-'}</TYPE.black>
+              <TYPE.black>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.black>
+              <TYPE.black>Effect: {nftInfo ? nftInfo.effect : '-'}</TYPE.black>
 
               <PriceSection>
                 <RowBetween>
-                  <TYPE.subHeader>Price (HT):</TYPE.subHeader>
-                  <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                    {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} HT
-                  </TYPE.subHeader>
+                  <TYPE.black>Price (HT):</TYPE.black>
+                  <TYPE.black fontWeight={700} color={theme.primary1}>
+                    {nftInfo?.htPrice?.toFixed(2) ?? '-'} HT
+                  </TYPE.black>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.subHeader>Price (ZERO):</TYPE.subHeader>
-                  <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                    {nftInfo?.narPrice?.toFixed(3) ?? '-'} ZERO
-                  </TYPE.subHeader>
+                  <TYPE.black>Price (ZERO):</TYPE.black>
+                  <TYPE.black fontWeight={700} color={theme.primary1}>
+                    {nftInfo?.zeroPrice?.toFixed(2) ?? '-'} ZERO
+                  </TYPE.black>
                 </RowBetween>
               </PriceSection>
             </DetailsCard>

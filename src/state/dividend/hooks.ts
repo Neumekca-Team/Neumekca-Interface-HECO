@@ -204,7 +204,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
         }
 
         const rToken = info[index].representativeToken
-        const dummyNarpower = new Token(chainId, rToken.address, 21, 'ZEROPOWER', 'ZEROPOWER')
+        const dummyNarpower = new Token(chainId, rToken.address, 21, 'NULL SKILLS', 'NULL SKILLS')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(nar, JSBI.BigInt(balanceState?.result?.[0] ?? 0))

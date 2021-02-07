@@ -99,7 +99,9 @@ const gradeOptions: OptionProps[] = [
 export default function Bazaar() {
   const { chainId } = useActiveWeb3React()
   const onSaleNfts = useOnSaleNfts()
+
   const userNfts = useUserNfts()
+
   const userOnSaleNfts = useUserOnSaleNfts()
 
   const theme = useContext(ThemeContext)
@@ -111,40 +113,57 @@ export default function Bazaar() {
   const [nftInfos, setNftInfos] = useState<NftInfo[]>()
   const [userNftOnSaleInfos, setUserNftOnSaleInfos] = useState<NftInfo[]>()
 
+  const [blockCall,setBlockCall] = useState<Number>(0)
+
   useEffect(() => {
     if (!userNfts || !chainId || !userOnSaleNfts) return
 
     const fetchOnSale = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${onSaleNfts.map(e => 'ids[]=' + e.tokenId + '&').join('')}`
-      )
+      var lst = [];
+      await Promise.all(
+        onSaleNfts.map(async (item, i) => {
+          const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item.tokenId}`)
+            lst.push(res.data);
+        }));
+  
+
+
       setNftOnSaleInfos(
-        res.data.map(e => {
-          const onSale: onSaleNftInfo | undefined = onSaleNfts.find(o => o.tokenId.toString() === e.token_id)
-          e.bnbPrice = onSale?.bnbPrice
-          e.narPrice = onSale?.narPrice
-          e.isOwner = userOnSaleNfts.some(u => u.tokenId.toString() === e.token_id)
+        lst.map(e => {
+          const onSale: onSaleNftInfo | undefined = onSaleNfts.find(o => Number(o.tokenId.toString()) === Number(e.id))
+          e.htPrice = onSale?.htPrice
+          e.zeroPrice = onSale?.zeroPrice
+          e.isOwner = userOnSaleNfts.some(u => u.tokenId.toString() === e.id)
           return e
         })
       )
     }
 
     const fetchAvailable = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
-      )
-      setNftInfos(res.data.map(e => e))
+      var lst = [];
+      await Promise.all(
+        userNfts.myNfts.map(async (item, i) => {
+          const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
+            lst.push(res.data);
+        }));
+
+      setNftInfos(lst.map(e => e))
     }
 
     const fetchUserOnSale = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${userOnSaleNfts.map(e => 'ids[]=' + e.tokenId + '&').join('')}`
-      )
+      var lst = [];
+      await Promise.all(
+        userOnSaleNfts.map(async (item, i) => {
+          const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item.tokenId}`)
+            lst.push(res.data);
+        }));
+   
+
       setUserNftOnSaleInfos(
-        res.data.map(e => {
-          const onSale: onSaleNftInfo | undefined = userOnSaleNfts.find(o => o.tokenId.toString() === e.token_id)
-          e.bnbPrice = onSale?.bnbPrice
-          e.narPrice = onSale?.narPrice
+        lst.map(e => {
+          const onSale: onSaleNftInfo | undefined = userOnSaleNfts.find(o => Number(o.tokenId.toString()) === Number(e.id))
+          e.htPrice = onSale?.htPrice
+          e.zeroPrice = onSale?.zeroPrice
           return e
         })
       )
@@ -152,19 +171,22 @@ export default function Bazaar() {
 
     if (onSaleNfts.length !== 0) {
       fetchOnSale()
-    } else {
+    } 
+    else {
       setNftOnSaleInfos([])
     }
 
     if (userNfts.myNfts.length !== 0) {
       fetchAvailable()
-    } else {
+    } 
+    else {
       setNftInfos([])
     }
 
     if (userOnSaleNfts.length !== 0) {
       fetchUserOnSale()
-    } else {
+    } 
+    else {
       setUserNftOnSaleInfos([])
     }
   }, [userNfts, chainId, userOnSaleNfts, onSaleNfts])
@@ -181,7 +203,7 @@ export default function Bazaar() {
     <PageWrapper gap="lg" justify="center">
 
       {(
-        <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
+        <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '920px' }}>
           <TYPE.white>Available for Sale</TYPE.white>
           {nftInfos ? (
             nftInfos.length !== 0 ? (

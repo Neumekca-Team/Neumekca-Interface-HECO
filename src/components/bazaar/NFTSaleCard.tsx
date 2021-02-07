@@ -52,35 +52,35 @@ const NFTSmallImage = styled.img`
 
 export function SaleCard({ nftInfo }: { nftInfo?: NftInfo }) {
   const theme = useContext(ThemeContext)
-
+  
   const [showBuyModal, setShowBuyModal] = useState(false)
 
   return (
    
   <GridCard onClick={() => setShowBuyModal(true)}>
       <GridCardContent>
-        <TYPE.subHeader fontSize={11} fontWeight={700} color={nftInfo?.isOwner ? theme.primary1 : 'transparent'}>
+        <TYPE.black fontSize={11} fontWeight={700} color={nftInfo?.isOwner ? theme.primary1 : 'transparent'}>
           {nftInfo?.isOwner ? 'Your items' : '-'}
-        </TYPE.subHeader>
+        </TYPE.black>
 
         <NFTImage src={nftInfo ? nftInfo.token_image : PlaceHolder} />
 
         <DetailsCard>
           <TYPE.black fontSize={14}>{nftInfo ? nftInfo.name : '-'} NFT</TYPE.black>
-          <TYPE.subHeader fontSize={11}>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.subHeader>
+          <TYPE.black fontSize={11}>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.black>
           
           <RowBetween>
-            <TYPE.subHeader fontSize={11}>Price (HT):</TYPE.subHeader>
-            <TYPE.subHeader fontSize={11} fontWeight={700} color={theme.primary1}>
-              {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} HT
-            </TYPE.subHeader>
+            <TYPE.black fontSize={11}>Price (HT):</TYPE.black>
+            <TYPE.black fontSize={11} fontWeight={700} color={theme.primary1}>
+              {nftInfo?.htPrice?.toFixed(2) ?? '-'} HT
+            </TYPE.black>
           </RowBetween>
 
           <RowBetween>
-            <TYPE.subHeader fontSize={11}>Price (ZERO):</TYPE.subHeader>
-            <TYPE.subHeader fontSize={11} fontWeight={700} color={theme.primary1}>
-              {nftInfo?.narPrice?.toFixed(3) ?? '-'} ZERO
-            </TYPE.subHeader>
+            <TYPE.black fontSize={11}>Price (ZERO):</TYPE.black>
+            <TYPE.black fontSize={11} fontWeight={700} color={theme.primary1}>
+              {nftInfo?.zeroPrice?.toFixed(2) ?? '-'} ZERO
+            </TYPE.black>
           </RowBetween>
         </DetailsCard>
       </GridCardContent>
@@ -104,24 +104,24 @@ export function UserCard({ nftInfo, isSale }: { nftInfo?: NftInfo; isSale: boole
       <RowGridCardContent>
         <NFTSmallImage src={nftInfo ? nftInfo.token_image : PlaceHolder} />
 
-        <RowDetailsCard>
+        <RowDetailsCard style={{width: '270px'}}>
           <TYPE.black>{nftInfo ? nftInfo.name : '-'} NFT</TYPE.black>
-          <TYPE.subHeader>Grade: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.subHeader>
+          <TYPE.black>Rank: {nftInfo ? nftInfo.rank_text : '-'}</TYPE.black>
 
           {isSale && (
             <>
               <RowBetween>
-                <TYPE.subHeader>Price (HT):</TYPE.subHeader>
-                <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                  {nftInfo?.bnbPrice?.toFixed(3) ?? '-'} HT
-                </TYPE.subHeader>
+                <TYPE.black>Price (HT):     </TYPE.black>
+                <TYPE.black fontWeight={700} color={theme.primary1} >
+                  {nftInfo?.htPrice?.toFixed(2) ?? '-'} HT
+                </TYPE.black>
               </RowBetween>
 
               <RowBetween>
-                <TYPE.subHeader>Price (ZERO):</TYPE.subHeader>
-                <TYPE.subHeader fontWeight={700} color={theme.primary1}>
-                  {nftInfo?.narPrice?.toFixed(3) ?? '-'} ZERO
-                </TYPE.subHeader>
+                <TYPE.black>Price (ZERO):     </TYPE.black>
+                <TYPE.black fontWeight={700} color={theme.primary1}>
+                  {nftInfo?.zeroPrice?.toFixed(2) ?? '-'} ZERO
+                </TYPE.black>
               </RowBetween>
             </>
           )}

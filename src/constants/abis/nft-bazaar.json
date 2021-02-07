@@ -8,7 +8,7 @@
             },
             {
                 "internalType": "address",
-                "name": "_nar",
+                "name": "_zero",
                 "type": "address"
             },
             {
@@ -38,13 +38,13 @@
             {
                 "indexed": false,
                 "internalType": "uint256",
-                "name": "priceBnb",
+                "name": "priceHT",
                 "type": "uint256"
             },
             {
                 "indexed": false,
                 "internalType": "uint256",
-                "name": "priceNar",
+                "name": "priceZero",
                 "type": "uint256"
             }
         ],
@@ -130,7 +130,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "TradeBnb",
+        "name": "TradeHT",
         "type": "event"
     },
     {
@@ -161,7 +161,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "TradeNar",
+        "name": "TradeZero",
         "type": "event"
     },
     {
@@ -185,7 +185,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "buyTokenByBnb",
+        "name": "buyTokenByHT",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -198,7 +198,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "buyTokenByNar",
+        "name": "buyTokenByZero",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -218,7 +218,7 @@
     },
     {
         "inputs": [],
-        "name": "feeBnb",
+        "name": "feeHT",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -268,12 +268,12 @@
                     },
                     {
                         "internalType": "uint256",
-                        "name": "bnbPrice",
+                        "name": "htPrice",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "narPrice",
+                        "name": "zeroPrice",
                         "type": "uint256"
                     }
                 ],
@@ -309,12 +309,12 @@
                     },
                     {
                         "internalType": "uint256",
-                        "name": "bnbPrice",
+                        "name": "htPrice",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "narPrice",
+                        "name": "zeroPrice",
                         "type": "uint256"
                     }
                 ],
@@ -350,12 +350,12 @@
                     },
                     {
                         "internalType": "uint256",
-                        "name": "bnbPrice",
+                        "name": "htPrice",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "narPrice",
+                        "name": "zeroPrice",
                         "type": "uint256"
                     }
                 ],
@@ -386,12 +386,12 @@
                     },
                     {
                         "internalType": "uint256",
-                        "name": "bnbPrice",
+                        "name": "htPrice",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "narPrice",
+                        "name": "zeroPrice",
                         "type": "uint256"
                     }
                 ],
@@ -422,12 +422,12 @@
                     },
                     {
                         "internalType": "uint256",
-                        "name": "bnbPrice",
+                        "name": "htPrice",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "narPrice",
+                        "name": "zeroPrice",
                         "type": "uint256"
                     }
                 ],
@@ -452,12 +452,12 @@
                     },
                     {
                         "internalType": "uint256",
-                        "name": "bnbPrice",
+                        "name": "htPrice",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "narPrice",
+                        "name": "zeroPrice",
                         "type": "uint256"
                     }
                 ],
@@ -471,7 +471,7 @@
     },
     {
         "inputs": [],
-        "name": "nar",
+        "name": "zero",
         "outputs": [
             {
                 "internalType": "contract IERC20",
@@ -571,12 +571,12 @@
             },
             {
                 "internalType": "uint256",
-                "name": "_priceBnb",
+                "name": "_priceHT",
                 "type": "uint256"
             },
             {
                 "internalType": "uint256",
-                "name": "_priceNar",
+                "name": "_priceZero",
                 "type": "uint256"
             }
         ],
@@ -597,7 +597,7 @@
         "name": "router",
         "outputs": [
             {
-                "internalType": "contract INarwhalswapRouter02",
+                "internalType": "contract IMdexRouter",
                 "name": "",
                 "type": "address"
             }
@@ -607,7 +607,7 @@
     },
     {
         "inputs": [],
-        "name": "seizeBnb",
+        "name": "seizeHT",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -621,12 +621,12 @@
             },
             {
                 "internalType": "uint256",
-                "name": "_priceBnb",
+                "name": "_priceHT",
                 "type": "uint256"
             },
             {
                 "internalType": "uint256",
-                "name": "_priceNar",
+                "name": "_priceZero",
                 "type": "uint256"
             }
         ],
@@ -643,7 +643,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "setFeeForBnb",
+        "name": "setFeeForHT",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -682,7 +682,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "swap2WbnbRouting",
+        "name": "swap2WHTRouting",
         "outputs": [
             {
                 "internalType": "address",
@@ -715,7 +715,7 @@
     },
     {
         "inputs": [],
-        "name": "wbnb",
+        "name": "wht",
         "outputs": [
             {
                 "internalType": "address",

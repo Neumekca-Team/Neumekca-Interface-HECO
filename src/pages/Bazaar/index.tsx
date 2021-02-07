@@ -18,6 +18,7 @@ import { NFT_BASE_URL } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
   width: 100%;
+
 `
 
 const Tabs = styled.div`
@@ -83,7 +84,7 @@ const typeOptions: OptionProps[] = [
   { value: '0', label: 'All' },
   { value: '1', label: 'Chronos  Init' },
   { value: '2', label: 'Chronos  Step' },
-  { value: '5', label: 'Chronos  Max' },
+  { value: '3', label: 'Chronos  Max' },
 ]
 
 const gradeOptions: OptionProps[] = [
@@ -99,6 +100,7 @@ const gradeOptions: OptionProps[] = [
 export default function Bazaar() {
   const { chainId } = useActiveWeb3React()
   const onSaleNfts = useOnSaleNfts()
+
   const userNfts = useUserNfts()
   const userOnSaleNfts = useUserOnSaleNfts()
 
@@ -113,38 +115,55 @@ export default function Bazaar() {
 
   useEffect(() => {
     if (!userNfts || !chainId || !userOnSaleNfts) return
-
+   
     const fetchOnSale = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${onSaleNfts.map(e => 'ids[]=' + e.tokenId + '&').join('')}`
-      )
+
+      var lst = [];
+      await Promise.all(
+        onSaleNfts.map(async (item, i) => {
+          const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item.tokenId}`)
+            lst.push(res.data);
+        }));
+
+      
       setNftOnSaleInfos(
-        res.data.map(e => {
-          const onSale: onSaleNftInfo | undefined = onSaleNfts.find(o => o.tokenId.toString() === e.token_id)
-          e.bnbPrice = onSale?.bnbPrice
-          e.narPrice = onSale?.narPrice
-          e.isOwner = userOnSaleNfts.some(u => u.tokenId.toString() === e.token_id)
+        lst.map(e => {
+          const onSale: onSaleNftInfo | undefined = onSaleNfts.find(o => Number(o.tokenId.toString()) === Number(e.id))
+
+          e.htPrice = onSale?.htPrice
+          e.zeroPrice = onSale?.zeroPrice
+          e.isOwner = userOnSaleNfts.some(u => u.tokenId.toString() === e.id)
+
+          console.log(e);
           return e
         })
       )
     }
 
     const fetchAvailable = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
-      )
-      setNftInfos(res.data.map(e => e))
+      var lst = [];
+      await Promise.all(
+        userNfts.myNfts.map(async (item, i) => {
+          const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
+            lst.push(res.data);
+        }));
+        setNftInfos(lst);
     }
 
     const fetchUserOnSale = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${userOnSaleNfts.map(e => 'ids[]=' + e.tokenId + '&').join('')}`
-      )
+      var lst = [];
+      await Promise.all(
+        userOnSaleNfts.map(async (item, i) => {
+          const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item.tokenId}`)
+            lst.push(res.data);
+        }));
+
       setUserNftOnSaleInfos(
-        res.data.map(e => {
-          const onSale: onSaleNftInfo | undefined = userOnSaleNfts.find(o => o.tokenId.toString() === e.token_id)
-          e.bnbPrice = onSale?.bnbPrice
-          e.narPrice = onSale?.narPrice
+        lst.map(e => {
+          const onSale: onSaleNftInfo | undefined = userOnSaleNfts.find(o => Number(o.tokenId.toString()) === Number(e.id))
+     
+          e.htPrice = onSale?.htPrice
+          e.zeroPrice = onSale?.zeroPrice
           return e
         })
       )
@@ -184,7 +203,7 @@ export default function Bazaar() {
         <>
           <AutoRow gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
             <AutoColumn gap="sm" style={{ width: 'calc(50% - 8px)' }}>
-              <TYPE.subHeader>Type</TYPE.subHeader>
+              <TYPE.black>Type</TYPE.black>
               <Select
                 options={typeOptions}
                 defaultValue={typeOptions[0]}
@@ -193,7 +212,7 @@ export default function Bazaar() {
             </AutoColumn>
             <div style={{ width: 16 }} />
             <AutoColumn gap="sm" style={{ width: 'calc(50% - 8px)' }}>
-              <TYPE.subHeader>Grade</TYPE.subHeader>
+              <TYPE.black>Rank</TYPE.black>
               <Select
                 options={gradeOptions}
                 defaultValue={gradeOptions[0]}

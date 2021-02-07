@@ -222,7 +222,7 @@ export function useStakingInfo(poolIdToFilterBy?: number | null): StakingInfo[] 
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NULL SKILLS', 'NULL SKILLS')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
@@ -430,7 +430,7 @@ export function useStakingInfoCapped(poolIdToFilterBy?: number | null): StakingI
         const tokens = info[index].tokens
         const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const jlp4fToken = new Token(chainId, jlp4fAddresses[index], 18, 'rNLP', 'rNLP Token')
-        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'ZEROPOWER', 'ZEROPOWER')
+        const dummyNarpower = new Token(chainId, jlp4fAddresses[index], 21, 'NULL SKILLS', 'NULL SKILLS')
 
         // check for account, if no account set to 0
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))

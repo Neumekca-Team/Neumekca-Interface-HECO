@@ -70,7 +70,7 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
 
   const token0 = stakingInfo.tokens[0]
   const token1 = stakingInfo.tokens[1]
-  console.log(stakingInfo)
+
   const currency0 = unwrappedToken(token0)
   const currency1 = unwrappedToken(token1)
 
@@ -123,8 +123,7 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
   const USDPrice = useBUSDPrice(WETH)
   const valueOfTotalStakedAmountInBUSD =
     valueOfTotalStakedAmountInWETH && USDPrice?.quote(valueOfTotalStakedAmountInWETH)
-  const dateStart = new Date(1612742400 * 1000);
-  console.log(dateStart);
+
   return (
     <Wrapper>
       <TopSection>
@@ -171,14 +170,10 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
         </RowBetween>
       </StatContainer>
 
-      <ButtonPrimary padding="8px" borderRadius="8px" disabled>
-        <b>
-          <Countdown date={dateStart} />
-        </b>
-      </ButtonPrimary>
 
 
-      {/* <StyledInternalLink
+
+      <StyledInternalLink
         style={{ width: '100%' }}
         to={
           poolType === 'normal'
@@ -186,16 +181,16 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
             : `/page/capped/${stakingInfo.poolId}/${currencyId(currency0)}/${currencyId(currency1)}`
         }
       >
-        
-          <ButtonPrimary padding="8px" borderRadius="8px" disabled>
-  
-             {isStaking ? 'Manage' : 'Stake'} 
- 
-          </ButtonPrimary>
 
-        
+        <ButtonPrimary padding="8px" borderRadius="8px" >
+
+          {isStaking ? 'Manage' : 'Stake'}
+
+        </ButtonPrimary>
+
+
       </StyledInternalLink>
-     */}
+
     </Wrapper>
   )
 }

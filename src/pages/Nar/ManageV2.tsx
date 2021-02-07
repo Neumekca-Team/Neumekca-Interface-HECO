@@ -148,9 +148,9 @@ export default function ManageV2({
 
   // get currencies and pair
   const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
-  console.log(poolId)
+
   const stakingInfo = useStakingInfoV2(Number(poolId))?.[0]
-  console.log(stakingInfo)
+  
   // detect existing unstaked LP position to show add button if none found
   const userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
   const showAddLiquidityButton = Boolean(stakingInfo?.stakedAmount?.equalTo('0') && userLiquidityUnstaked?.equalTo('0'))
@@ -380,10 +380,10 @@ export default function ManageV2({
         </PoolData>
         <PoolData style={{height: '140px'}}>
         <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Your ZEROPOWER</TYPE.body>
+            <TYPE.body style={{ margin: 0 }}>Your NULL SKILLS</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
               {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
-              {' ZEROPOWER'}
+              {' NULL SKILLS'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -559,7 +559,7 @@ export default function ManageV2({
             ✨
           </span>
           Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
-          harvest relies on your ZEROPOWER and CHRONOS INJECTED, learn more{' '}
+          harvest relies on your NULL SKILLS and CHRONOS INJECTED, learn more{' '}
           <a href="https://docs.narwhalswap.org/liquidity-mining" target="_blank">
             here
           </a>
