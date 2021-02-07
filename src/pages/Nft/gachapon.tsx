@@ -6,7 +6,7 @@ import { Box } from 'rebass/styled-components'
 import styled, { ThemeContext } from 'styled-components'
 import { TYPE } from '../../theme'
 import NFTCard from '../../components/nft/NFTCard'
-// import ComingSoon from '../../components/ComingSoon'
+ import ComingSoon from '../../components/ComingSoon'
 import Gachapon from '../../components/nft/Gachapon'
 import Loader from '../../components/Loader'
 import { ClickableText } from '../Pool/styleds'
@@ -63,11 +63,11 @@ export default function Cryotank() {
   const a = useUserNfts();
 
   return (
-  // <PageWrapper gap="lg" justify="center">
-  //           <ComingSoon customText="New cryotank coming soon..." />
-  //   </PageWrapper>
-       <PageWrapper gap="lg" justify="center">
-            <Gachapon gachaPrice={a?.gachaPrice}  />
+  <PageWrapper gap="lg" justify="center">
+            <ComingSoon customText="New cryotank coming soon..." />
     </PageWrapper>
+    //    <PageWrapper gap="lg" justify="center">
+    //         <Gachapon gachaPrice={a?.gachaPrice}  />
+    // </PageWrapper>
   )
 }
