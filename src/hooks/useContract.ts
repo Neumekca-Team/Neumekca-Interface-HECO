@@ -111,7 +111,7 @@ export function useNarContract(): Contract | null {
 }
 
 export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(stakingAddress, STAKING_REWARDS_ABI, withSignerIfPossible)
+  return useContract(stakingAddress, STAKING_REWARDS_V2_INTERFACE, withSignerIfPossible)
 }
 
 export function useDividendStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {

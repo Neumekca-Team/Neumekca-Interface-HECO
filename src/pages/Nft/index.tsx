@@ -128,10 +128,6 @@ export default function Nft() {
       })
       
     })
-      .catch((error: any) => {
-        //setAttempting(false)
-        console.log(error)
-      })
   }
  
 
@@ -158,7 +154,7 @@ export default function Nft() {
     <PageWrapper gap="lg" justify="center">
       {
         (nftInfos ? (
-          nftInfos !== undefined && nftInfos.length !== 0 ? (
+          nftInfos.length !== 0 ? (
             <CardWrapper>
               {nftInfos.map(nftInfo => {
                 return <NFTCard key={nftInfo.token_id} nftInfo={nftInfo} />
@@ -171,7 +167,11 @@ export default function Nft() {
               </AutoColumn>
             )
         ) : (
-            <Loader style={{ margin: 'auto' }} />
+          <AutoColumn justify="center" gap="md">
+          <TYPE.main marginTop={64}>No NFT in your collection</TYPE.main>
+
+        </AutoColumn>
+            //  <Loader style={{ margin: 'auto' }} />
           ))}
     </PageWrapper>
   )

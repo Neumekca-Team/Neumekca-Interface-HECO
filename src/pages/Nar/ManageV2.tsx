@@ -196,12 +196,14 @@ export default function ManageV2({
     if (!stakingInfo || !chainId) return
 
     const requests =
-      stakingInfo.rune1 !== 0 && stakingInfo.rune2 !== 0
-        ? [stakingInfo.rune1, stakingInfo.rune2]
+      stakingInfo.rune1 !== 0 && stakingInfo.rune2 !== 0 && stakingInfo.rune3 !== 0
+        ? [stakingInfo.rune1, stakingInfo.rune2, stakingInfo.rune3]
         : stakingInfo.rune1 !== 0
           ? [stakingInfo.rune1]
           : stakingInfo.rune2 !== 0
-            ? [stakingInfo.rune2]
+            ? [stakingInfo.rune2] 
+            : stakingInfo.rune3 !== 0
+            ? [stakingInfo.rune3]
             : []
 
     const fetchMyNft = async () => {
