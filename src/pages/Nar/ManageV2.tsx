@@ -145,7 +145,7 @@ export default function ManageV2({
   }
 }: RouteComponentProps<{ poolId: string; currencyIdA: string; currencyIdB: string }>) {
   const { account, chainId } = useActiveWeb3React()
-  const time = 14400000;
+  const time = 28800000;
   // get currencies and pair
   const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
 
@@ -169,8 +169,7 @@ export default function ManageV2({
   const countUpAmountPrevious = usePrevious(countUpAmount) ?? '0'
 
   const userBuffRate = stakingInfo?.narPower?.divide(stakingInfo?.stakedAmount ?? JSBI.BigInt(1))
-  console.log(stakingInfo)
-  console.log(userBuffRate)
+
   const userBuffDecimal = userBuffRate?.multiply(JSBI.BigInt(10 ** 3))
   const [woreRuneInfos, setWoreRuneInfos] = useState<NftInfo[]>()
   const [showStakingRuneModal, setShowStakingRuneModal] = useState<showStakingRuneProps>({
@@ -198,7 +197,7 @@ export default function ManageV2({
     if (!stakingInfo || !chainId) return
 
     const requests =
-      stakingInfo.rune1 !== 0 && stakingInfo.rune2 !== 0 && stakingInfo.rune3 !== 0
+      stakingInfo.rune1 !== 0 || stakingInfo.rune2 !== 0 || stakingInfo.rune3 !== 0
         ? [stakingInfo.rune1, stakingInfo.rune2, stakingInfo.rune3]
         : stakingInfo.rune1 !== 0
           ? [stakingInfo.rune1]
@@ -261,7 +260,7 @@ export default function ManageV2({
               {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) &&
                 stakingInfo?.userInfoTimeStamp &&
                 (!isMaxBuffRate ? (
-                  <Countdown date={stakingInfo.userInfoTimeStamp + 28800000}>
+                  <Countdown date={stakingInfo.userInfoTimeStamp + time}>
                     <ButtonPrimary
                       padding="2px 0"
                       borderRadius="0px"
@@ -317,8 +316,8 @@ export default function ManageV2({
               >
                 {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
                   <RuneImage
-                    src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
-                    dim={Date.now() - stakingInfo.rune1TimeStamp < time}
+                    src={woreRuneInfos.filter(e => e.types === 1)[0]?.token_image}
+                    dim={Date.now() - stakingInfo?.rune1TimeStamp < time}
                   />
                 ) : (
                   <AutoColumn justify="center">
@@ -341,7 +340,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                    dim={Date.now() - stakingInfo.rune2TimeStamp < time}
+                    dim={Date.now() - stakingInfo?.rune2TimeStamp < time}
                   />
                 ) : (
                   <AutoColumn justify="center">
@@ -364,7 +363,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune3 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 3)[0]?.token_image ?? undefined}
-                    dim={Date.now() - stakingInfo.rune3TimeStamp < time}
+                    dim={Date.now() - stakingInfo?.rune3TimeStamp < time}
                   />
                 ) : (
                   <AutoColumn justify="center">
