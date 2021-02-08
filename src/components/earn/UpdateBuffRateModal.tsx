@@ -43,7 +43,7 @@ export default function UpdateBuffRateModal({ isOpen, onDismiss, stakingInfo }: 
     if (stakingContract) {
       setAttempting(true)
       await stakingContract
-        .updateBuffRate(account, { gasLimit: 350000 })
+        .updateChronos(account, { gasLimit: 350000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
             summary: `Update your CHRONOS INJECTED`

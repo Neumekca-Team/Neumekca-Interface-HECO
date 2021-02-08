@@ -783,7 +783,7 @@ export function useStakingInfoV2(poolIdToFilterBy?: number | null): StakingInfo[
         const totalRewardRate = new TokenAmount(nar, JSBI.BigInt(rewardRateState.result?.[0]))
         const totalPower = new TokenAmount(dummyNarpower, JSBI.BigInt(totalPowerState.result?.[0]))
         const jlp4fAmount = new TokenAmount(jlp4fToken, JSBI.BigInt(jlp4fBalanceState?.result?.[0] ?? 0))
-        const narPower = new TokenAmount(dummyNarpower, JSBI.BigInt(userInfoState?.result?.currentPower ?? 0))
+        const narPower = new TokenAmount(dummyNarpower, JSBI.BigInt(userInfoState?.result?.currentSkills ?? 0))
         const buffRateTimestamp = userInfoState?.result?.timeStamp?.mul(1000)?.toNumber() ?? 0
         const userMaxBuffRate = JSBI.BigInt(userMaxBuffrateState?.result?.[0] ?? 3)
         const commonMinAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(averageLpState?.result?.[0] ?? 0))

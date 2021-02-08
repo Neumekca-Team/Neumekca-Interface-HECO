@@ -145,7 +145,7 @@ export default function ManageV2({
   }
 }: RouteComponentProps<{ poolId: string; currencyIdA: string; currencyIdB: string }>) {
   const { account, chainId } = useActiveWeb3React()
-
+  const time = 14400000;
   // get currencies and pair
   const [currencyA, currencyB] = [useCurrency(currencyIdA), useCurrency(currencyIdB)]
 
@@ -169,6 +169,8 @@ export default function ManageV2({
   const countUpAmountPrevious = usePrevious(countUpAmount) ?? '0'
 
   const userBuffRate = stakingInfo?.narPower?.divide(stakingInfo?.stakedAmount ?? JSBI.BigInt(1))
+  console.log(stakingInfo)
+  console.log(userBuffRate)
   const userBuffDecimal = userBuffRate?.multiply(JSBI.BigInt(10 ** 3))
   const [woreRuneInfos, setWoreRuneInfos] = useState<NftInfo[]>()
   const [showStakingRuneModal, setShowStakingRuneModal] = useState<showStakingRuneProps>({
@@ -316,7 +318,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
-                    dim={Date.now() - stakingInfo.rune1TimeStamp < 28800000}
+                    dim={Date.now() - stakingInfo.rune1TimeStamp < time}
                   />
                 ) : (
                   <AutoColumn justify="center">
@@ -339,7 +341,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                    dim={Date.now() - stakingInfo.rune2TimeStamp < 28800000}
+                    dim={Date.now() - stakingInfo.rune2TimeStamp < time}
                   />
                 ) : (
                   <AutoColumn justify="center">
@@ -362,7 +364,7 @@ export default function ManageV2({
                 {woreRuneInfos && stakingInfo?.rune3 !== 0 ? (
                   <RuneImage
                     src={woreRuneInfos.filter(e => e.types === 3)[0]?.token_image ?? undefined}
-                    dim={Date.now() - stakingInfo.rune3TimeStamp < 28800000}
+                    dim={Date.now() - stakingInfo.rune3TimeStamp < time}
                   />
                 ) : (
                   <AutoColumn justify="center">
