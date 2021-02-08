@@ -243,7 +243,7 @@ export const B_USDT = new Token(
 
 export const H_USDT = new Token(
   ChainId.HT_MAINNET,
-  '0x793cdc8ff49d78b9dc30d7736a75d525dfd3e25c',
+  '0xa71edc38d189767582c38a3145b5873052c3e47a',
   18,
   'USDT',
   'Tether USD'
@@ -252,7 +252,7 @@ export const H_USDT = new Token(
 export const H_USD: { [chainId in ChainId]: Token } = {
   [ChainId.HT_MAINNET]: new Token(
     ChainId.HT_MAINNET,
-    '0xBA287B8E07b71636f1A9A7Ec56E9E3b34de1BE92',
+    '0x0298c2b32eae4da002a15f36fdf7615bea3da047',
     18,
     'HUSD',
     'HUSD Token'

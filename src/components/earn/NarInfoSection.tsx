@@ -10,7 +10,7 @@ import { useActiveWeb3React } from '../../hooks'
 import useBUSDPrice from '../../utils/useBUSDPrice'
 import usePrevious from '../../hooks/usePrevious'
 import CountUp from 'react-countup'
-
+import { ChainId, Currency, currencyEquals, JSBI, Price, WETH, Token } from '@neumekca/neumekca-sdk'
 const TopSection = styled(AutoColumn)`
   max-width: 720px;
   width: 100%;
@@ -35,6 +35,8 @@ export default function NarInfoSection() {
   const { chainId } = useActiveWeb3React()
   const nar = chainId ? ZERO[chainId] : undefined
   const narPrice = useBUSDPrice(nar)
+  
+
   const narSupplyInfo = useNarSupplyInfo()
 
   const mkc = narSupplyInfo?.circulating && narPrice?.quote(narSupplyInfo?.circulating)
@@ -57,7 +59,7 @@ export default function NarInfoSection() {
           <AutoColumn gap="sm">
             <TYPE.white style={{ margin: 0 }}>⚡ZERO Price</TYPE.white>
             <TYPE.white fontSize={24} fontWeight={500}>
-              ${narPrice?.toFixed(4) ?? '-'}
+              ${(narPrice ? (Number(narPrice?.toSignificant(3)) * 10**10).toFixed(4) : '-')}
             </TYPE.white>
           </AutoColumn>
         </NarData>
@@ -66,15 +68,15 @@ export default function NarInfoSection() {
           <AutoColumn gap="sm">
             <TYPE.white style={{ margin: 0 }}>✨Market Cap</TYPE.white>
             <TYPE.white fontSize={24} fontWeight={500}>
-              $
+              $ 
               <CountUp
                 key={countUpMKC}
                 decimals={0}
-                start={parseFloat(countUpMKCPrevious)}
-                end={parseFloat(countUpMKC)}
+                start={parseFloat(((Number(narPrice?.toSignificant(3)) * 10**10) * Number(countUpTotalSupply)).toFixed(4))}
+                end={parseFloat(((Number(narPrice?.toSignificant(3)) * 10**10) * Number(countUpTotalSupply)).toFixed(4))}
                 separator={','}
                 duration={1}
-              />
+              /> 
             </TYPE.white>
           </AutoColumn>
         </NarData>

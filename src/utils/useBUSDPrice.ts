@@ -1,7 +1,6 @@
 import { ChainId, Currency, currencyEquals, JSBI, Price, WETH, Token } from '@neumekca/neumekca-sdk'
-
 import { useMemo } from 'react'
-import { H_USD, H_BUSD } from '../constants'
+import { H_USD, H_USDT } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'
 import { useActiveWeb3React } from '../hooks'
 import { wrappedCurrency } from './wrappedCurrency'
@@ -12,16 +11,16 @@ import { wrappedCurrency } from './wrappedCurrency'
  */
 export default function useBUSDPrice(currency?: Currency): Price | undefined {
   const { chainId } = useActiveWeb3React()
-
   const wrapped = wrappedCurrency(currency, chainId)
+
   const tokenPairs: [Currency | undefined, Currency | undefined][] = useMemo(
     () => [
       [
         chainId && wrapped && currencyEquals(WETH[chainId], wrapped) ? undefined : currency,
         chainId ? WETH[chainId] : undefined
       ],
-      [wrapped, chainId ? H_USD[chainId] : undefined],
-      [chainId ? WETH[chainId] : undefined, chainId ? H_USD[chainId] : undefined]
+      [wrapped?.equals(H_USD[128]) ? undefined : wrapped, chainId === ChainId.HT_MAINNET ? H_USD[128] : H_USDT],
+      [chainId ? WETH[chainId] : undefined, chainId === ChainId.HT_MAINNET ? H_USD[128] : H_USDT]
     ],
     [chainId, currency, wrapped]
   )
@@ -32,7 +31,7 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
       return undefined
     }
     // busd on each chain
-    const busd = H_USD[chainId];
+    const busd: Token = chainId === ChainId.HT_MAINNET ? H_USD[128] : H_USDT
     // handle weth/eth
     if (wrapped.equals(WETH[chainId])) {
       if (usdcPair) {
@@ -48,7 +47,6 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
     }
 
     const ethPairETHAmount = ethPair?.reserveOf(WETH[chainId])
-  
     const ethPairETHBUSDValue: JSBI =
       ethPairETHAmount && usdcEthPair ? usdcEthPair.priceOf(WETH[chainId]).quote(ethPairETHAmount).raw : JSBI.BigInt(0)
 
