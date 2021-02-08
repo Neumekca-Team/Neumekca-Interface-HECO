@@ -277,7 +277,7 @@ export default function ManageV2({
                 ))}
             </RowBetween>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {userBuffRate?.toSignificant(6) ?? '-'}
+              {userBuffRate?.multiply(JSBI.BigInt(10 ** 3)).toSignificant(6) ?? '-'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -386,7 +386,7 @@ export default function ManageV2({
         <AutoColumn gap="sm">
             <TYPE.body style={{ margin: 0 }}>Your NULL SKILLS</TYPE.body>
             <TYPE.body fontSize={24} fontWeight={500}>
-              {stakingInfo?.narPower?.toSignificant(6) ?? '-'}
+              {stakingInfo?.narPower?.multiply(JSBI.BigInt(10**3)).toSignificant(6) ?? '-'}
               {' NULL SKILLS'}
             </TYPE.body>
           </AutoColumn>
