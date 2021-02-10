@@ -152,8 +152,8 @@ export default function PoolCard({ stakingInfo, poolType }: { stakingInfo: Staki
           <TYPE.darkGray>Total staked </TYPE.darkGray>
           <TYPE.darkGray>
             {valueOfTotalStakedAmountInBUSD
-              ? `$${valueOfTotalStakedAmountInBUSD.toFixed(0, { groupSeparator: ',' })}`
-              : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} HT`}
+              ? `$${valueOfTotalStakedAmountInBUSD?.multiply(JSBI.BigInt(10**10)).toFixed(4, { groupSeparator: ',' })}`
+              : `${valueOfTotalStakedAmountInWETH?.multiply(JSBI.BigInt(10**10)).toSignificant(4, { groupSeparator: ',' }) ?? '-'} HT`}
           </TYPE.darkGray>
         </RowBetween>
         <RowBetween>

@@ -36,6 +36,14 @@ export const STAKING_REWARDS_DIVIDEND_INFO: {
       poolAddress: '0xF18e0A2F39d9f29Ad192aaE1a719ae3aCF8AB5D3',
       poolId: 0
     }
+  ],
+  [ChainId.HT_MAINNET]: [
+    {
+      stakeToken: ZERO[ChainId.HT_MAINNET],
+      representativeToken: SNOW[ChainId.HT_MAINNET],
+      poolAddress: '0x74fC9e47248fbE58bf440971F41C6c3eDdEDD022',
+      poolId: 0
+    }
   ]
 }
 
@@ -111,15 +119,15 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
     'userInfo',
     accountArg
   )
-  const runes1 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'rune', [
+  const runes1 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'nCard', [
     ...accountArg,
     1
   ])
-  const runes2 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'rune', [
+  const runes2 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'nCard', [
     ...accountArg,
     2
   ])
-  const runes3 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'rune', [
+  const runes3 = useMultipleContractSingleData(poolAddresses, STAKING_REWARDS_DIVIDEND_INTERFACE, 'nCard', [
     ...accountArg,
     3
   ])
@@ -176,6 +184,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
         !ruleState?.loading &&
         !runeState1?.loading &&
         !runeState2?.loading &&
+        !runeState3?.loading &&
         // always need these
         totalSupplyState &&
         !totalSupplyState.loading &&
@@ -193,6 +202,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
           ruleState?.error ||
           runeState1?.error ||
           runeState2?.error ||
+          runeState3?.error ||
           userInfoState?.error ||
           totalSupplyState.error ||
           totalPowerState.error ||
@@ -275,6 +285,7 @@ export function useDividendStakingInfo(poolIdToFilterBy?: number | null): Divide
     rules,
     runes1,
     runes2,
+    runes3,
     nar
   ])
 }

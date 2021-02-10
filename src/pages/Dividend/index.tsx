@@ -35,7 +35,7 @@ const PageWrapper = styled(AutoColumn)`
 
 const PositionInfo = styled(AutoColumn) <{ dim: any }>`
   position: relative;
-  max-width: 720px;
+ 
   width: 100%;
   opacity: ${({ dim }) => (dim ? 0.6 : 1)};
 `
@@ -93,7 +93,7 @@ const TokenImage = styled.img`
 
 const RuneSlot = styled.div`
   width: 72px;
-  height: 72px;
+  height: 105px;
   padding: 0px;
   margin-right: 16px;
   box-shadow: 2px 2px 4px ${({ theme }) => theme.shadowColor1}, -2px -2px 4px ${({ theme }) => theme.shadowColor2};
@@ -104,15 +104,17 @@ const RuneSlot = styled.div`
 
   animation: shadow-red 5s infinite;
   @keyframes shadow-red {
-    50% {box-shadow: 10px 20px 30px red;}
+    50% {
+      box-shadow: 10px 20px 30px red;
+    }
   }
 `
 
-
 const RuneImage = styled.img<{ dim: any }>`
   width: 100%;
-  opacity: ${({ dim }) => (dim ? 0.4 : 1)};
+
 `
+
 
 interface showStakingRuneProps {
   isOpen: boolean
@@ -175,7 +177,7 @@ export default function Dividend() {
   //     )
   //   )
   // }
-
+  const time = 28800000;
   const countUpAmount = stakingInfo?.earnedAmount?.toFixed(6) ?? '0'
   const countUpAmountPrevious = usePrevious(countUpAmount) ?? '0'
 
@@ -202,19 +204,28 @@ export default function Dividend() {
     if (!stakingInfo || !chainId) return
 
     const requests =
-      stakingInfo.rune1 !== 0 && stakingInfo.rune2 !== 0
-        ? [stakingInfo.rune1, stakingInfo.rune2]
+      stakingInfo.rune1 !== 0 || stakingInfo.rune2 !== 0 ||  stakingInfo.rune3
+        ? [stakingInfo.rune1, stakingInfo.rune2, stakingInfo.rune3 ]
         : stakingInfo.rune1 !== 0
           ? [stakingInfo.rune1]
           : stakingInfo.rune2 !== 0
+            ? [stakingInfo.rune2] 
+            : stakingInfo.rune2 !== 0
             ? [stakingInfo.rune2]
+            : stakingInfo.rune3 !== 0
+            ? [stakingInfo.rune3]
             : []
 
     const fetchMyNft = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/list?${requests.map(e => 'ids[]=' + e + '&').join('')}`
-      )
-      setWoreRuneInfos(res.data.map(e => e))
+      var lst = []
+      await Promise.all(
+          requests.map(async (item, i) => {
+            const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
+            lst.push(res.data)
+          })
+          
+        )
+        setWoreRuneInfos(lst)
     }
 
     if (requests.length !== 0) {
@@ -442,83 +453,96 @@ export default function Dividend() {
         </BottomSection>
 
         <DataRow style={{ gap: '24px' }}>
-          <PoolData>
-            <AutoColumn gap="sm">
-              <AutoRow>
-                <RuneSlot
-                  onClick={() =>
-                    stakingInfo?.rune1 !== 0
-                      ? setShowUnstakingRuneModal({
+        <PoolData>
+          <AutoColumn gap="sm">
+                  <AutoRow>
+                  <RuneSlot
+                onClick={() =>
+                  stakingInfo?.rune1 !== 0
+                    ? setShowUnstakingRuneModal({
                         isOpen: true,
                         nftInfo: woreRuneInfos?.filter(e => e.types === 1)[0]
                       })
-                      : setShowStakingRuneModal({ isOpen: true, type: 1 })
-                  }
-                >
-                  {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
-                    <RuneImage
-                      src={woreRuneInfos.filter(e => e.types === 1)[0].token_image}
-                      dim={Date.now() - stakingInfo.rune1TimeStamp < 28800000}
-                    />
-                  ) : (
-                      <AutoColumn justify="center">
-                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
-                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
-                        <TYPE.white fontSize={12}>INIT</TYPE.white>
-                        
-                      </AutoColumn>
-                    )}
-                </RuneSlot>
-                <RuneSlot
-                  onClick={() =>
-                    stakingInfo?.rune2 !== 0
-                      ? setShowUnstakingRuneModal({
+                    : setShowStakingRuneModal({ isOpen: true, type: 1 })
+                }
+              >
+                {woreRuneInfos && stakingInfo?.rune1 !== 0 ? (
+                  <RuneImage
+                    src={woreRuneInfos.filter(e => e.types === 1)[0]?.token_image}
+                    dim={Date.now() - stakingInfo?.rune1TimeStamp < time}
+                  />
+                ) : (
+                  <AutoColumn justify="center">
+                    <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                    <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                    <TYPE.white fontSize={12}>INIT</TYPE.white>
+                  </AutoColumn>
+                )}
+              </RuneSlot>
+              <RuneSlot
+                onClick={() =>
+                  stakingInfo?.rune2 !== 0
+                    ? setShowUnstakingRuneModal({
                         isOpen: true,
                         nftInfo: woreRuneInfos?.filter(e => e.types === 2)[0]
                       })
-                      : setShowStakingRuneModal({ isOpen: true, type: 2 })
-                  }
-                >
-                  {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
-                    <RuneImage
-                      src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                      dim={Date.now() - stakingInfo.rune2TimeStamp < 28800000}
-                    />
-                  ) : (
-                      <AutoColumn justify="center">
-                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
-                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
-                        <TYPE.white fontSize={12}>STEP</TYPE.white>
-                      </AutoColumn>
-                    )}
-                </RuneSlot>
-                <RuneSlot
-                  onClick={() =>
-                    stakingInfo?.rune2 !== 0
-                      ? setShowUnstakingRuneModal({
+                    : setShowStakingRuneModal({ isOpen: true, type: 2 })
+                }
+              >
+                {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
+                  <RuneImage
+                    src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
+                    dim={Date.now() - stakingInfo?.rune2TimeStamp < time}
+                  />
+                ) : (
+                  <AutoColumn justify="center">
+                    <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                    <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                    <TYPE.white fontSize={12}>STEP</TYPE.white>
+                  </AutoColumn>
+                )}
+              </RuneSlot>
+              <RuneSlot
+                onClick={() =>
+                  stakingInfo?.rune3 !== 0
+                    ? setShowUnstakingRuneModal({
                         isOpen: true,
-                        nftInfo: woreRuneInfos?.filter(e => e.types === 2)[0]
+                        nftInfo: woreRuneInfos?.filter(e => e.types === 3)[0]
                       })
-                      : setShowStakingRuneModal({ isOpen: true, type: 2 })
-                  }
-                >
-                  {woreRuneInfos && stakingInfo?.rune2 !== 0 ? (
-                    <RuneImage
-                      src={woreRuneInfos.filter(e => e.types === 2)[0]?.token_image ?? undefined}
-                      dim={Date.now() - stakingInfo.rune2TimeStamp < 28800000}
-                    />
-                  ) : (
-                      <AutoColumn justify="center">
-                        <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
-                        <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
-                        <TYPE.white fontSize={12}>MAX</TYPE.white>
-                      </AutoColumn>
-                    )}
-                </RuneSlot>
-              </AutoRow>
-            </AutoColumn>
-          </PoolData>
-        </DataRow>
+                    : setShowStakingRuneModal({ isOpen: true, type: 3 })
+                }
+              >
+                {woreRuneInfos && stakingInfo?.rune3 !== 0 ? (
+                  <RuneImage
+                    src={woreRuneInfos.filter(e => e.types === 3)[0]?.token_image ?? undefined}
+                    dim={Date.now() - stakingInfo?.rune3TimeStamp < time}
+                  />
+                ) : (
+                  <AutoColumn justify="center">
+                    <TYPE.white style={{ marginTop: 6 }}>+</TYPE.white>
+                    <TYPE.white fontSize={12}>CHRONOS</TYPE.white>
+                    <TYPE.white fontSize={12}>MAX</TYPE.white>
+                  </AutoColumn>
+                )}
+              </RuneSlot>
+           
+                  </AutoRow>
+
+          </AutoColumn>
+         
+      
+     
+        </PoolData>
+        <PoolData style={{height: '140px'}}>
+        <AutoColumn gap="sm">
+            <TYPE.body style={{ margin: 0 }}>Your NULL SKILLS</TYPE.body>
+            <TYPE.body fontSize={24} fontWeight={500}>
+              {stakingInfo?.narPower?.multiply(JSBI.BigInt(10**3)).toSignificant(6) ?? '-'}
+              {' NULL SKILLS'}
+            </TYPE.body>
+          </AutoColumn>
+        </PoolData>
+      </DataRow>
 
         <TYPE.white style={{ textAlign: 'center' }} fontSize={14}>
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
@@ -530,16 +554,7 @@ export default function Dividend() {
             here
           </a>
         </TYPE.white>
-        {/* <TYPE.white style={{ textAlign: 'center' }} fontSize={14}>
-          <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
-            ✨
-          </span>
-          Estimated Harvest is a close benchmark of how much ZERO you should receive per week prior to any burns. True
-          harvest relies on your NULLSKILLS and CHRONOS INJECTED, learn more{' '}
-          <a href="https://neumekca.city/docs/" target="_blank">
-            here
-          </a>
-        </TYPE.white> */}
+
 
         {!showAddLiquidityButton && (
           <DataRow>

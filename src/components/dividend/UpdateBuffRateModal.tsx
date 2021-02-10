@@ -11,6 +11,7 @@ import { SubmittedView, LoadingView } from '../ModalViews'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { useActiveWeb3React } from '../../hooks'
+import { JSBI } from '@neumekca/neumekca-sdk'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -76,7 +77,7 @@ export default function UpdateBuffRateModal({ isOpen, onDismiss, stakingInfo }: 
           {stakingInfo?.narPower && (
             <AutoColumn justify="center" gap="md">
               <TYPE.body fontWeight={600} fontSize={36}>
-                {stakingInfo?.narPower?.divide(stakingInfo?.stakedAmount).toSignificant(6)}
+                {stakingInfo?.narPower?.divide(stakingInfo?.stakedAmount)?.multiply(JSBI.BigInt(10**3)).toSignificant(4)}
               </TYPE.body>
               <TYPE.body>Your CHRONOS INJECTED</TYPE.body>
             </AutoColumn>

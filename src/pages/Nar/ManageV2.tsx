@@ -387,7 +387,7 @@ export default function ManageV2({
             <TYPE.body fontSize={24} fontWeight={500}>
               {stakingInfo?.narPower?.multiply(JSBI.BigInt(10**3)).toSignificant(6) ?? '-'}
               {' NULL SKILLS'}
-            </TYPE.body>
+                </TYPE.body>
           </AutoColumn>
         </PoolData>
       </DataRow>

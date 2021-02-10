@@ -9,7 +9,6 @@ import {
 import { ZERO, PRESALE_ADDRESS } from '../constants'
 import ZERO_ABI from '../constants/abis/nar.json'
 import STAKING_REWARDS_V2_INTERFACE from '../constants/abis/staking_rewards_v2.json'
-import STAKING_REWARDS_ABI from '../constants/abis/staking_rewards.json'
 import STAKING_DIVIDEND_ABI from '../constants/abis/staking_dividend.json'
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
 import UNISOCKS_ABI from '../constants/abis/unisocks.json'

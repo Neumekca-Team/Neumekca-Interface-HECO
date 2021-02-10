@@ -91,7 +91,7 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
       setAttempting(true)
       if (approval === ApprovalState.APPROVED) {
         stakingContract
-          .setNcard(`0x${JSBI.BigInt(nftSelected.token_id).toString(16)}`, { gasLimit: 450000 })
+          .setNcard(`0x${JSBI.BigInt(nftSelected.id).toString(16)}`, { gasLimit: 450000 })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
               summary: `wearing Card`
@@ -124,10 +124,16 @@ export default function StakingRuneModal({ isOpen, onDismiss, stakingInfo, runeT
     if (!userNfts || !chainId) return
 
     const fetchAvailable = async () => {
-      const res = await axios.get<NftInfo[]>(
-        `${NFT_BASE_URL[chainId]}/null-card/${userNfts.myNfts.map(e => 'ids[]=' + e + '&').join('')}`
-      )
-      setNftInfos(res.data.map(e => e))
+
+      var lst = []
+      await Promise.all(
+        userNfts.myNfts.map(async (item, i) => {
+            const res = await axios.get<NftInfo>(`${NFT_BASE_URL[chainId]}null-card/${item}`)
+            lst.push(res.data)
+          })
+          
+        )
+        setNftInfos(lst)
     }
     
     if (userNfts.myNfts.length !== 0) {
